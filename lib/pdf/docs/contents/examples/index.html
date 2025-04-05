@@ -1,0 +1,57 @@
+<hr>
+<h2 id="title-Exampleslayout-layout-njkslug-examples"><a href="#title-Exampleslayout-layout-njkslug-examples" class="headerlink" title="title: Exampleslayout: layout.njkslug: examples"></a>title: Examples<br>layout: layout.njk<br>slug: examples</h2><h2 id="Hello-World-Walkthrough"><a href="#Hello-World-Walkthrough" class="headerlink" title="Hello World Walkthrough"></a>Hello World Walkthrough</h2><p><a href="https://github.com/mozilla/pdf.js/blob/master/examples/learning/helloworld.html">Full source</a></p>
+<p>PDF.js heavily relies on the use of <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If promises are new to you, it’s recommended you become familiar with them before continuing on.</p>
+<p>This tutorial shows how PDF.js can be used as a library in a web browser.<br><a href="https://github.com/mozilla/pdf.js/tree/master/examples">examples&#x2F;</a> provides more examples, including usage in Node.js (at <a href="https://github.com/mozilla/pdf.js/tree/master/examples/node">examples&#x2F;node&#x2F;</a>).</p>
+<h3 id="Document"><a href="#Document" class="headerlink" title="Document"></a>Document</h3><p>The object structure of PDF.js loosely follows the structure of an actual PDF. At the top level there is a document object. From the document, more information and individual pages can be fetched. To get the document:</p>
+<pre><code class="js">pdfjsLib.getDocument(&#39;helloworld.pdf&#39;)
+</code></pre>
+<p>Remember though that PDF.js uses promises, and the above will return a <code>PDFDocumentLoadingTask</code> instance that has a <code>promise</code> property which is resolved with the document object.</p>
+<pre><code class="js">var loadingTask = pdfjsLib.getDocument(&#39;helloworld.pdf&#39;);
+loadingTask.promise.then(function(pdf) {
+  // you can now use *pdf* here
+});
+</code></pre>
+<h3 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h3><p>Now that we have the document, we can get a page. Again, this uses promises.</p>
+<pre><code class="js">pdf.getPage(1).then(function(page) {
+  // you can now use *page* here
+});
+</code></pre>
+<h3 id="Rendering-the-Page"><a href="#Rendering-the-Page" class="headerlink" title="Rendering the Page"></a>Rendering the Page</h3><p>Each PDF page has its own viewport which defines the size in pixels(72DPI) and initial rotation. By default the viewport is scaled to the original size of the PDF, but this can be changed by modifying the viewport. When the viewport is created, an initial transformation matrix will also be created that takes into account the desired scale, rotation, and it transforms the coordinate system (the 0,0 point in PDF documents the bottom-left whereas canvas 0,0 is top-left).</p>
+<pre><code class="js">var scale = 1.5;
+var viewport = page.getViewport({ scale: scale, });
+// Support HiDPI-screens.
+var outputScale = window.devicePixelRatio || 1;
+
+var canvas = document.getElementById(&#39;the-canvas&#39;);
+var context = canvas.getContext(&#39;2d&#39;);
+
+canvas.width = Math.floor(viewport.width * outputScale);
+canvas.height = Math.floor(viewport.height * outputScale);
+canvas.style.width = Math.floor(viewport.width) + &quot;px&quot;;
+canvas.style.height =  Math.floor(viewport.height) + &quot;px&quot;;
+
+var transform = outputScale !== 1
+  ? [outputScale, 0, 0, outputScale, 0, 0]
+  : null;
+
+var renderContext = {
+  canvasContext: context,
+  transform: transform,
+  viewport: viewport
+};
+page.render(renderContext);
+</code></pre>
+<p>Alternatively, if you want the canvas to render to a certain pixel size you could do the following:</p>
+<pre><code class="js">var desiredWidth = 100;
+var viewport = page.getViewport({ scale: 1, });
+var scale = desiredWidth / viewport.width;
+var scaledViewport = page.getViewport({ scale: scale, });
+</code></pre>
+<h2 id="Interactive-examples"><a href="#Interactive-examples" class="headerlink" title="Interactive examples"></a>Interactive examples</h2><h3 id="Hello-World-with-document-load-error-handling"><a href="#Hello-World-with-document-load-error-handling" class="headerlink" title="Hello World with document load error handling"></a>Hello World with document load error handling</h3><p>The example demonstrates how promises can be used to handle errors during loading.<br>It also demonstrates how to wait until a page is loaded and rendered.</p>
+<script async src="https://jsfiddle.net/pdfjs/9engc9mw/embed/html,css,result/"></script>
+
+<h3 id="Hello-World-using-base64-encoded-PDF"><a href="#Hello-World-using-base64-encoded-PDF" class="headerlink" title="Hello World using base64 encoded PDF"></a>Hello World using base64 encoded PDF</h3><p>The PDF.js can accept any decoded base64 data as an array.</p>
+<script async src="https://jsfiddle.net/pdfjs/cq0asLqz/embed/html,css,result/"></script>
+
+<h3 id="Previous-Next-example"><a href="#Previous-Next-example" class="headerlink" title="Previous&#x2F;Next example"></a>Previous&#x2F;Next example</h3><p>The same canvas cannot be used to perform to draw two pages at the same time –<br>the example demonstrates how to wait on previous operation to be complete.</p>
+<script async src="https://jsfiddle.net/pdfjs/wagvs9Lf/embed/html,css,result/"></script>
