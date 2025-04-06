@@ -2009,7 +2009,7 @@ branch-name \mathcal{G}_{sum(balance) as sum-balance}(account)</script><h4 id="4
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-04-06 10:23:57 / 修改时间：22:47:33" itemprop="dateCreated datePublished" datetime="2025-04-06T10:23:57+08:00">2025-04-06</time>
+              <time title="创建时间：2025-04-06 10:23:57 / 修改时间：23:12:33" itemprop="dateCreated datePublished" datetime="2025-04-06T10:23:57+08:00">2025-04-06</time>
             </span>
 
           <br>
@@ -3507,7 +3507,32 @@ SP=\frac{n \times m}{m+n-1}</script><ul>
     - 1 integer instruction + 1 floating-point operation instruction
 - Among them, load, store and branch instructions are classified as integer instructions.
 ![alt text](image-104.png)
-</code></pre>
+</code></pre><h3 id="4-3-2-Based-on-dynamic-scheduling"><a href="#4-3-2-Based-on-dynamic-scheduling" class="headerlink" title="4.3.2 Based on dynamic scheduling"></a>4.3.2 Based on dynamic scheduling</h3><p>Extended Tomasuloalgorithm: supports two-way superscalar</p>
+<p>指令顺序进入保留站，分开处理</p>
+<p>!!!example<br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Loop:</span><br><span class="line">FLD    F0, 0 (R1)   // Take an array element and put it into F0</span><br><span class="line">FADD.D F4, F0, F2   // add the scalar in F2</span><br><span class="line">FSD    F4, 0 (R1)   // storeresult</span><br><span class="line">ADDI   R1, R1, 8    // increment pointer by 8 //(each data occupies 8 bytes)</span><br><span class="line">BNE    R1, R2, Loop // If R1 is not equal to R2, it means it is not over yet, move to Loop to continue</span><br></pre></td></tr></table></figure></p>
+<pre><code>对于没有分支预测的情况：可以看到分支后面的一条指令，在周期7才能执行(即周期6分支指令执行结束)
+
+![alt text](image-105.png)
+
+- The program can basically reach 3 beats and 5 instructions
+    - IPC＝5/3＝1.67 items/beat
+- the execution efficiency is not very high.
+    - A total of 15 instructions were executed in 16 beats.
+    - The average command execution speed is 15/16=0.94 per beat.
+</code></pre><h3 id="4-3-3-Very-long-instruction-word-technology-VLIW"><a href="#4-3-3-Very-long-instruction-word-technology-VLIW" class="headerlink" title="4.3.3 Very long instruction word technology(VLIW)"></a>4.3.3 Very long instruction word technology(VLIW)</h3><p>Assemble multiple instructions that can be executed in parallel into a very long instruction.</p>
+<p>At compile time, multiple unrelated or unrelated operations that can be executed in parallel are combined to form a very long instruction word with multiple operation segments.</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/e4e748c50758ddb671ba1682c750622.jpg" alt="alt text"></p>
+<blockquote>
+<p>相当于只在EX阶段进行了并行操作</p>
+</blockquote>
+<h3 id="4-3-4-Superpipeline-processor"><a href="#4-3-4-Superpipeline-processor" class="headerlink" title="4.3.4 Superpipeline processor"></a>4.3.4 Superpipeline processor</h3><p>A pipeline processor with 8 or more instruction pipeline stages is called a superpipelining processor.</p>
+<p>在一个很小的$\Delta t$时间(小于一个阶段的用时)后就发射下一条指令</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-106.png" alt="alt text"></p>
+<ul>
+<li>本质就是流水线的细分</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-107.png" alt="alt text"></p>
+
       
     </div>
 
