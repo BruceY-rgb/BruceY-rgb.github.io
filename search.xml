@@ -1054,6 +1054,1515 @@ r=-\frac{M}{h}+\frac{k}{h}Y</script><p><img src="/2025/04/07/%E5%AE%8F%E8%A7%82%
 ]]></content>
   </entry>
   <entry>
+    <title>计算机体系结构(Computer Architecture)</title>
+    <url>/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/</url>
+    <content><![CDATA[<h1 id="Chapter-1-Fundamentals-of-Computer-Design"><a href="#Chapter-1-Fundamentals-of-Computer-Design" class="headerlink" title="Chapter 1:Fundamentals of Computer Design"></a>Chapter 1:Fundamentals of Computer Design</h1><h2 id="Part-One-Introduction"><a href="#Part-One-Introduction" class="headerlink" title="Part One: Introduction"></a>Part One: Introduction</h2><ul>
+<li>冯诺依曼架构：存算分离</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image.png" alt="alt text"></p>
+<h3 id="计算机的分类（及关键的系统特征）"><a href="#计算机的分类（及关键的系统特征）" class="headerlink" title="计算机的分类（及关键的系统特征）"></a>计算机的分类（及关键的系统特征）</h3><ul>
+<li>Personal Mobile Devices(个人移动设备)：成本、能耗、媒体性能、响应速度</li>
+<li>Desktop Computers(桌面计算机)：性价比、能耗、图形性能</li>
+<li>Servers Computers(服务器)：吞吐量、可用性、可扩展性（规模）、能耗</li>
+<li>Embedded Computers(物联网/嵌入式计算机):价格、能耗、应用的特有性能</li>
+<li>Supercomputers(超级计算机/集群、仓库计算机)：性价比、吞吐量、能耗均衡性</li>
+</ul>
+<h3 id="计算机并行"><a href="#计算机并行" class="headerlink" title="计算机并行"></a>计算机并行</h3><ul>
+<li>数据集并行(DLP)：使某些数据选项可以同时操作</li>
+<li><p>任务机并行(TLP): 创建的工作任务可以单独执行 并且主要采用并行方式执行</p>
+</li>
+<li><p>Flynn’s Class(根据数据流与指令流)</p>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-1.png" alt="alt text"></p>
+<h2 id="Part-Two-Performance"><a href="#Part-Two-Performance" class="headerlink" title="Part Two: Performance"></a>Part Two: Performance</h2><ul>
+<li>影响性能的因素：体系结构，硬件实现，编译器，OS等</li>
+<li>衡量性能的方法<ul>
+<li>Single users on a PC-&gt;响应时间的最小值</li>
+<li>Large Data-&gt;吞吐量的最大值</li>
+</ul>
+</li>
+<li>响应时间与吞吐量<ul>
+<li>响应时间：response time或称为latency，一个事件开始到结束的时间，如一次访问需要多长时间</li>
+<li>吞吐量：throughput，也称作(bandwith带宽)：给定时间范围内完成了多少的工作量</li>
+</ul>
+</li>
+<li>体系结构的主要目标就是<strong><em>提升系统的性能</em></strong>，如每秒传输的字节数</li>
+</ul>
+<h2 id="Part-Three-Technology-Trend"><a href="#Part-Three-Technology-Trend" class="headerlink" title="Part Three: Technology Trend"></a>Part Three: Technology Trend</h2><p>The improvement of computer architecture </p>
+<ul>
+<li>输入输出的进步</li>
+<li>内存组织结构的发展</li>
+<li>指令集的发展方向<ul>
+<li>CISC</li>
+<li>RISC</li>
+</ul>
+</li>
+<li>并行执行技术（不同层次（系统程序算法等）、粒度（任务的大小或复杂度）的并行）</li>
+</ul>
+<h2 id="Part-Four-Quantitive-Approaches"><a href="#Part-Four-Quantitive-Approaches" class="headerlink" title="Part Four:Quantitive Approaches"></a>Part Four:Quantitive Approaches</h2><ol>
+<li>CPU Performance</li>
+</ol>
+<ul>
+<li>$CPU Time=IC \times CPI \times clock cycle time$</li>
+<li>$CPI=1+\sum_{i=1}^{n}P_i$<ul>
+<li>CPI由硬件决定</li>
+<li>不同的指令也会有不同的CPI，平均CPI取决于指令的组合方式</li>
+<li>$CPU Cycles=IC \times CPI $</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Amdahl’s Law</li>
+</ol>
+<ul>
+<li>使用某种快速执行模式获得的性能改进受限于可使用此种模式的时间比例。当提升系统性能时，可以计算出通过改进计算机某一部分而获得的性能增益</li>
+<li>$T_{improved}=\dfrac{T_{affected}}{\text{improvement factor}}+T_{unaffected}$</li>
+<li>加速比(SP)：改进前后执行时间正比或性能反比<script type="math/tex; mode=display">
+\begin{align*}
+\text{Speedup} & = \dfrac{\text{Performance for entire task}_\text{using Enhancement}}{\text{Performance for entire task}_\text{without Enhancement}} \\
+& = \dfrac{\text{Total Execution Time}_\text{without Enhancement}}{\text{Total Execution Time}_\text{using Enhancement}}
+\end{align*}</script></li>
+<li>执行时间(f指改进部分所占的比例)<br>$T_{new} = T_{old}\times \left((1-f)+\dfrac{f}{Sp}\right)$</li>
+<li>改进系数(f)：改进部分的执行时间占整个任务时间的比例<ul>
+<li>其中Sp为被优化部分的加速比，$Sp_{overall}$为整体加速比，f为被优化部分所占的运行时间比例。<h2 id="Part-Five-Great-Architecture-Ideas"><a href="#Part-Five-Great-Architecture-Ideas" class="headerlink" title="Part Five:Great Architecture Ideas"></a>Part Five:Great Architecture Ideas</h2></li>
+</ul>
+</li>
+<li>摩尔定律：每过 18-24 个月，集成电路的晶体管数量将增加一倍</li>
+<li>使用抽象来简化设计</li>
+<li>让最常见的情况更快</li>
+<li>通过并行来提高性能</li>
+<li>由很多级别的并行，比如指令集并行、进程并行等</li>
+<li>通过流水线来提高性能<ul>
+<li>将任务分为多段，让多个任务的不同阶段同时进行</li>
+<li>通常用来提高指令吞吐量</li>
+</ul>
+</li>
+<li>通过预测来提高性能</li>
+<li>使用层次化的内存<ul>
+<li>让最常访问的数据在更高层级，访问更快(Memory Hierarchy)<h2 id="Part-Six-Ideas"><a href="#Part-Six-Ideas" class="headerlink" title="Part Six:Ideas"></a>Part Six:Ideas</h2></li>
+</ul>
+</li>
+<li>Instruction Set Architecture(ISA)<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-2.png" alt="alt text"></li>
+</ul>
+<p>Instruction Set Design Issues</p>
+<ul>
+<li>ISA分类</li>
+<li>存储器寻址</li>
+<li>寻址模式</li>
+<li>操作数的类型和大小</li>
+<li>操作指令</li>
+<li>控制流指令</li>
+<li>ISA的编码</li>
+</ul>
+<h2 id="Part-Seven-Trends-in-power-and-Energy-in-Integrated-circuits"><a href="#Part-Seven-Trends-in-power-and-Energy-in-Integrated-circuits" class="headerlink" title="Part Seven:Trends in power and Energy  in Integrated circuits"></a>Part Seven:Trends in power and Energy  in Integrated circuits</h2><ol>
+<li>Trends in power</li>
+</ol>
+<ul>
+<li>Challenges<ul>
+<li>distributing the power</li>
+<li>removing the heat</li>
+<li>preventing hot spot</li>
+</ul>
+</li>
+<li>节能的技术<ul>
+<li>以逸待劳（Do nothing well）:关闭 非活动模块时钟</li>
+<li>动态电压—频率调整(DVFS):活跃程度较低的时期不需要以最高始终频率和电压运转</li>
+<li>针对典型情景的设计(Design for typical case):<ul>
+<li>Lower power modes(LPM)-save power</li>
+<li>Can not access DRAM or DISK when in LPM</li>
+</ul>
+</li>
+<li>超频(Overclocking)：在执行单线程代码时，微处理器可以仅留下一个核，并使其以更高时钟频率运行而其他所有核均被关闭</li>
+<li>竞相暂停(race-to-halt):由于处理器只是系统整体能耗的一部分，所以如果使用一个速度较快但能效较低的处理器，使系统其他部分能够进入睡眠模式，可能有助于降低整体能耗</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>微处理器内部的能耗和功率</li>
+</ol>
+<ul>
+<li><p>动态功率：开关晶体管的能耗</p>
+<ul>
+<li>逻辑转换脉冲0-&gt;1-&gt;0或者1-&gt;0-&gt;1的能耗：<script type="math/tex; mode=display">
+Energy_{dynamic}=Capacity\ load \times Voltage^2</script></li>
+<li>一次转换的功率为<script type="math/tex; mode=display">
+Energy_{dynamic}=\frac12 \times Capacity\ load \times Voltage^2 \times Frequency\ switched</script></li>
+<li>对于一项固定任务，降级时钟频率可以降低功率，但不会降低能耗</li>
+</ul>
+</li>
+<li><p>静态功率：晶体管因漏电而关断时的功耗</p>
+<script type="math/tex; mode=display">
+Power_{static}=current\ static \times Voltage</script></li>
+</ul>
+<ol>
+<li>Multiple core deliver more performance per watt</li>
+</ol>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-3.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-4.png" alt="alt text"></p>
+<ul>
+<li>由于多核通讯，资源占用等问题，多核多线程会在达到峰值后回落<h2 id="Part-Seven-Cost-Trend"><a href="#Part-Seven-Cost-Trend" class="headerlink" title="Part Seven:Cost Trend"></a>Part Seven:Cost Trend</h2></li>
+</ul>
+<ol>
+<li>Time,Volume and Commodification(时间、产量和大众化)</li>
+</ol>
+<ul>
+<li>时间：即使基本的实现技术没有取得任何重大进步，计算机组件的制造成本也会随着时间的推移而降低<ul>
+<li>成本下降的背后基本原理是学习曲线：制造成本随时间的推移而降低。学习曲线本身根据良率的变化预测（良率：成功通过测试的器件占所生产器件总数占总件数的百分比），良率翻倍的设计就能使成本减半</li>
+</ul>
+</li>
+<li>产量：从两个方面影响成本<ul>
+<li>产量的提高减少了完成学习曲线所需的时间，该时间在一定程度上与系统(或芯片)的制造数量成正比</li>
+<li>产量的增加会提高购买与制造效率，所以会降低成本。<br>产量每增加一倍，成本会降低百分之十</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>大众化：指多家供应商大量出售且基本相同的产品。市场的竞争会降低成本。</li>
+</ol>
+<ul>
+<li>产量会提高，但是利润会被限制</li>
+</ul>
+<ul>
+<li>Learning Curve：</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-5.png" alt="alt text"></p>
+<h2 id="Part-Eight-Reliability-可信任度"><a href="#Part-Eight-Reliability-可信任度" class="headerlink" title="Part Eight:Reliability(可信任度)"></a>Part Eight:Reliability(可信任度)</h2><p>容错与系统可靠性领域</p>
+<ul>
+<li>Definition</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-6.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-7.png" alt="alt text"></p>
+<ol>
+<li>如何判断一个系统的运行是否正常，基础供应商开始提供服务等级协议（service level agreement,SLA）或服务等级目标（service level subject,SLO）</li>
+</ol>
+<ul>
+<li>服务完成（service agreement）:提供了SLA的指定服务</li>
+<li>服务中断(service interrution)：即所提供的服务与SLA不一致</li>
+<li>两种状态之间的转换由故障（Failure）或恢复（Restoration）导致<ul>
+<li>Failures:$S_{accomplishment}-&gt;S_{interruption}$</li>
+<li>Restorations:$S_{interruption}-&gt;S_{accomplishment}$</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>信任度的度量</li>
+</ol>
+<ul>
+<li>Module Reliability:从参考初始时刻开始的连续的服务完成情况的度量（对发生故障之前的时间的度量）<ul>
+<li>MTTF:平均无故障时间（Mean Time To Failure）</li>
+<li>MTTR:平均故障恢复时间（Mean Time To Restoration）</li>
+<li>FIT:故障发生频率（Failure Instance Time），MTTF的倒数以运行十亿小时发生的故障来表示</li>
+<li>MTBF:平均故障间隔时间。MTBF=MTTF+MTTR</li>
+</ul>
+</li>
+<li>Module availability:指在服务完成与服务中断两种状态之间切换时，对服务完成情况的度量<script type="math/tex; mode=display">
+Mobile\ availability=\frac{MTTF}{MTTF+MTTR}</script></li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/80490de52ca29ff9f802330018d4b18.jpg" alt="alt text"></p>
+<ol>
+<li>解决故障的方法：冗余(Rebundancy)</li>
+</ol>
+<ul>
+<li>时间冗余：重复操作，以查看是否仍然存在错误</li>
+<li>资源冗余：当一个组件故障时，由其他组件接管<h2 id="Part-Nine-Measuring-Reporting-and-summerizing-Perf-性能的测量、报告和汇总"><a href="#Part-Nine-Measuring-Reporting-and-summerizing-Perf-性能的测量、报告和汇总" class="headerlink" title="Part Nine:Measuring,Reporting and summerizing Perf(性能的测量、报告和汇总)"></a>Part Nine:Measuring,Reporting and summerizing Perf(性能的测量、报告和汇总)</h2></li>
+</ul>
+<ol>
+<li>性能的测量</li>
+</ol>
+<ul>
+<li>机器之间的比较<ul>
+<li>Execution Time(Latency)</li>
+<li>Throughout</li>
+<li>MIPS:millions of instructions per second</li>
+</ul>
+</li>
+<li>使用程序进行机器之间的比较<ul>
+<li>选择程序来评估性能<ul>
+<li>Benchmark Suites</li>
+</ul>
+</li>
+<li>Different Means:Arithmetic,Harmonic,and Geometric Means</li>
+</ul>
+</li>
+<li><p>对于不同的使用者和设计者性能评估的标准是不同的</p>
+</li>
+<li><p>执行时间的定义方式（根据测量内容的不同）</p>
+<ul>
+<li>挂钟时间（Wall-clock time）,也叫做响应时间(response time)或者已用时间(elapsed time):完成一项任务的延迟时间，包括外存访问、输入输出活动、操作系统开销等所有相关时间。</li>
+<li>在多个程序同时运行多个程序的情况下，处理器等待I/O时处理另一个程序不一定使挂钟时间缩小至最短</li>
+<li>CPU时间：处理器执行计算的时间而不包括等待I/O计算或运行其他程序的时间<ul>
+<li>User Time:用户模式下的执行时间</li>
+<li>System Time:操作系统的执行时间</li>
+</ul>
+</li>
+<li>用户观测到的响应时间是程序的挂钟时间而不是CPU Time</li>
+</ul>
+</li>
+<li>管理员衡量系统性能的视角：给定时间内完成的工作数量</li>
+<li>我们通常使用吞吐量进行测量：单位时间内完成的工作数量</li>
+<li><p>通常使用相对延迟来反映系统的性能</p>
+</li>
+<li><p>如果想要改进response time，通常使用改进吞吐率的方法</p>
+<ul>
+<li>使用速度更快版本的计算机的处理器</li>
+</ul>
+</li>
+<li><p>提升系统的吞吐率可以不改进response Time</p>
+<ul>
+<li>对于分立的任务在多核处理系统中增加额外的处理器</li>
+</ul>
+</li>
+<li><p>MIPS：Millions of Instructions Per Second</p>
+<script type="math/tex; mode=display">
+MIPS = \frac{\frac{\text{number of instructions}}{\text{benchmark}} \times \frac{\text{benchmark}}{\text{total run time}}}{1000000}</script></li>
+<li><p>不同视角使用的不同测量方法</p>
+<ul>
+<li>Execution time<ul>
+<li>用户视角</li>
+<li>系统性能</li>
+<li>唯一的不容置疑的</li>
+</ul>
+</li>
+<li>CPU Time<ul>
+<li>设计者视角</li>
+<li>CPU性能</li>
+</ul>
+</li>
+<li>吞吐量<ul>
+<li>管理者视角</li>
+</ul>
+</li>
+<li>MIPS<ul>
+<li>供应商视角</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>基准测试<br>使用远比实际应用程序简单的程序</li>
+</ol>
+<ul>
+<li>程序内核(Kernal):即实际应用程序中短小、关键的部分</li>
+<li>玩具程序：即为了完成编程入门作业而编写的小程序，通常不超过100行，比如快速排序</li>
+<li>合成基准测试程序(Sythentic Benchmark):即为了匹配实际应用程序的特征和行为而编写的虚拟程序，比如Dhrystone</li>
+</ul>
+<blockquote>
+<p>现在三种方法都受到了质疑，主要是因为编译器的编写人员和架构师可以串通起来使计算机在执行这些替代程序的时候显得比运行时及应用程序时更快。</p>
+<ul>
+<li>为了避免太多鸡蛋放在同一个篮子里所带来的问题，一种流行的做法是基准测试应用程序集（称为基准测试套件）：套件的准确率不会超过组成该套件的各个基准测试。<ul>
+<li>不过，这种套件的主要优势在于，任何一个基准测试的弱点都会因为其他基准测试的存在而淡化。基准测试套件的目的是描述两台计算机的实际相对性能，特别是对于客户可能会运行的不在该套件中的程序</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Total Execution Time</li>
+</ol>
+<ul>
+<li>Arithmetic mean(算术平均)：$\frac1n \Sigma_{i=1}^n Time_i$ </li>
+<li>如果性能以rate的形式表达，那么平均总时间是harmonic mean(调和平均)：$\frac{n}{\Sigma_{i=1}^n \frac{1}{Rate_i}}$</li>
+<li>当我们很那知道具体的比例时，我们可以进行以一个程序为标准进行转换</li>
+</ul>
+</blockquote>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-8.png" alt="alt text"></p>
+<p>权重的计算</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-9.png" alt="alt text"></p>
+<blockquote>
+<p>不同程序跑单位时间程序的执行次数作为权重</p>
+<blockquote>
+<p>这时不同参考基得到的权值是不同的</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>Geometric mean(几何平均)：$\sqrt[n]{\prod_{i=1}^n Relative_Rate_i}$=$\frac{\sqrt[n]{\prod_{i=1}^n Rate_i}}{Rate_{ref}}$<blockquote>
+<p>几何平均的=得到的权值与参考基的选择是无关的</p>
+<blockquote>
+<p>本身没有物理意义，不能预测运行时间</p>
+<script type="math/tex; mode=display">
+\frac{Geometric\ mean(X_i)}{Geometric\ mean(Y_i)}=Geometric\ mean(\frac{X_i}{Y_i})</script></blockquote>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-11.png" alt="alt text"></p>
+<h2 id="Part-Ten-Quantitive-Principles-量化设计原理"><a href="#Part-Ten-Quantitive-Principles-量化设计原理" class="headerlink" title="Part Ten:Quantitive Principles(量化设计原理)"></a>Part Ten:Quantitive Principles(量化设计原理)</h2><ol>
+<li>充分利用并行</li>
+</ol>
+<ul>
+<li>系统级并行(system)：使用多个处理器 </li>
+<li>指令级并行(Instruction)：使用流水线技术</li>
+<li>操作级并行(operation)：<ul>
+<li>组相联cache</li>
+<li>流水线功能单元(如ALU等)</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>局部性原理</li>
+</ol>
+<ul>
+<li>程序原理：程序会趋向于再次使用最近使用过的数据和指令</li>
+<li>Rule of Thumb(经验法则):a program spends 90% of its execution time in only 10% of the code(程序的大部分时间都集中在少数关键代码段上，其余大部分代码对整体性能的影响较小)</li>
+<li>时间局部性</li>
+<li>空间局部性</li>
+</ul>
+<ol>
+<li>重点关注常见情形</li>
+<li>Amdahl Law(阿姆达尔公式)</li>
+</ol>
+<ul>
+<li>原计算机计算时间中可改进部分所占的比例</li>
+<li>通过改进执行模式得到的改进，也就是说在为整个程序使用这一执行模式时，任务的运行速度会提高多少倍</li>
+<li>部件的加速比的极限值是$\frac{1}{1-F}$</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-12.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-13.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-14.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-15.png" alt="alt text"></p>
+<ul>
+<li>注意时间比(fraction)不能按照IC的比例，而是要按照时间的比例(CPU Time)<h1 id="Chapter-2-Pipeline"><a href="#Chapter-2-Pipeline" class="headerlink" title="Chapter 2:Pipeline"></a>Chapter 2:Pipeline</h1><h2 id="1-What-is-pipeline"><a href="#1-What-is-pipeline" class="headerlink" title="1. What is pipeline"></a>1. What is pipeline</h2>从两个角度进行加速：对每一条指令进行加速；对一段程序的执行进行加速</li>
+</ul>
+<p>机制上，先进行分段，每一段用不同的部件，就可以并行执行。我们用buffer存放各个阶段的中间结果</p>
+<p>执行的模式有三种</p>
+<ul>
+<li>Sequential execution</li>
+<li>Single overlapping execution</li>
+<li>Twice overlapping execution</li>
+</ul>
+<h3 id="1-1-Sequential-execution"><a href="#1-1-Sequential-execution" class="headerlink" title="1.1 Sequential execution"></a>1.1 Sequential execution</h3><p>没有流水线的时候每一条指令顺序执行，执行时间就是每一条指令的每个阶段时间求和</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-16.png" alt="alt text"></p>
+<p>时间就是所有指令时间之和</p>
+<h3 id="1-2-Overlapping-execution"><a href="#1-2-Overlapping-execution" class="headerlink" title="1.2 Overlapping execution"></a>1.2 Overlapping execution</h3><p>重叠执行，如果不同阶段时间不一致，如ID阶段时间较长，那么需要等待浪费资源；如果EX阶段时间较长，那么产生冲突，执行部件不够。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-17.png" alt="alt text"></p>
+<ul>
+<li>ID阶段的时间较长，那么其他阶段的执行单元会等待，资源就会浪费</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-18.png" alt="alt text"></p>
+<ul>
+<li>EX阶段时间较长，可能会出现执行单元不够用的情况，导致流水线堵塞</li>
+</ul>
+<p>理想情况下是让三个阶段的时间相等</p>
+<ul>
+<li><p>Single Overlapping</p>
+<ul>
+<li>相较于顺序执行，时间缩短$\frac13$，同时功能部件的利用率得到明显改善</li>
+<li>提高了硬件开销(增加功能单元以用来调度流水线)，而且有冒险(由于指令之间存在依赖关系可能产生冲突)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-19.png" alt="alt text"></p>
+<ul>
+<li><p>Twice Overlapping</p>
+<ul>
+<li>时间可以减少近$\frac23$，部件利用率更高<br>需要更复杂的硬件，而且需要单独的Fetch Decode EXE部件</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-20.png" alt="alt text"></p>
+<h3 id="1-3-如何实现重叠？-buffer"><a href="#1-3-如何实现重叠？-buffer" class="headerlink" title="1.3 如何实现重叠？- buffer"></a>1.3 如何实现重叠？- buffer</h3><p>Adding instruction buffer between memory and instruction decode unit.直接在buffer中取指，大大缩短取指时间。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-21.png" alt="alt text"></p>
+<ul>
+<li>使取数、存数、传输等操作的时间大大缩短，使所有执行时间都集中在ALU无法缩短</li>
+</ul>
+<p>The structure of processor with advanced control</p>
+<p>添加 buffer 之后，IF 阶段时间变得很短，此时可以和 ID 阶段合并（把二次重叠变为了一次重叠）。</p>
+<ul>
+<li>时间接近变为原来的一半</li>
+</ul>
+<p>如果合并之后IFID和EX阶段时间不一致，也会有执行部件的浪费。</p>
+<ul>
+<li>我们的目标是使ALU计算单元在较长时间内处于工作状态也就是EX阶段尽量不等待</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-22.png" alt="alt text"></p>
+<p>Common features: They work by FIFO, and are composed of a group of several storage units that can be accessed quickly and related control logic.</p>
+<p>可以看到，添加 buffer 之后，ID 阶段不用等待 EX 阶段技术才能进行下一条的译码，因为 ID 阶段的结果已经存放在 buffer 中了。这给ID创造了能够读取下一条指令的机会</p>
+<h4 id="1-buffer的引入"><a href="#1-buffer的引入" class="headerlink" title="1. buffer的引入"></a>1. buffer的引入</h4><ul>
+<li>存放阶段间的中间结果，避免由于下一阶段的执行时间较长而导致前一个阶段需要等待</li>
+<li>当IF阶段完成取指后，立即将指令放入buffer中，而不需要等待ID阶段完全解码完成。这样IF阶段可以尽快开始下一条指令的取指，增加了流水线的并行度</li>
+</ul>
+<h4 id="2-buffer优化流水线"><a href="#2-buffer优化流水线" class="headerlink" title="2. buffer优化流水线"></a>2. buffer优化流水线</h4><ul>
+<li><strong>减少等待时间</strong>：即使EX阶段耗时较长，ID阶段也不需要等待EX阶段完全执行完毕，因为ID阶段可以将解码结果暂时存放在buffer中</li>
+<li><strong>提高吞吐量</strong>：通过buffer来存储各个阶段的临时结果，允许流水线继续向前推进，减少了各阶段之间的执行时间差异对流水线效率的影响</li>
+<li><strong>缓冲区机制(FIFO)</strong>：确保数据按照正确的顺序传递到下一个阶段。FIFO的硬件实现不仅包括存储单元，还需要一些控制逻辑来管理数据的读取和写入<blockquote>
+<p>添加buffer之后，IF阶段时间变得很短，此时可以和ID阶段合并(把二次重叠变为了一次重叠)</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-67.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-66.png" alt="alt text"></p>
+<ul>
+<li>添加buffer之后ID不用等待EX阶段结束之后才进行下一条指令的译码，因为ID阶段的结果已经存放在buffer中了<h2 id="2-Classes-of-poplining"><a href="#2-Classes-of-poplining" class="headerlink" title="2. Classes of poplining"></a>2. Classes of poplining</h2></li>
+</ul>
+<p>Charasteristics of pipelining:</p>
+<ul>
+<li>单功能流水线：只有一个固定功能的流水线。涉及仅针对单一类型的运算</li>
+<li>多功能流水线：流水线的每个部分以不同的方式连接(不同阶段进行灵活组合)可以实现不同的功能<ul>
+<li>使处理器能够更灵活地分配计算资源</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-23.png" alt="alt text"></p>
+<p>针对多功能流水线的划分</p>
+<ul>
+<li>静态流水线：同一个时刻流水线只能做一个功能。<strong>流水线的功能同一时刻是固定的</strong></li>
+</ul>
+<blockquote>
+<p>例如在刚刚的例子中，流水线要么做浮点加法要么做乘法</p>
+</blockquote>
+<ul>
+<li>动态流水线：同一个时刻可以做多个功能。可以不用等待浮点加法第n条结束(即某一任务完全排空)，就可以开始乘法</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-24.png" alt="alt text"></p>
+<p>从不同的粒度分类：</p>
+<ul>
+<li>Component level pipelining (in component - operation pipelining)：处理器内部组件内进行的流水线操作。例如，在同个ALU钟可以通过流水线技术让不同操作的各个阶段并行进行</li>
+<li>Processor level pipelining (inter component - instruction pipelining):跨多个处理器组件的流水线操作，通常是指指令集的流水线。不同的指令在不同组件中进行取指、解码、执行等操作</li>
+<li>Inter processor pipelining (inter processor - macro pipelining)：更大规模的流水线设计，涉及多处理器或多核系统。在这种架构下，不同的处理器(或核)处理不同部分的任务</li>
+</ul>
+<p>还可以分为线性或者非线性：</p>
+<ul>
+<li>Linear pipelining:不存在功能部件的回路，指令一依次在流水线的各个阶段中处理，每个阶段只进行一次运算，数据不会返回到之前的阶段。指令从一端流入，处理完毕后从另一端流出。</li>
+<li>Nonlinear pipelining:功能部件可能多次使用，造成回路</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-25.png" alt="alt text"></p>
+<p>还可以分为顺序/乱序：</p>
+<ul>
+<li>ordered pipelining：指令进出流水线的顺序相同，指令的执行顺序和完成是确定视为</li>
+<li>disordered pipelining</li>
+</ul>
+<p>进来和流出的顺序不一样。后面的指令与前面的指令无关，则可以先出来，不能则要等待。</p>
+<ul>
+<li>乱序执行但是最后通过某些机制进行顺序调整</li>
+<li>当流水线因为某一条指令堵塞时，处理器可以执行后续的指令</li>
+</ul>
+<p>还可以分为向量/标量处理器</p>
+<ul>
+<li><p>scalar processor：每次只能处理单一的数据元素。它的指令处理数据都是标量，意味着每条指令处理一个数据值。</p>
+</li>
+<li><p>vector processor：The processor has vector data representation and vector instructions. It is the combination of vector data representation and pipelining technology.采用向量指令处理多个数据元素(即一个向量)而不是单个标量。向量流水线的设计结合了向量数据表示与流水线技术，每次执行一条指令时处理的数据量非常大</p>
+</li>
+</ul>
+<h2 id="3-Performance-evaluation-of-pipelining"><a href="#3-Performance-evaluation-of-pipelining" class="headerlink" title="3. Performance evaluation of pipelining"></a>3. Performance evaluation of pipelining</h2><h3 id="3-1-Throughput"><a href="#3-1-Throughput" class="headerlink" title="3.1 Throughput"></a>3.1 Throughput</h3><p>流水线希望我们提高单位时间内处理的任务越多越好，即提高吞吐率</p>
+<ul>
+<li>目的是提高处理的任务数，而不是减少时间</li>
+</ul>
+<p>Throughput(TP) </p>
+<script type="math/tex; mode=display">
+TP=\dfrac{n}{T_K}<TP_{max}</script><p>(实际上TP会有损耗)</p>
+<ul>
+<li>n是指令数</li>
+<li>$T_k$是流水线总的执行时间</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-26.png" alt="alt text"></p>
+<script type="math/tex; mode=display">
+TP=\dfrac{n}{n+m-1}TP_{max}</script><ul>
+<li>$$n&gt;&gt;m, TP\approx TP_{max}</li>
+</ul>
+<p>Suppose the time of segments are different in pipelining, then the longest segment in the pipelining is called the bottleneck segment.</p>
+<blockquote>
+<p>Example<br>Time of S1,S3,S4:$\Delta t$<br>Time of S2:$\Delta 3t$(Bottleneck)<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-27.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-28.png" alt="alt text"><br>$TP_{max}$只和瓶颈段的时间有关</p>
+<h4 id="3-1-1-Common-methods-to-solve-pipeline-bottleneck"><a href="#3-1-1-Common-methods-to-solve-pipeline-bottleneck" class="headerlink" title="3.1.1 Common methods to solve pipeline bottleneck"></a>3.1.1 Common methods to solve pipeline bottleneck</h4><ul>
+<li>Subdivision 把瓶颈分成若干段执行</li>
+</ul>
+</blockquote>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-29.png" alt="alt text"></p>
+<ul>
+<li>Repetition 在瓶颈段多使用几个部件</li>
+</ul>
+<h3 id="3-2-Speedup"><a href="#3-2-Speedup" class="headerlink" title="3.2 Speedup"></a>3.2 Speedup</h3><script type="math/tex; mode=display">
+SP=\frac{n \times m}{m+n-1}</script><ul>
+<li>if $n&gt;&gt;m,Sp_{max} \approx m$</li>
+</ul>
+<h3 id="3-3-Efficiency"><a href="#3-3-Efficiency" class="headerlink" title="3.3 Efficiency"></a>3.3 Efficiency</h3><p>效率，从计算机部件的角度：纵轴代表使用的不同的功能部件。效率指的是我们真正使用这个部件占整个时空的百分比。</p>
+<ul>
+<li>流水线中硬件资源的利用率</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-30.png" alt="alt text"></p>
+<script type="math/tex; mode=display">
+η=\frac{n \times m \times \Delta t_0}{m \times(n+m-1) \times \Delta t_0}=\frac{n}{m+n-1}</script><ul>
+<li>注意效率得到的结果应该是百分比，之前是吞吐量、加速比都是没有量纲的数</li>
+<li>if $n&gt;&gt;m, η\approx 1$ 实际上不可能为1，流水线进入和排空的时间是不可以忽略的</li>
+</ul>
+<h3 id="3-4-Pipeline-Performance"><a href="#3-4-Pipeline-Performance" class="headerlink" title="3.4 Pipeline Performance"></a>3.4 Pipeline Performance</h3><ul>
+<li>vector Calculation in static Pipeline</li>
+</ul>
+<p>现在有两个向量 A 和 B，我们要计算 A 点乘 B，通过下面的动态双功能流水线运算。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-31.png" alt="alt text"></p>
+<p>注意到这里是静态流水线，同一时刻只能做一类事情，需要先完成一种操作再完成另一种。这里我们需要先做乘法，排空，再做加法。做加法时，第三个乘法的结果需要等前两个乘法的结果相加后，再计算。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-32.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-33.png" alt="alt text"></p>
+<ul>
+<li>vector Calculation in dynamic Pipeline</li>
+</ul>
+<p>动态流水线，可以在前一个功能还没有做完的时候执行另一个功能，不需要排空。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-34.png" alt="alt text"></p>
+<p>这里当两个乘法的结果算出来之后，就可以执行对应的加法。</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-35.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-36.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-37.png" alt="alt text"></p>
+<ul>
+<li>如果各个阶段是完全平衡的，每条指令的执行时间就是每个阶段所需要的时间，所以理想情况下的加速比也就是流水线的阶段数</li>
+<li>Too many stages<ul>
+<li>Lots of complications：流水线调度复杂，控制逻辑复杂</li>
+<li>Should take care of possible dependencies among in-flight instructions</li>
+<li>Control logic is huge</li>
+<li>导致性能瓶颈的产生</li>
+<li>硬件要求提高<br>流水线的性能有关：动态（不需要排空，但需要硬件支持）还是静态，流水线段数，代码质量（冒险）</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Hazards-of-Pipeline"><a href="#4-Hazards-of-Pipeline" class="headerlink" title="4. Hazards of Pipeline"></a>4. Hazards of Pipeline</h2><ul>
+<li>structure hazards:A required resource is busy</li>
+<li>data hazard:need to wait for previous instruction to complete its data read/write.</li>
+<li>control hazard: Deciding on control action depends on previous instruction.</li>
+</ul>
+<h3 id="4-1-structure-hazards"><a href="#4-1-structure-hazards" class="headerlink" title="4.1 structure hazards"></a>4.1 structure hazards</h3><p>对结构的争用,资源存在冲突</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-38.png" alt="alt text"></p>
+<ul>
+<li>一般通过加bubble或者加硬件进行解决（满足需求），或者同一块memory区分不同的cache</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-39.png" alt="alt text"></p>
+<h3 id="4-2-data-hazard"><a href="#4-2-data-hazard" class="headerlink" title="4.2 data hazard"></a>4.2 data hazard</h3><p>一条指令的执行依赖于前面指令对于数据访问的完成</p>
+<p>可以加 bubble, 或者通过 forwarding 前递数据，但并不是所有的情况都可以解决。</p>
+<ul>
+<li>Read After Write (RAW) <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FADD.D F6,F0,F12</span><br><span class="line">FSUB.D F8,F6,F14</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>Forwarding解决这种类型的冒险</p>
+</blockquote>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-40.png" alt="alt text"></p>
+<ul>
+<li>Write After Read (WAR)<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FDIV.D F2,F6,F4</span><br><span class="line">FADD.D F6,F0,F12</span><br></pre></td></tr></table></figure></li>
+<li>可以更换F2对应的寄存器</li>
+</ul>
+<blockquote>
+<p>Name Dependences（在乱序流水线中可能出现冒险）</p>
+</blockquote>
+<ul>
+<li><p>Write After Write (WAW)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FDIV.D F2，F0，F4</span><br><span class="line">FSUB.D F2，F6，F14</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不能更换F2对应的寄存器，存在写入顺序的问题</p>
+</li>
+</ul>
+<p>Name Dependence,顺序流水线不会引起数据的冒险，但在乱序流水线会发生冒险的问题</p>
+<ul>
+<li>code scheduling to avoid stalls</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-41.png" alt="alt text"></p>
+<ul>
+<li>静态调度：程序还没有运行，编译器在程序编译阶段重新排列指令顺序，减少等待时间</li>
+<li>动态调度：程序运行时，处理器为我们优化了代码</li>
+</ul>
+<h3 id="4-3-control-hazard"><a href="#4-3-control-hazard" class="headerlink" title="4.3 control hazard"></a>4.3 control hazard</h3><ul>
+<li>定义：控制冒险发生在流水线遇到分支指令时，必须等待分支指令的结果才能确定下一步的执行路径。如果分支预测错误，流水线必须丢弃错误路径上的指令</li>
+</ul>
+<p>为了减少分支指令带来的stall，我们使用分支预测的技术</p>
+<ul>
+<li>static branch prediction<ul>
+<li>基于经典的分支行为<ul>
+<li>branch-taken</li>
+<li>branch-not-taken</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dynamic branch prediction<ul>
+<li>Hardware measures actual branch behavior<ul>
+<li>根据历史记录(如上一次分支结果)，预测下一次分支</li>
+</ul>
+</li>
+<li>我们认为未来的行为将会延续现在的趋势</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-Data-Hazards-4-2"><a href="#5-Data-Hazards-4-2" class="headerlink" title="5. Data Hazards(4.2)"></a>5. Data Hazards(4.2)</h3><h3 id="6-Control-Hazards"><a href="#6-Control-Hazards" class="headerlink" title="6. Control Hazards"></a>6. Control Hazards</h3><p>在RISC-V中，有无条件跳转<code>jal</code>,<code>jalr</code>和有条件跳转<code>beq</code>,<code>bne</code>,<code>blt</code>,<code>bge</code>,<code>bltu</code>,<code>bgeu</code></p>
+<p>可以在ID阶段就<strong>算出要跳转的目标地址</strong>，同时进行分支预测。只有预测错误时才需要stall来flush掉之前的结果，预测成功不需要stall</p>
+<h4 id="6-1-Static-Branch-Prediction"><a href="#6-1-Static-Branch-Prediction" class="headerlink" title="6.1 Static Branch Prediction"></a>6.1 Static Branch Prediction</h4><ol>
+<li>Predict-not-taken</li>
+</ol>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-42.png" alt="alt text"></p>
+<ul>
+<li>预测错误停顿一个周期，预测正确不停顿</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-43.png" alt="alt text"></p>
+<ol>
+<li><p>Predict-taken</p>
+</li>
+<li><p>Data Hazards for branches</p>
+</li>
+</ol>
+<ul>
+<li>If a comparison register is a destination of 2nd or 3rd preceding ALU instruction<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">add x1,x2,x3</span><br><span class="line">add x4,x5,x6</span><br><span class="line">beq x1,x4,target</span><br></pre></td></tr></table></figure></li>
+<li>Can solve using forwarding</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-44.png" alt="alt text"></p>
+<ul>
+<li>If a comparison register is a destination  of preceding ALU instruction or 2nd preceding load instruction<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lw x1,0(x2)</span><br><span class="line">add x4,x5,x6</span><br><span class="line">beq x1,x4,target</span><br></pre></td></tr></table></figure>
+<img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-45.png" alt="alt text"></li>
+<li>If a comparison register is a destination of immediately preceding load instruction<ul>
+<li>Need 2 stall cycles <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lw x1,0(x2)</span><br><span class="line">beq x1,x0,target</span><br></pre></td></tr></table></figure>
+<img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-52.png" alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h4 id="6-2-Dynamic-Branch-Prediction"><a href="#6-2-Dynamic-Branch-Prediction" class="headerlink" title="6.2 Dynamic Branch Prediction"></a>6.2 Dynamic Branch Prediction</h4><ul>
+<li>In deeper and superscalar pipelines, branch penalty is more significant</li>
+<li><p>Use dynamic prediction</p>
+<ul>
+<li>Branch prediction buffer(branch history table)</li>
+<li>Indexed by recent branch instruction address</li>
+<li>Stores outcome(taken or not taken)</li>
+<li>To execute a branch</li>
+<li>Look up the branch prediction buffer<ul>
+<li>Check table,expect the same outcome</li>
+<li>Start fetching from fall-through or target</li>
+<li>If wrong,flush pipeline and flip prediction</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Branch history</p>
+<ul>
+<li>1-bit predictor<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-46.png" alt="alt text"></li>
+<li>Inner loop branches mispredicted twice</li>
+<li>容易在分支频繁变化的时候产生错误预测<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-47.png" alt="alt text"></li>
+<li>Mispredict as taken on last iteration of inner loop</li>
+<li>Then mispredict as not taken on first iteration of inner loop next time around</li>
+<li>2-bit predictor<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-48.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-49.png" alt="alt text"></li>
+</ul>
+</li>
+</ul>
+<h3 id="6-3-Advanced-Techniques-for-instruction-Delivery-and-Speculation"><a href="#6-3-Advanced-Techniques-for-instruction-Delivery-and-Speculation" class="headerlink" title="6.3 Advanced Techniques for instruction Delivery and Speculation"></a>6.3 Advanced Techniques for instruction Delivery and Speculation</h3><ul>
+<li>Increasing Instruction Fetch Bandwith <ul>
+<li>Branch-Target Buffers(BTB):放预测的PC值，取指时在buffer中取。与TLB表类似，在未找到对应PC的情况下更新表的内容</li>
+<li>BTB是一个基于分支指令地址索引的表，存储了分支指令之前的执行结果。<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-50.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-51.png" alt="alt text"></li>
+<li>BTB存储了分支指令和目标地址</li>
+<li>如果在表中找到了对应的项，那么立即取出对应的目标地址，作为下一个时钟周期IF阶段的PC，也就是说，如果表中有对应项，我们采取的预测方式是Assume Branch Taken <ul>
+<li>分支预测正确：处理器从BTB获取目标地址，并直接预取目标位置的指令。这大大提高了分支跳转的速度，减少了处理器在预测正确时的延迟</li>
+<li>分支预测错误：如果分支预测错误，则需要清空流水线并更新BTB，将该PC对应的表项从目标地址缓存表中删除</li>
+</ul>
+</li>
+<li>如果在表中没有找到对应的项，那么我们采取的预测方式是<code>Assume Branch Not Taken</code><ul>
+<li>预测错误，清空已经执行的指令，并且下一个时钟周期使得目标地址进入IF阶段。与此同时，将这条分支指令的PC值以及对应的目标地址填入目标地址缓存表中，在表中新增一项</li>
+<li>如果分支没有执行正常情况，继续执行指令流即可</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Specialized Branch Predictors:Predicting Procedure Returns,Indirect Jump and Loops Branches<ul>
+<li>Integretd Instruction Fetch Units(集成指令提取单元):从内存中提取指令并将其传递给处理器的执行单元<ul>
+<li>集成指令预测</li>
+<li>指令的提前取指</li>
+<li>指令内存的访问和缓存</li>
+</ul>
+</li>
+<li>在现代多发射处理器架构中，指令提取不再是一个简单的单级流水线阶段，而是需要更复杂的实现</li>
+</ul>
+</li>
+</ul>
+<h4 id="Calculating-the-Branch-Target"><a href="#Calculating-the-Branch-Target" class="headerlink" title="Calculating the Branch Target"></a>Calculating the Branch Target</h4><ul>
+<li>即使有了复制预测模块，仍然需要计算目标地址<ul>
+<li>taken branch需要有一个周期的penalty</li>
+</ul>
+</li>
+<li><p>Branch Target Buffer</p>
+<ul>
+<li>Cache or target address</li>
+<li><p>Indexed by PC when instruction fetched</p>
+<ul>
+<li>If hit and instruction is branch predicted taken, can fetch target immediately</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-54.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-53.png" alt="alt text"></p>
+</li>
+</ul>
+</li>
+<li>BTB的更新与维护<ul>
+<li>表加入机制：当一个新的分支指令出现其目标地址不在BTB中时，处理器会将这个分支指令和它的目标地址存入表中</li>
+<li>表移除机制：如果一个分支指令不再跳转(即不被执行)，处理器会从BTB中移除该条指令的条目，以腾出空间给其他分支指令</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-Schedule-of-Nonlinear-pipelining"><a href="#7-Schedule-of-Nonlinear-pipelining" class="headerlink" title="7. Schedule of Nonlinear pipelining"></a>7. Schedule of Nonlinear pipelining</h3><p>对于非线性流水线，功能部件可能经历多次，有调度问题</p>
+<ul>
+<li>纵轴代表不同的功能部件，横坐标表示拍数。即每一拍需要用到的功能部件</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-55.png" alt="alt text"></p>
+<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a><strong><em>算法步骤</em></strong>：</h4><ul>
+<li>Initial conflict vector:使用二进制表示，各个位置取每一拍存在冲突的并集。如果是1，则从图存在，否则冲突不存在<ul>
+<li>第一个部件，隔8拍会产生冲突；第二个部件：1.5.6；第三个部件：无；第四、五个部件：1</li>
+<li>将对应八位二进制数的1.5.6.8位设为1，其他为0，得到了初始的冲突向量10110001</li>
+</ul>
+</li>
+<li>conflict vector</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-57.png" alt="alt text"></p>
+<p>对于第三列，隔两排进下一条指令，我们就把冲突向量向右移动两位(高位补0)，得到了新的冲突向量，并和本来的冲突向量做或运算得到CCV。(注意这里最左侧一列表示向右移动了多少次)</p>
+<p>找到了一个循环调度：2-2-7</p>
+<ul>
+<li>State transition graph<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-58.png" alt="alt text"></li>
+<li>Circular queue：只要形成回路即可，没有一定规定需要从初始状态回到初始状态</li>
+<li>Shortest average interval：做的总移动数除以移动次数</li>
+</ul>
+<h1 id="Chapter-3-Memory-Hierarchy"><a href="#Chapter-3-Memory-Hierarchy" class="headerlink" title="Chapter 3: Memory Hierarchy"></a>Chapter 3: Memory Hierarchy</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><h3 id="1-1-Memory"><a href="#1-1-Memory" class="headerlink" title="1.1 Memory"></a>1.1 Memory</h3><p>内存层次</p>
+<ul>
+<li>Register </li>
+<li>Cache</li>
+<li>Memory</li>
+<li>Storage </li>
+</ul>
+<p>存储技术</p>
+<ul>
+<li>Mehanical Memory</li>
+<li>Electronic Memory<ul>
+<li>SRAM(做Cache)</li>
+<li>DRAM(做Memory)<ul>
+<li>SDRAM</li>
+<li>DDR</li>
+</ul>
+</li>
+<li>GDRAM<ul>
+<li>GDDR</li>
+</ul>
+</li>
+<li>HBM</li>
+<li>EPPROM<ul>
+<li>NAND</li>
+<li>NOR</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Optical Memory </li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-68.png" alt="alt text"></p>
+<h3 id="1-2-Cache-Memory"><a href="#1-2-Cache-Memory" class="headerlink" title="1.2 Cache Memory"></a>1.2 Cache Memory</h3><p>Cache:a safe place for hiding or storing things. （现在也不安全）</p>
+<ul>
+<li>Cache <strong>Hit/Miss</strong>:When the processor can/cannot find a requested data item in the cache <ul>
+<li>Cache miss会到来额外的开销：由延迟和带宽决定</li>
+</ul>
+</li>
+<li>Cache <strong>Block/Line</strong>:A fixed-size collection of the data containing the requested word,retrieved from the main memory and placed into the cache</li>
+<li><p>Cache <strong>Locality</strong>:</p>
+<ul>
+<li>Temporal locality:need the requested word again soon访问过这个数据，之后很可能再次访问</li>
+<li><p>Spatial locality:likely need other data in the block soon访问了这个位置 ，之后很可能再次访问附近的位置的数据</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-59.png" alt="alt text"></p>
+<h2 id="2-Four-Question-for-Cache-Designers"><a href="#2-Four-Question-for-Cache-Designers" class="headerlink" title="2. Four Question for Cache Designers"></a>2. Four Question for Cache Designers</h2></li>
+</ul>
+</li>
+</ul>
+<p>Caching is a general concept used in processors,operating systems,file systems,and applications</p>
+<ul>
+<li>Q1:Where can a block be placed in the upper level/main memory? (Block placement)<ul>
+<li>Fully Associative,Set Associative,Direct Mapped</li>
+</ul>
+</li>
+<li>Q2:How is a block found if it is in the upper level/main memory?(Block identification)<ul>
+<li>Tag/Block</li>
+</ul>
+</li>
+<li>Q3:Which block should be replaced on a Cache/main memory miss?(Block replacement)<ul>
+<li>Random,LRU,FIFO</li>
+</ul>
+</li>
+<li>Q4:What happens on a write?(Write strategy)<ul>
+<li>Write back or Write through(with write buffer)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-Block-Placement"><a href="#2-1-Block-Placement" class="headerlink" title="2.1 Block Placement"></a>2.1 Block Placement</h3><ul>
+<li>Direct Mapped:一个块在cache中有一个固定的位置(通常通过取模得到，冲突多)<ul>
+<li>找方便，易冲突<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-61.png" alt="alt text"></li>
+</ul>
+</li>
+<li>Fully Associative:块可以放在cache里的位置<ul>
+<li>不好找，冲突少</li>
+</ul>
+</li>
+<li>Set Associative<ul>
+<li>块可以放在一个组里的任何位置，组里可以放若干个块</li>
+<li>直接映射相当于一路组相联，全相联相当于n路组相联(n是cache的块数)</li>
+<li>A set is a group of blocks in the cache<script type="math/tex; mode=display">
+  Set Index=Block Address MOD Number of sets in the chache</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Block-Identification"><a href="#2-2-Block-Identification" class="headerlink" title="2.2 Block Identification"></a>2.2 Block Identification</h3><p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-62.png" alt="alt text"></p>
+<ul>
+<li>address tag存储了存储在block中的数据的主存地址</li>
+<li>当检查cache时，处理器会比较我们需要的memory address和cache tag，如果二者是相等的，那么将会cache hit并且数据现在已经在cache中</li>
+<li>通常情况下，每一个block都会有一个<code>valid bit</code>来判断cache block中的内容是否有效</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-74.png" alt="alt text"></p>
+<h3 id="2-3-Block-Replacement"><a href="#2-3-Block-Replacement" class="headerlink" title="2.3 Block Replacement"></a>2.3 Block Replacement</h3><ul>
+<li>Random replacement:randomly pick any block<ul>
+<li>硬件上容易实现，只需要随机数发生器即可</li>
+<li>在缓存中均匀分配</li>
+<li>可能会驱逐一个即将被访问的块</li>
+</ul>
+</li>
+<li>Least-Recently Used(LRU):pick the block in the set which was least recently accessed<ul>
+<li>认为刚刚访问过的数据接下来还有可能被访问</li>
+<li>需要额外的位数来记录访问的时间。一般我们用的是近似的LRU</li>
+</ul>
+</li>
+<li>First in,First Out(FIFO):Choose a block from the set which was first came into the cache</li>
+</ul>
+<blockquote>
+<p>Suppose：Cache blocck size is 3, and access sequence is shown as follows.2,3,2,1,5,2,4,5,3,4</p>
+</blockquote>
+<ul>
+<li>FIFO<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-63.png" alt="alt text"></li>
+<li>LRU<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-64.png" alt="alt text"></li>
+<li>OPT<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-65.png" alt="alt text"></li>
+</ul>
+<p>Hit rate is related to the replacement algorithm, the access sequence, the cache block size.</p>
+<h4 id="2-3-1-Stack-Replacement-algorithm"><a href="#2-3-1-Stack-Replacement-algorithm" class="headerlink" title="2.3.1 Stack Replacement algorithm"></a>2.3.1 Stack Replacement algorithm</h4><p>有些算法随着N增大命中率非下降，有些算法随着N增大命中率反而会下降</p>
+<p>我们把随着N增大命中率非下降的算法称为 stack replacement algorithm</p>
+<p>$B_t(n)$ 在t时间cache的block大小为n的一组被包含的访问序列</p>
+<ul>
+<li>$B_t(n)$是$B_t(n+1)$的子集是堆栈型替换算法的条件：随着n的增大，先前能命中的也一定能命中</li>
+</ul>
+<p>LRU replacement algorithm is a stack replacement algorithm, while FIFO is not.</p>
+<p>For LRU algorithm, the hit ratio always increases with the increase of cache block.</p>
+<blockquote>
+<p>用栈来模拟LRU，栈顶是最近访问的，栈底是最久未访问的，每次要替换的时候，替换栈底元素。通过下面的图可以看到栈大小为n时的命中率<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-69.png" alt="alt text"></p>
+</blockquote>
+<h4 id="2-3-2-LRU-Implementation-Comparison-Pair-Method"><a href="#2-3-2-LRU-Implementation-Comparison-Pair-Method" class="headerlink" title="2.3.2 LRU Implementation - Comparison Pair Method"></a>2.3.2 LRU Implementation - Comparison Pair Method</h4><p>如何只通过门和触发器来实现LRU算法？—-Comparison Pair Method</p>
+<ul>
+<li>基本思想：让任何两个cache块之间两两结对，用一个触发器的状态代表两个块的先后顺序(比如1表示A刚刚被访问过，0表示B刚被访问过)。通过门电路对触发器的状态进行逻辑组合，找到最久未被访问的块</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-70.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-71.png" alt="alt text"></p>
+<ul>
+<li><p>Hardware usage analysis</p>
+<ul>
+<li><p>假设有p个cache blocks，我们需要$C_p^2= \frac{p(p-1)}{2}$</p>
+</li>
+<li><p>当p超过8时，需要的触发器过多，这个算法就不适用了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-Write-Strategy"><a href="#2-4-Write-Strategy" class="headerlink" title="2.4 Write Strategy"></a>2.4 Write Strategy</h3><ul>
+<li><p>Write Hit</p>
+<ul>
+<li><p>Write Through:同时写回cache和内存。写到内存的时间较长，这个过程需要Write Stall，或者使用Write buffer(当buffer填满时无法避免使用Write Stall)</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-72.png" alt="alt text"></p>
+</li>
+<li>Write Back:在cache中写，同时通过一个额外的dirty bit表示这个块已经被修改,先用cache临时存储，最后一起写回内存</li>
+</ul>
+</li>
+<li>Write Miss<ul>
+<li>Write Allocate:将要写的块先读到cache中，再写进主存</li>
+<li>Write Around:直接写到内存，数据不会在cache中进行存储</li>
+</ul>
+</li>
+<li>In general, write-back caches use write-allocate , and write-through caches use write-around.</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-73.png" alt="alt text"></p>
+<h2 id="3-Memory-System-Performs"><a href="#3-Memory-System-Performs" class="headerlink" title="3. Memory System Performs"></a>3. Memory System Performs</h2><ul>
+<li>$CPU\ Execution\ time=(CPU\ clock\ cycles + Memory\ stall\ cycles) \times CPU\ clock\ cycle\ time$</li>
+<li>$Memory\ stall\ cycles = IC\times MemAccess refs per instructions \times Miss rate \times Miss Penalty$</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-75.png" alt="alt text"></p>
+<ul>
+<li>CPI Execution includes ALU and Memory instructions</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-76.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-83.png" alt="alt text"></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-84.png" alt=" "></p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-85.png" alt="alt text"></p>
+<p>How to improve</p>
+<ul>
+<li>Reduce the miss penalty</li>
+<li>Reduce the miss rate</li>
+<li>Reduce the time to hit in the cache</li>
+<li>Reduce the miss penalty and miss rate via parallelism</li>
+</ul>
+<h2 id="4-Virtual-Memory"><a href="#4-Virtual-Memory" class="headerlink" title="4. Virtual Memory"></a>4. Virtual Memory</h2><p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-86.png" alt="alt text"></p>
+<p>物理内存是有限的，虚拟内存让用户体验到一个抽象的更大的内存</p>
+<ul>
+<li>Why virtual memory?<ul>
+<li>可以让进程使用不连续的物理内存空间(虚拟地址上是连续的)；更好地隔离不同进程</li>
+</ul>
+</li>
+<li>virtual-physical address translation</li>
+<li>memory protection/sharing among multi-program</li>
+<li>easier/flexible memory management</li>
+<li>share a smaller amount of physical memory among many processes(隔离：每个进程都有一个相对独立的空间，不会访问其他程序的空间。一种安全机制)</li>
+<li>Introduces another level of secondary storage</li>
+</ul>
+<p><strong>Virtual Memory = Main Memory + Secondary Storage</strong><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-87.png" alt="alt text"></p>
+<ul>
+<li>Virtual Memory Allocation<ul>
+<li>Paged virtual memory<ul>
+<li><code>page</code>:fixed-size block(the block conception in virtual memory)</li>
+<li>page address:page number||offset</li>
+</ul>
+</li>
+<li>Segmented virtual memory<ul>
+<li><code>segment</code>:variable-size block</li>
+<li>segment address:segment number||offset</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-77.png" alt="alt text"></p>
+<blockquote>
+<p>分页式的易于实现，方便替换。现在常用段页式结合或者纯页式</p>
+</blockquote>
+<h3 id="4-1-How-virtual-memory-works"><a href="#4-1-How-virtual-memory-works" class="headerlink" title="4.1 How virtual memory works?"></a>4.1 How virtual memory works?</h3><p>Cache 的四个问题在虚拟内存中都有对应</p>
+<ul>
+<li>Q1. Where can a block be placed in main memory?<ul>
+<li>缺失代价很高，因此我们采用全相联的方式，以降低 miss rate。</li>
+</ul>
+</li>
+<li>Q2. How is a block found if it is in main memory?<ul>
+<li>虚拟地址分两部分，偏移量和页号。页号是页表的索引<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-78.png" alt="alt text"></li>
+</ul>
+</li>
+<li>Q3. Which block should be replaced on a virtual memory miss?<ul>
+<li>Least Recently Used (LRU) block, with use/reference bit.</li>
+</ul>
+</li>
+<li>Q4. What happens on a write?<ul>
+<li>Write-back strategy（如果向disk写的代价太大）, with diry bit(数据即将被占用的时候再写入).</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-Page-Table"><a href="#4-2-Page-Table" class="headerlink" title="4.2 Page Table"></a>4.2 Page Table</h3><ul>
+<li>Page tables are often large</li>
+<li><p>页表是被存储在主存中的</p>
+<blockquote>
+<p>e.g. 32-bit virtual address, 4KB pages, 4 bytes per page table entry.</p>
+<p>page table size=$(2^{32}/2^{12})\times 2^2=2^{22}bytes= 4MB$</p>
+</blockquote>
+</li>
+<li><p>Logically two memory accesses for data access:</p>
+<ul>
+<li>从页表中获取物理地址</li>
+<li>从物理地址中得到数据</li>
+<li>通过offset找到page中的具体位置</li>
+</ul>
+</li>
+</ul>
+<p>正常来说页表需要两次访问内存，访问效率低下</p>
+<ul>
+<li>页表被存储在主存中，要先访问主存寻找对应的页表从而获得物理地址</li>
+<li>然后根据得到的物理地址<br>访问主存拿到数据</li>
+</ul>
+<p>因此我们需要cache page table,即TLB</p>
+<p><strong>Translation lookaside buffer (TLB)</strong></p>
+<blockquote>
+<p>避免了进行两次访问操作，节省访问时间 </p>
+</blockquote>
+<ul>
+<li><p>TLB Entry:</p>
+<ul>
+<li>tag:portions of the virtual address (VPN);</li>
+<li>data:a physical page frame number (PPN), protection field, valid bit, use bit, dirty bit;</li>
+<li>不包含偏移量<blockquote>
+<p>发送 tag (VPN) 尝试匹配，并看访问类型是否违规。如果匹配成功，就把对应的 PPN 送到 Mux，将偏移量加上 PPN 得到物理地址。<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-79.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-80.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-81.png" alt="alt text"><br>最后一步合并页内偏移才能访问真正的物理地址。如果TLB未找到对应的页，则需要更新TLB，采用LRU策略进行更新。</p>
+<h3 id="4-3-Page-Size-Selectiq"><a href="#4-3-Page-Size-Selectiq" class="headerlink" title="4.3 Page Size Selectiq"></a>4.3 Page Size Selectiq</h3></blockquote>
+</li>
+</ul>
+</li>
+<li>Pros of larger page size<ul>
+<li>Smaller page table, less memory (or other resources used for the memory map);页更少，所以页表更小。</li>
+<li>Larger cache with fast cache hit;页更大，所以cache命中的时间更短(因为我们需要遍历的页更少)</li>
+<li>Transferring larger pages to or from secondary storage is more efficient than transferring smaller pages;一次搬运更多的数据，所以更高效，小页可能需要搬运多次。</li>
+<li>Map more memory, reduce the number of TLB misses;TLB miss 次数更少。</li>
+</ul>
+</li>
+<li>Pros of smaller page size<ul>
+<li>Conserve storage:When a contiguous region of virtual memory is not equal in size to a multiple of the page size, a small page size results in less wasted storage.减少对内存的使用，内部碎片更少。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-更大页大小的优点（Pros-of-larger-page-size）"><a href="#1-更大页大小的优点（Pros-of-larger-page-size）" class="headerlink" title="1. 更大页大小的优点（Pros of larger page size）"></a><strong>1. 更大页大小的优点（Pros of larger page size）</strong></h4><h5 id="1-页表更小（Smaller-page-table-less-memory）"><a href="#1-页表更小（Smaller-page-table-less-memory）" class="headerlink" title="(1) 页表更小（Smaller page table, less memory）"></a><strong>(1) 页表更小（Smaller page table, less memory）</strong></h5><ul>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li>页表（Page Table）是操作系统用来管理虚拟内存和物理内存映射的数据结构。</li>
+<li>如果页大小较大，那么相同的内存空间需要的页数会更少，因此页表会更小。</li>
+<li>较小的页表占用更少的内存资源，同时也减少了页表查找的开销。</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>：</p>
+<ul>
+<li>假设内存大小为 4GB，页大小为 4KB，则需要 (2^{20}) 个页表项。</li>
+<li>如果页大小为 2MB，则只需要 (2^{11}) 个页表项。</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-缓存命中更快（Larger-cache-with-fast-cache-hit）"><a href="#2-缓存命中更快（Larger-cache-with-fast-cache-hit）" class="headerlink" title="(2) 缓存命中更快（Larger cache with fast cache hit）"></a><strong>(2) 缓存命中更快（Larger cache with fast cache hit）</strong></h5><ul>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li>页大小较大时，单个页可以容纳更多的数据。</li>
+<li>当程序访问内存时，如果数据在同一个页中，可以减少页表查找的次数，从而提高缓存命中率。</li>
+<li>缓存命中更快，因为需要遍历的页更少。</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>：</p>
+<ul>
+<li>如果程序需要访问连续的内存区域，较大的页可以减少页表查找的次数。</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-数据传输更高效（Transferring-larger-pages-is-more-efficient）"><a href="#3-数据传输更高效（Transferring-larger-pages-is-more-efficient）" class="headerlink" title="(3) 数据传输更高效（Transferring larger pages is more efficient）"></a><strong>(3) 数据传输更高效（Transferring larger pages is more efficient）</strong></h5><ul>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li>当内存页需要从磁盘（或其他辅助存储设备）加载到内存时，较大的页可以一次性传输更多的数据。</li>
+<li>相比于多次传输小页，传输大页的效率更高。</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>：</p>
+<ul>
+<li>如果页大小为 4KB，加载 1MB 数据需要 256 次传输。</li>
+<li>如果页大小为 2MB，加载 1MB 数据只需要 1 次传输。</li>
+</ul>
+</li>
+</ul>
+<h5 id="4-减少-TLB-未命中次数（Reduce-the-number-of-TLB-misses）"><a href="#4-减少-TLB-未命中次数（Reduce-the-number-of-TLB-misses）" class="headerlink" title="(4) 减少 TLB 未命中次数（Reduce the number of TLB misses）"></a><strong>(4) 减少 TLB 未命中次数（Reduce the number of TLB misses）</strong></h5><ul>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li>TLB（Translation Lookaside Buffer）是用于加速虚拟地址到物理地址转换的硬件缓存。</li>
+<li>较大的页可以映射更多的内存，因此 TLB 可以覆盖更多的内存区域，从而减少 TLB 未命中的次数。</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>：</p>
+<ul>
+<li>如果 TLB 可以缓存 64 个页表项，页大小为 4KB 时，TLB 只能覆盖 256KB 的内存。</li>
+<li>如果页大小为 2MB，TLB 可以覆盖 128MB 的内存。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-更小页大小的优点（Pros-of-smaller-page-size）"><a href="#2-更小页大小的优点（Pros-of-smaller-page-size）" class="headerlink" title="2. 更小页大小的优点（Pros of smaller page size）"></a><strong>2. 更小页大小的优点（Pros of smaller page size）</strong></h4><h5 id="1-节省存储空间（Conserve-storage）"><a href="#1-节省存储空间（Conserve-storage）" class="headerlink" title="(1) 节省存储空间（Conserve storage）"></a><strong>(1) 节省存储空间（Conserve storage）</strong></h5><ul>
+<li><p><strong>解释</strong>：</p>
+<ul>
+<li>当程序需要的内存区域不是页大小的整数倍时，较小的页可以减少内存浪费（内部碎片）。</li>
+<li>较小的页可以更灵活地分配内存，减少未使用的内存空间。</li>
+</ul>
+</li>
+<li><p><strong>例子</strong>：</p>
+<ul>
+<li>如果页大小为 4KB，程序需要 5KB 内存，则会分配 2 个页（8KB），浪费 3KB。</li>
+<li>如果页大小为 1KB，程序需要 5KB 内存，则会分配 5 个页（5KB），没有浪费。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h4><ul>
+<li><p><strong>更大页大小的优点</strong>：</p>
+<ul>
+<li>页表更小，减少内存占用。</li>
+<li>缓存命中更快，减少页表查找次数。</li>
+<li>数据传输更高效，减少 I/O 操作次数。</li>
+<li>减少 TLB 未命中次数，提高地址转换效率。</li>
+</ul>
+</li>
+<li><p><strong>更小页大小的优点</strong>：</p>
+<ul>
+<li>减少内存浪费，提高内存利用率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="实际应用中的权衡"><a href="#实际应用中的权衡" class="headerlink" title="实际应用中的权衡"></a><strong>实际应用中的权衡</strong></h4><p>在实际操作系统中，页大小的选择需要根据具体应用场景和硬件特性进行权衡：</p>
+<ul>
+<li><strong>大页</strong>：适合需要大量连续内存访问的应用（如数据库、科学计算）。</li>
+<li><strong>小页</strong>：适合内存需求较小且不连续的应用（如桌面应用程序）。</li>
+</ul>
+<p><strong>Use both</strong>:multiple page sizes</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-82.png" alt="alt text"></p>
+<h3 id="4-4-Mem-Protection-amp-amp-Sharing-Among-Programs"><a href="#4-4-Mem-Protection-amp-amp-Sharing-Among-Programs" class="headerlink" title="4.4 Mem Protection&amp;&amp;Sharing Among Programs"></a>4.4 Mem Protection&amp;&amp;Sharing Among Programs</h3><h4 id="4-4-1-Multiprogramming"><a href="#4-4-1-Multiprogramming" class="headerlink" title="4.4.1 Multiprogramming"></a>4.4.1 Multiprogramming</h4><ul>
+<li>允许计算机被多个并发执行的程序共享</li>
+<li>需要保护并且在程序中共享</li>
+</ul>
+<h4 id="4-4-2-Process"><a href="#4-4-2-Process" class="headerlink" title="4.4.2 Process"></a>4.4.2 Process</h4><ul>
+<li>Maintain correct process behavior保持正确的进程行为<ul>
+<li>computer designer必须确保the processor portion of the process state（进程状态的处理器部分）能够被保存和重新存储</li>
+<li>OS designer必须确保进程之间的计算不会彼此影响</li>
+</ul>
+</li>
+<li>将主存划分从而使得多个不同的进程在内存中同一时刻都拥有它们的状态</li>
+</ul>
+<p>这部分内容主要涉及计算机体系结构中的 <strong>存储层次结构（Memory Hierarchy）</strong>、<strong>缓存（Cache）</strong> 和 <strong>虚拟内存（Virtual Memory）</strong>。以下是详细的解释：</p>
+<hr>
+<h3 id="5-Summary"><a href="#5-Summary" class="headerlink" title="5 Summary"></a>5 Summary</h3><h4 id="1-存储层次结构（Memory-Hierarchy）"><a href="#1-存储层次结构（Memory-Hierarchy）" class="headerlink" title="1. 存储层次结构（Memory Hierarchy）"></a><strong>1. 存储层次结构（Memory Hierarchy）</strong></h4><h5 id="从单级到多级（From-single-level-to-multi-level）"><a href="#从单级到多级（From-single-level-to-multi-level）" class="headerlink" title="从单级到多级（From single level to multi level）"></a><strong>从单级到多级（From single level to multi level）</strong></h5><ul>
+<li><strong>单级存储</strong>：早期的计算机系统只有一种存储设备（如磁鼓存储器），速度慢且容量有限。</li>
+<li><p><strong>多级存储</strong>：现代计算机系统采用多级存储层次结构，将存储设备分为多个层次，每个层次在速度、容量和成本之间进行权衡。</p>
+<ul>
+<li><strong>层次结构</strong>：<ol>
+<li><strong>寄存器（Registers）</strong>：速度最快，容量最小，成本最高。</li>
+<li><strong>缓存（Cache）</strong>：速度较快，容量较小，成本较高。</li>
+<li><strong>主存（Main Memory）</strong>：速度中等，容量较大，成本中等。</li>
+<li><strong>辅助存储（Secondary Storage）</strong>：速度较慢，容量最大，成本最低（如硬盘、SSD）。</li>
+<li><strong>三级存储（Tertiary Storage）</strong>：速度最慢，容量极大，成本最低（如磁带、光盘）。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>目的</strong>：通过多级存储层次结构，平衡速度、容量和成本，提高系统整体性能。</p>
+</li>
+</ul>
+<h5 id="存储系统的性能参数（Evaluate-the-performance-parameters）"><a href="#存储系统的性能参数（Evaluate-the-performance-parameters）" class="headerlink" title="存储系统的性能参数（Evaluate the performance parameters）"></a><strong>存储系统的性能参数（Evaluate the performance parameters）</strong></h5><ul>
+<li><p><strong>平均每比特成本（Average price per bit, C）</strong>：</p>
+<ul>
+<li>存储层次中，越靠近顶层的存储设备（如寄存器、缓存）成本越高，越靠近底层的存储设备（如硬盘）成本越低。</li>
+<li>通过多级存储层次结构，可以在保证性能的同时降低整体成本。</li>
+</ul>
+</li>
+<li><p><strong>命中率（Hit rate, H）</strong>：</p>
+<ul>
+<li>命中率是指访问数据时，数据在某一级存储中找到的概率。</li>
+<li>命中率越高，系统性能越好。</li>
+</ul>
+</li>
+<li><p><strong>平均内存访问时间（Average memory access time, T）</strong>：</p>
+<ul>
+<li>平均内存访问时间是访问数据所需的平均时间。</li>
+<li>计算公式：$T = H \times T_{\text{hit}} + (1 - H) \times T_{\text{miss}}$<ul>
+<li>$T_{\text{hit}}$：命中时的访问时间。</li>
+<li>$T_{\text{miss}}$：未命中时的访问时间（需要从下一级存储中加载数据）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="2-缓存基础知识（Cache-Basic-Knowledge）"><a href="#2-缓存基础知识（Cache-Basic-Knowledge）" class="headerlink" title="2. 缓存基础知识（Cache Basic Knowledge）"></a><strong>2. 缓存基础知识（Cache Basic Knowledge）</strong></h4><h5 id="映射规则（Mapping-Rules）"><a href="#映射规则（Mapping-Rules）" class="headerlink" title="映射规则（Mapping Rules）"></a><strong>映射规则（Mapping Rules）</strong></h5><ul>
+<li>缓存将主存中的数据映射到缓存中，常见的映射规则包括：<ol>
+<li><strong>直接映射（Direct Mapping）</strong>：<ul>
+<li>主存中的每个块只能映射到缓存中的一个特定位置。</li>
+<li>优点：实现简单。</li>
+<li>缺点：容易发生冲突，导致缓存命中率降低。</li>
+</ul>
+</li>
+<li><strong>全相联映射（Fully Associative Mapping）</strong>：<ul>
+<li>主存中的每个块可以映射到缓存中的任意位置。</li>
+<li>优点：冲突少，缓存命中率高。</li>
+<li>缺点：实现复杂，查找速度慢。</li>
+</ul>
+</li>
+<li><strong>组相联映射（Set Associative Mapping）</strong>：<ul>
+<li>主存中的每个块可以映射到缓存中的一组位置。</li>
+<li>优点：平衡了直接映射和全相联映射的优点。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="访问方法（Access-Method）"><a href="#访问方法（Access-Method）" class="headerlink" title="访问方法（Access Method）"></a><strong>访问方法（Access Method）</strong></h5><ul>
+<li><strong>顺序访问（Sequential Access）</strong>：<ul>
+<li>按顺序访问数据，适合连续存储的数据。</li>
+</ul>
+</li>
+<li><strong>随机访问（Random Access）</strong>：<ul>
+<li>可以任意访问数据，适合非连续存储的数据。</li>
+</ul>
+</li>
+</ul>
+<h5 id="替换算法（Replacement-Algorithm）"><a href="#替换算法（Replacement-Algorithm）" class="headerlink" title="替换算法（Replacement Algorithm）"></a><strong>替换算法（Replacement Algorithm）</strong></h5><ul>
+<li>当缓存已满时，需要替换掉某个缓存块，常见的替换算法包括：<ol>
+<li><strong>最近最少使用（LRU, Least Recently Used）</strong>：<ul>
+<li>替换最近最少使用的缓存块。</li>
+</ul>
+</li>
+<li><strong>先进先出（FIFO, First In First Out）</strong>：<ul>
+<li>替换最早进入缓存的缓存块。</li>
+</ul>
+</li>
+<li><strong>随机替换（Random Replacement）</strong>：<ul>
+<li>随机选择一个缓存块进行替换。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="写策略（Write-Strategy）"><a href="#写策略（Write-Strategy）" class="headerlink" title="写策略（Write Strategy）"></a><strong>写策略（Write Strategy）</strong></h5><ul>
+<li><strong>写直达（Write Through）</strong>：<ul>
+<li>每次写操作同时更新缓存和主存。</li>
+<li>优点：数据一致性高。</li>
+<li>缺点：写操作速度慢。</li>
+</ul>
+</li>
+<li><strong>写回（Write Back）</strong>：<ul>
+<li>写操作只更新缓存，当缓存块被替换时才写回主存。</li>
+<li>优点：写操作速度快。</li>
+<li>缺点：数据一致性较低。</li>
+</ul>
+</li>
+</ul>
+<h5 id="缓存性能分析（Cache-Performance-Analysis）"><a href="#缓存性能分析（Cache-Performance-Analysis）" class="headerlink" title="缓存性能分析（Cache Performance Analysis）"></a><strong>缓存性能分析（Cache Performance Analysis）</strong></h5><ul>
+<li>缓存的性能主要取决于命中率和访问时间。</li>
+<li>提高缓存性能的方法：<ul>
+<li>增加缓存容量。</li>
+<li>优化映射规则和替换算法。</li>
+<li>提高缓存访问速度。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="3-虚拟内存（Virtual-Memory）"><a href="#3-虚拟内存（Virtual-Memory）" class="headerlink" title="3. 虚拟内存（Virtual Memory）"></a><strong>3. 虚拟内存（Virtual Memory）</strong></h4><h5 id="内存组织结构对缓存未命中率的影响（The-influence-of-memory-organization-structure-on-Cache-failure-rate）"><a href="#内存组织结构对缓存未命中率的影响（The-influence-of-memory-organization-structure-on-Cache-failure-rate）" class="headerlink" title="内存组织结构对缓存未命中率的影响（The influence of memory organization structure on Cache failure rate）"></a><strong>内存组织结构对缓存未命中率的影响（The influence of memory organization structure on Cache failure rate）</strong></h5><ul>
+<li>虚拟内存通过将主存和辅助存储结合，扩展了程序的可用内存空间。</li>
+<li>虚拟内存的组织结构（如页大小、页表设计）会影响缓存的未命中率：<ol>
+<li><strong>页大小</strong>：<ul>
+<li>较大的页可以减少页表大小和 TLB 未命中次数，但可能增加内部碎片。</li>
+<li>较小的页可以减少内部碎片，但可能增加页表大小和 TLB 未命中次数。</li>
+</ul>
+</li>
+<li><strong>页表设计</strong>：<ul>
+<li>多级页表可以减少页表占用的内存空间，但可能增加地址转换时间。</li>
+</ul>
+</li>
+<li><strong>TLB（Translation Lookaside Buffer）</strong>：<ul>
+<li>TLB 是用于加速虚拟地址到物理地址转换的硬件缓存。</li>
+<li>TLB 的命中率直接影响缓存性能。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="Chapter-4-Instruction-Level-Parallelism"><a href="#Chapter-4-Instruction-Level-Parallelism" class="headerlink" title="Chapter 4 Instruction-Level Parallelism"></a>Chapter 4 Instruction-Level Parallelism</h1><p><strong>RISC处理器的经典五级流水线</strong></p>
+<ul>
+<li>Dependences are a property of programs 依赖性是程序的一种性质</li>
+<li>Hazards are properties of pipeline organization 冒险是流水线组织的一种特性</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-88.png" alt="alt text"></p>
+<h2 id="4-1-Dynamic-Scheduling"><a href="#4-1-Dynamic-Scheduling" class="headerlink" title="4.1 Dynamic Scheduling"></a>4.1 Dynamic Scheduling</h2><p>简单的流水线技术的主要限制是</p>
+<ul>
+<li>指令顺序发布并执行</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-89.png" alt="alt text"></p>
+<p>前两条指令存在数据依赖，DIV语句的执行时间一般很长。那么前两条指令就会等待除法完成，顺序执行里面后面的指令也会跟着等(但其实和除法没有关系)，这样就造成了浪费</p>
+<ul>
+<li><strong>Idea</strong>：动态调度</li>
+<li><strong>Method</strong>：out-of-order execution</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/计算机体系结构(Computer%20Architecture" alt="alt text">/image-90.png)</p>
+<blockquote>
+<p>乘法的运算时间长，同时出现的频率高</p>
+</blockquote>
+<ul>
+<li>load/store属于整数运算部件</li>
+<li>scoreboard记录当前系统所有的状态(指令进行到什么状态，功能部件当前被那条指令使用，寄存器组，指令用了哪些寄存器)</li>
+</ul>
+<p>在之前的顺序流水线视线中，ID阶段 我们会检测结构冒险和数据冒险。如果都不发生，那么将会将这条指令放到下一阶段EX</p>
+<p>我们现在希望减弱检测条件，只要没有结构冒险(结构冒险是无法解决)，就允许进入到下一阶段，具体分成两个阶段分别检测结构和数据冒险</p>
+<ul>
+<li><code>Issue(IS)</code>:解码指令，检测结构冒险(顺序读入)</li>
+<li><code>Read Operands(RO)</code>:等待至没有数据冒险，接下来读取操作数，乱序执行(接收数据过程中只要没有数据冒险就可以执行)</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-91.png" alt="alt text"></p>
+<p>IS一定是顺序取，RO不一定顺序(只要没有数据冒险就可以执行，有冒险的等待，没有冒险的执行，这就会导致乱序的出现)</p>
+<ul>
+<li><strong>Scoreboard algorithm</strong>是一种调度指令的算法</li>
+<li>Robert Tomasulo introduces register <strong>renaming</strong> in hardware to minimize WAW and WAR hazards, named Tomasulo’s Approach.</li>
+</ul>
+<h3 id="4-1-1-Scoreboard-Algorithm"><a href="#4-1-1-Scoreboard-Algorithm" class="headerlink" title="4.1.1 Scoreboard Algorithm"></a>4.1.1 Scoreboard Algorithm</h3><p>计分板算法的基本结构</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-92.png" alt="alt text"></p>
+<p>表是实时更新的。当指令流出(结束WB阶段)，scoreboard上就不会有其相关的信息</p>
+<ul>
+<li>Instruction Status记录每条指令执行到哪一步</li>
+<li>Function Component Status</li>
+<li>Register Status</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FLD F6, 34(R2)</span><br><span class="line">FLD F2, 45(R3)</span><br><span class="line">FMUL.D F0, F2, F4</span><br><span class="line">FSUB.D F8, F2, F6</span><br><span class="line">FDIV.D F10, F0, F6</span><br><span class="line">FADD.D F6, F8, F2 </span><br></pre></td></tr></table></figure>
+<ul>
+<li>Instruction Status</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-93.png" alt="alt text"></p>
+<p>此时指令1结束，scoreboard上没有其相关的信息。指令2还没有WB，后面的3、4需要用到2的结果F2，因此指令3、4只是完成了IS阶段，还没有执行RO阶段(存在数据冒险)。指令5用到3的结果，也不能进入RO。指令6是ADD加法操作，此时指令4是SUB，也会用到加法运算范媛，因此产生结构冒险，无法进入IS。</p>
+<ul>
+<li>Function Component Status</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-94.png" alt="alt text"></p>
+<ul>
+<li>busy代表当前这个单元是否有指令正在使用。op表示这个单元正在被哪类指令使用</li>
+<li>$F_i,F_j,F_k$代表目标操作数和源操作数($F_i$是目标操作数，$F_j,F_k$是源操作数)</li>
+<li>$Q_j,Q_k$代表源操作数来自哪个部件<ul>
+<li>如Mult1的Qj=integer说明来自整数部件(此时正在执行Load指令)</li>
+</ul>
+</li>
+<li>$R_j,R_k$代表源操作数的状态<ul>
+<li>yes-operands is ready but no ready没读是因为其他的操作数还没有read</li>
+<li>$no\&amp;Q_j=null$:operand is ready</li>
+<li>$no\&amp;Q_j \neq null$:operand is not ready其他指令会修改这个操作数，而且还没有执行完毕</li>
+</ul>
+</li>
+<li>Register Status</li>
+</ul>
+<p>$F_i$这一列加上op这一列组合成了这张表，表示这个寄存器将被什么指令修改</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-95.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-96.png" alt="alt text"></p>
+<blockquote>
+<p>注意到在这之后，最后一条ADD指令必须等到DIV指令RO之后才能WB(否则会修改F6)</p>
+</blockquote>
+<p>Scoreboard算法可以检测出冲突，但是不能解决冲突，还是通过阻塞的方法来解决，scoreboard上面的信息页比较复杂，效率不高</p>
+<h3 id="4-1-2-Tomasulo’s-Approach"><a href="#4-1-2-Tomasulo’s-Approach" class="headerlink" title="4.1.2 Tomasulo’s Approach"></a>4.1.2 Tomasulo’s Approach</h3><p>These name dependences can all be eliminated by register renaming</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-97.png" alt="alt text"></p>
+<p>The basic structure of a floating-point unit using Tomasulo’s approach :</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-98.png" alt="alt text"></p>
+<p>指令从指令队列出来(顺序)，先进入绿色的buffer，随后再进行操作。如果buffer已经满了还有指令要进入就需要等待(阻塞)。</p>
+<p>这里Reservation Station的目的是为了一次性放进来多条指令，然后再buffer内完成乱序，即buffer内哪条指令操作数ready了就执行</p>
+<p>此外在保留站内部还要进行rename，有可能依赖的是另一个保留站里的指令。每个保留站有唯一的命名</p>
+<ul>
+<li><p>It tracks when operands for instructions are available to minimize RAW hazards;</p>
+</li>
+<li><p>It introduces register renaming in hardware to minimize WAW and WAR hazards.</p>
+</li>
+</ul>
+<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ul>
+<li><code>Issue</code>(发射):从指令队列的头部取出下一条指令(FIFO)</li>
+</ul>
+<p>从队列中顺序取出指令，并放入对应的保留站，进入保留站后，就会进行重命名，消除了WAR和WAW冒险</p>
+<ul>
+<li>如果保留站有空位，就将指令放到保留站中<ul>
+<li>如果操作数就绪(在寄存器中)直接加在到保留站</li>
+<li>若操作数未就绪，记录该操作数产生的功能单元(即等待其他指令的结果)</li>
+</ul>
+</li>
+<li><p>如果保留站没有空位，就等待阻塞(即保留站的空闲情况决定了指令是否流出，而不是由功能部件的情况决定)</p>
+</li>
+<li><p><code>Execute</code>:</p>
+<ul>
+<li>保留站里的指令操作数都就就绪了，就可以执行。这一步实现了乱序</li>
+<li>load and store需要两步执行操作<ul>
+<li>计算有效地址：当指令的基址寄存器的值就绪时，计算内存地址：<code>有效地址=基地址+偏移量</code>，将计算出的有效地址存入load/store buffer。(避免因内存延迟阻塞流水线)</li>
+<li>当内存单元就绪时，进行load/store操作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Write Results</code><ul>
+<li>通过 CDB 总线将结果写回到寄存器的同时，将结果发到其他所有标记了的（先前寄存器中没有值被标记值来源，计算得到之后需要被赋值）保留站里。（因此 CDB 也会影响 CPU 的效率，因此现在用多条总线保证效率）</li>
+<li>只有当要写入的值和要写入的地址都准备就绪且内存单元空闲时，才会将数据从Store Buffer写入内存</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-2-Hardware-Based-Speculation"><a href="#4-2-Hardware-Based-Speculation" class="headerlink" title="4.2 Hardware-Based Speculation"></a>4.2 Hardware-Based Speculation</h2><p>为了让指令执行完成的顺序也是顺序的，我们添加了一个reorder buffer</p>
+<p>结果先写到reorder buffer,在buffer里按照指令流出的顺序依次协会寄存器。因此我们再每个指令后面加上一个commit状态，当前面的指令都commit之后才能commit</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-99.png" alt="alt text"></p>
+<p>The basic structure of a FP unit using Tomasulo’s algorithm and extended to handle speculation:</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-100.png" alt="alt text"></p>
+<ul>
+<li>Issue:从指令队列中取出指令</li>
+<li>Execution:operand on operands(EX)</li>
+<li>Write Result:finish execution(WB)</li>
+<li>Commit:update register with reorder result</li>
+</ul>
+<p>Hardware-based speculation包含三个关键的思想 ：</p>
+<ul>
+<li>动态分支预测来选择执行的指令</li>
+<li>利用推测，可以在解决控制依赖问题之前执行命令(能够撤销错误推测指令序列的影响)</li>
+<li>进行动态调度，以应对不同组合方式的基本模块调度(与之相对，没有推测的动态调度只能部分重叠基本模块，因为它要求先解析一个分支，然后才能实际执行后续基本模块中的指令)</li>
+</ul>
+<p><strong>执行程序的方法实质</strong>：数据流执行，也就是操作数一旦可用就立即执行</p>
+<p>前面的IS和EX阶段与Tomasulo算法一样只是WB阶段增加了一个commit状态，只有当指令commit之后才能写回寄存器</p>
+<ul>
+<li>WB<ul>
+<li>当结果可用时，将结果写在CDB上(还有在发射指令时发送的ROB标签，也就是指令写回时对应的顺序)，并从CDB写到ROB以及任何等待这一结果的保留站。</li>
+<li>将保留站(刚刚写在CDB上的指令所使用的保留站)标记为可用</li>
+<li>对于存储器指令(load and store)需要执行一些额外的操作。 <ul>
+<li>如果要存储的值已经准备就绪，则将它写到ROB条目的值字段来等待访问存储器</li>
+<li>如果要存储的值还不可用，则必须监视CDB，直到该数值被广播，再更新该存储指令ROB条目的值字段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Instruction Commit:根据要提交的指令是预测错误的分支指令、存储指令还是任意其他指令(可以正常提交的指令)有三种不同的操作模式<ul>
+<li><strong>正常提交</strong>：当一个指令到达ROB的头部而且其结果出现在缓冲区中时，进行正常提交，此时处理器用结果更新寄存器，并从ROB中清除该指令</li>
+<li><strong>存储指令提交</strong>：具体步骤与正常提交相似，但是更新的是存储器而不是结果寄存器。</li>
+<li><strong>预测错误的分支提交</strong>：当指令到达ROB的头部时<ul>
+<li>如果推测是错误的<strong>ROB被清空</strong>，执行过程从该分支的正确后续指令重新开始。</li>
+<li>如果推测是正确的，则该分支完成提交</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>指令一旦提交完毕，它在ROB中的相应项被收回，寄存器或存储器目的地址将被更新，并且不再需要ROB项。</p>
+<p>如果ROB填满，则停止发射指令，直到有空闲条目为止。</p>
+<p>!!! example Example</p>
+<pre><code>The status tables when `FMUL.D` is ready to commit:
+
+- **Dest**: 这里是保留站的名称（一个字段）,在这里可以是即将进入到ROB中的标号，而不是寄存器的名称,也就是这个保留站条目所生成结果的目的地
+
+- **Example Table**:
+
+![FMUL.D Status](image-101.png)
+
+- **Busy**标识标识当前正在执行的指令，也就是尚未commit的指令
+</code></pre><p>!!! Practice<br>    <img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-102.png" alt="alt text"></p>
+<pre><code>- 发射阶段需要两个周期，由发射和解码两部分组成
+- `commit`部分与CPU的运算不冲突，CPU的运行效率并不会受到影响。**相当于整个过程中只是多了commit部分的等待过程，但是运算部分的周期与commit所需要花费的周期没有直接关系，write back之后就可以直接使用对应的数据**
+- 实际上加上ROB之后，前面的执行和Tomasulo算法是一样的，只是多了一个commit状态，需要加一列按照流出顺序提交，必要的时候需要等待
+</code></pre><ul>
+<li>Instructions are finished in order according to ROB经过ROB处理的指令是有序输出的</li>
+<li>It can be precise exception.处理中断时，提供精确异常</li>
+<li>It is easily extended to integer register and integer function unit.</li>
+<li>But the hardware is too complex.</li>
+</ul>
+<h2 id="4-3-Exploiting-ILP-Using-Multiple-Issue-and-Static-Scheduling"><a href="#4-3-Exploiting-ILP-Using-Multiple-Issue-and-Static-Scheduling" class="headerlink" title="4.3 Exploiting ILP Using Multiple Issue and Static Scheduling"></a>4.3 Exploiting ILP Using Multiple Issue and Static Scheduling</h2><p>多流出，也就是一拍可以流出多条指令</p>
+<ul>
+<li>Superscalar:</li>
+</ul>
+<p>可以分为静态调度超标量和动态调度超标量。静态调度是通过编译器来完成的，动态调度是通过硬件来完成的</p>
+<p>每个时钟周期发射的指令条数可能不一样</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/207e3c9786995a81e32055536a6aee3.jpg" alt="alt text"></p>
+<ul>
+<li><p>VLIW (Very Long Instruction Word)：将多条指令包装在一条指令中</p>
+<p>超长指令字也是通过编译器完成的</p>
+<p>每个时钟周期发射的指令条数是固定的。它们组成一条长指令或者一个指令包</p>
+<p>!!!example<br>  我们考虑一个VLIW处理器，在上面包含5种运算的指令，包括一个整数运算、两个浮点运算和两个存储器访问。这些指令可能拥有与每个功能单元相对应的一组字段</p>
+<p>  这些指令可能拥有与每个功能单元相对应的一组字段，每个单元可能为16~24位，得到的指令长度介于80~120位之间</p>
+</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-103.png" alt="alt text"></p>
+<h3 id="4-3-1-Based-on-static-scheduling"><a href="#4-3-1-Based-on-static-scheduling" class="headerlink" title="4.3.1 Based on static scheduling"></a>4.3.1 Based on static scheduling</h3><p>In a typical superscalar processor, 1 to 8 instructions can be issued per clock cycle.</p>
+<p>我们要进行结构冒险和数据冒险的检测。需要注意的是，如果遇到了分支跳转指令，那么只流出这一条，不能和其他指令一起流出。如果处理器有分支预测，那么下一个周期就可以根据预测结果进行发射；如果不带预测，我们就需要等待分支结果，然后再发射。</p>
+<p>!!!example</p>
+<pre><code>- Assumption: Two instructions flow out every clock cycle:
+    - 1 integer instruction + 1 floating-point operation instruction
+- Among them, load, store and branch instructions are classified as integer instructions.
+![alt text](image-104.png)
+</code></pre><h3 id="4-3-2-Based-on-dynamic-scheduling"><a href="#4-3-2-Based-on-dynamic-scheduling" class="headerlink" title="4.3.2 Based on dynamic scheduling"></a>4.3.2 Based on dynamic scheduling</h3><p>Extended Tomasuloalgorithm: supports two-way superscalar</p>
+<p>指令顺序进入保留站，分开处理</p>
+<p>!!!example<br>    <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Loop:</span><br><span class="line">FLD    F0, 0 (R1)   // Take an array element and put it into F0</span><br><span class="line">FADD.D F4, F0, F2   // add the scalar in F2</span><br><span class="line">FSD    F4, 0 (R1)   // storeresult</span><br><span class="line">ADDI   R1, R1, 8    // increment pointer by 8 //(each data occupies 8 bytes)</span><br><span class="line">BNE    R1, R2, Loop // If R1 is not equal to R2, it means it is not over yet, move to Loop to continue</span><br></pre></td></tr></table></figure></p>
+<pre><code>对于没有分支预测的情况：可以看到分支后面的一条指令，在周期7才能执行(即周期6分支指令执行结束)
+
+![alt text](image-105.png)
+
+- The program can basically reach 3 beats and 5 instructions
+    - IPC＝5/3＝1.67 items/beat
+- the execution efficiency is not very high.
+    - A total of 15 instructions were executed in 16 beats.
+    - The average command execution speed is 15/16=0.94 per beat.
+</code></pre><h3 id="4-3-3-Very-long-instruction-word-technology-VLIW"><a href="#4-3-3-Very-long-instruction-word-technology-VLIW" class="headerlink" title="4.3.3 Very long instruction word technology(VLIW)"></a>4.3.3 Very long instruction word technology(VLIW)</h3><p>Assemble multiple instructions that can be executed in parallel into a very long instruction.</p>
+<p>At compile time, multiple unrelated or unrelated operations that can be executed in parallel are combined to form a very long instruction word with multiple operation segments.</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/e4e748c50758ddb671ba1682c750622.jpg" alt="alt text"></p>
+<blockquote>
+<p>相当于只在EX阶段进行了并行操作</p>
+</blockquote>
+<h3 id="4-3-4-Superpipeline-processor"><a href="#4-3-4-Superpipeline-processor" class="headerlink" title="4.3.4 Superpipeline processor"></a>4.3.4 Superpipeline processor</h3><p>A pipeline processor with 8 or more instruction pipeline stages is called a superpipelining processor.</p>
+<p>在一个很小的$\Delta t$时间(小于一个阶段的用时)后就发射下一条指令</p>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-106.png" alt="alt text"></p>
+<ul>
+<li>本质就是流水线的细分</li>
+</ul>
+<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-107.png" alt="alt text"></p>
+<h1 id="Chapter-5-DLP-and-TLP"><a href="#Chapter-5-DLP-and-TLP" class="headerlink" title="Chapter 5: DLP and TLP"></a>Chapter 5: DLP and TLP</h1><h2 id="5-1-SIMD-vector-processor"><a href="#5-1-SIMD-vector-processor" class="headerlink" title="5.1 SIMD:vector processor"></a>5.1 SIMD:vector processor</h2><ul>
+<li>SIMD架构可以利用重要的data-level parallelism<ul>
+<li>Matrix-oriented(矩阵导向)的科学计算</li>
+<li>Media-oriented image and sound processors（面向媒体的图像和声音处理器 ）</li>
+</ul>
+</li>
+<li>SIMD在功耗效率上优于MIMD</li>
+<li>SIMD允许程序员按顺序思考</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>数据库系统 Database System</title>
     <url>/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/</url>
     <content><![CDATA[<h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1: Introduction"></a>Chapter 1: Introduction</h1><h2 id="1-Database-Systems"><a href="#1-Database-Systems" class="headerlink" title="1. Database Systems"></a>1. Database Systems</h2><p>DBMS(Database Management System)</p>
@@ -3765,1515 +5274,6 @@ branch-name \mathcal{G}_{sum(balance) as sum-balance}(account)</script><h4 id="4
 <li>支持多态<h3 id="Clock-Display"><a href="#Clock-Display" class="headerlink" title="Clock Display"></a>Clock Display</h3></li>
 </ul>
 </li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>计算机体系结构(Computer Architecture)</title>
-    <url>/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/</url>
-    <content><![CDATA[<h1 id="Chapter-1-Fundamentals-of-Computer-Design"><a href="#Chapter-1-Fundamentals-of-Computer-Design" class="headerlink" title="Chapter 1:Fundamentals of Computer Design"></a>Chapter 1:Fundamentals of Computer Design</h1><h2 id="Part-One-Introduction"><a href="#Part-One-Introduction" class="headerlink" title="Part One: Introduction"></a>Part One: Introduction</h2><ul>
-<li>冯诺依曼架构：存算分离</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image.png" alt="alt text"></p>
-<h3 id="计算机的分类（及关键的系统特征）"><a href="#计算机的分类（及关键的系统特征）" class="headerlink" title="计算机的分类（及关键的系统特征）"></a>计算机的分类（及关键的系统特征）</h3><ul>
-<li>Personal Mobile Devices(个人移动设备)：成本、能耗、媒体性能、响应速度</li>
-<li>Desktop Computers(桌面计算机)：性价比、能耗、图形性能</li>
-<li>Servers Computers(服务器)：吞吐量、可用性、可扩展性（规模）、能耗</li>
-<li>Embedded Computers(物联网/嵌入式计算机):价格、能耗、应用的特有性能</li>
-<li>Supercomputers(超级计算机/集群、仓库计算机)：性价比、吞吐量、能耗均衡性</li>
-</ul>
-<h3 id="计算机并行"><a href="#计算机并行" class="headerlink" title="计算机并行"></a>计算机并行</h3><ul>
-<li>数据集并行(DLP)：使某些数据选项可以同时操作</li>
-<li><p>任务机并行(TLP): 创建的工作任务可以单独执行 并且主要采用并行方式执行</p>
-</li>
-<li><p>Flynn’s Class(根据数据流与指令流)</p>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-1.png" alt="alt text"></p>
-<h2 id="Part-Two-Performance"><a href="#Part-Two-Performance" class="headerlink" title="Part Two: Performance"></a>Part Two: Performance</h2><ul>
-<li>影响性能的因素：体系结构，硬件实现，编译器，OS等</li>
-<li>衡量性能的方法<ul>
-<li>Single users on a PC-&gt;响应时间的最小值</li>
-<li>Large Data-&gt;吞吐量的最大值</li>
-</ul>
-</li>
-<li>响应时间与吞吐量<ul>
-<li>响应时间：response time或称为latency，一个事件开始到结束的时间，如一次访问需要多长时间</li>
-<li>吞吐量：throughput，也称作(bandwith带宽)：给定时间范围内完成了多少的工作量</li>
-</ul>
-</li>
-<li>体系结构的主要目标就是<strong><em>提升系统的性能</em></strong>，如每秒传输的字节数</li>
-</ul>
-<h2 id="Part-Three-Technology-Trend"><a href="#Part-Three-Technology-Trend" class="headerlink" title="Part Three: Technology Trend"></a>Part Three: Technology Trend</h2><p>The improvement of computer architecture </p>
-<ul>
-<li>输入输出的进步</li>
-<li>内存组织结构的发展</li>
-<li>指令集的发展方向<ul>
-<li>CISC</li>
-<li>RISC</li>
-</ul>
-</li>
-<li>并行执行技术（不同层次（系统程序算法等）、粒度（任务的大小或复杂度）的并行）</li>
-</ul>
-<h2 id="Part-Four-Quantitive-Approaches"><a href="#Part-Four-Quantitive-Approaches" class="headerlink" title="Part Four:Quantitive Approaches"></a>Part Four:Quantitive Approaches</h2><ol>
-<li>CPU Performance</li>
-</ol>
-<ul>
-<li>$CPU Time=IC \times CPI \times clock cycle time$</li>
-<li>$CPI=1+\sum_{i=1}^{n}P_i$<ul>
-<li>CPI由硬件决定</li>
-<li>不同的指令也会有不同的CPI，平均CPI取决于指令的组合方式</li>
-<li>$CPU Cycles=IC \times CPI $</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>Amdahl’s Law</li>
-</ol>
-<ul>
-<li>使用某种快速执行模式获得的性能改进受限于可使用此种模式的时间比例。当提升系统性能时，可以计算出通过改进计算机某一部分而获得的性能增益</li>
-<li>$T_{improved}=\dfrac{T_{affected}}{\text{improvement factor}}+T_{unaffected}$</li>
-<li>加速比(SP)：改进前后执行时间正比或性能反比<script type="math/tex; mode=display">
-\begin{align*}
-\text{Speedup} & = \dfrac{\text{Performance for entire task}_\text{using Enhancement}}{\text{Performance for entire task}_\text{without Enhancement}} \\
-& = \dfrac{\text{Total Execution Time}_\text{without Enhancement}}{\text{Total Execution Time}_\text{using Enhancement}}
-\end{align*}</script></li>
-<li>执行时间(f指改进部分所占的比例)<br>$T_{new} = T_{old}\times \left((1-f)+\dfrac{f}{Sp}\right)$</li>
-<li>改进系数(f)：改进部分的执行时间占整个任务时间的比例<ul>
-<li>其中Sp为被优化部分的加速比，$Sp_{overall}$为整体加速比，f为被优化部分所占的运行时间比例。<h2 id="Part-Five-Great-Architecture-Ideas"><a href="#Part-Five-Great-Architecture-Ideas" class="headerlink" title="Part Five:Great Architecture Ideas"></a>Part Five:Great Architecture Ideas</h2></li>
-</ul>
-</li>
-<li>摩尔定律：每过 18-24 个月，集成电路的晶体管数量将增加一倍</li>
-<li>使用抽象来简化设计</li>
-<li>让最常见的情况更快</li>
-<li>通过并行来提高性能</li>
-<li>由很多级别的并行，比如指令集并行、进程并行等</li>
-<li>通过流水线来提高性能<ul>
-<li>将任务分为多段，让多个任务的不同阶段同时进行</li>
-<li>通常用来提高指令吞吐量</li>
-</ul>
-</li>
-<li>通过预测来提高性能</li>
-<li>使用层次化的内存<ul>
-<li>让最常访问的数据在更高层级，访问更快(Memory Hierarchy)<h2 id="Part-Six-Ideas"><a href="#Part-Six-Ideas" class="headerlink" title="Part Six:Ideas"></a>Part Six:Ideas</h2></li>
-</ul>
-</li>
-<li>Instruction Set Architecture(ISA)<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-2.png" alt="alt text"></li>
-</ul>
-<p>Instruction Set Design Issues</p>
-<ul>
-<li>ISA分类</li>
-<li>存储器寻址</li>
-<li>寻址模式</li>
-<li>操作数的类型和大小</li>
-<li>操作指令</li>
-<li>控制流指令</li>
-<li>ISA的编码</li>
-</ul>
-<h2 id="Part-Seven-Trends-in-power-and-Energy-in-Integrated-circuits"><a href="#Part-Seven-Trends-in-power-and-Energy-in-Integrated-circuits" class="headerlink" title="Part Seven:Trends in power and Energy  in Integrated circuits"></a>Part Seven:Trends in power and Energy  in Integrated circuits</h2><ol>
-<li>Trends in power</li>
-</ol>
-<ul>
-<li>Challenges<ul>
-<li>distributing the power</li>
-<li>removing the heat</li>
-<li>preventing hot spot</li>
-</ul>
-</li>
-<li>节能的技术<ul>
-<li>以逸待劳（Do nothing well）:关闭 非活动模块时钟</li>
-<li>动态电压—频率调整(DVFS):活跃程度较低的时期不需要以最高始终频率和电压运转</li>
-<li>针对典型情景的设计(Design for typical case):<ul>
-<li>Lower power modes(LPM)-save power</li>
-<li>Can not access DRAM or DISK when in LPM</li>
-</ul>
-</li>
-<li>超频(Overclocking)：在执行单线程代码时，微处理器可以仅留下一个核，并使其以更高时钟频率运行而其他所有核均被关闭</li>
-<li>竞相暂停(race-to-halt):由于处理器只是系统整体能耗的一部分，所以如果使用一个速度较快但能效较低的处理器，使系统其他部分能够进入睡眠模式，可能有助于降低整体能耗</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>微处理器内部的能耗和功率</li>
-</ol>
-<ul>
-<li><p>动态功率：开关晶体管的能耗</p>
-<ul>
-<li>逻辑转换脉冲0-&gt;1-&gt;0或者1-&gt;0-&gt;1的能耗：<script type="math/tex; mode=display">
-Energy_{dynamic}=Capacity\ load \times Voltage^2</script></li>
-<li>一次转换的功率为<script type="math/tex; mode=display">
-Energy_{dynamic}=\frac12 \times Capacity\ load \times Voltage^2 \times Frequency\ switched</script></li>
-<li>对于一项固定任务，降级时钟频率可以降低功率，但不会降低能耗</li>
-</ul>
-</li>
-<li><p>静态功率：晶体管因漏电而关断时的功耗</p>
-<script type="math/tex; mode=display">
-Power_{static}=current\ static \times Voltage</script></li>
-</ul>
-<ol>
-<li>Multiple core deliver more performance per watt</li>
-</ol>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-3.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-4.png" alt="alt text"></p>
-<ul>
-<li>由于多核通讯，资源占用等问题，多核多线程会在达到峰值后回落<h2 id="Part-Seven-Cost-Trend"><a href="#Part-Seven-Cost-Trend" class="headerlink" title="Part Seven:Cost Trend"></a>Part Seven:Cost Trend</h2></li>
-</ul>
-<ol>
-<li>Time,Volume and Commodification(时间、产量和大众化)</li>
-</ol>
-<ul>
-<li>时间：即使基本的实现技术没有取得任何重大进步，计算机组件的制造成本也会随着时间的推移而降低<ul>
-<li>成本下降的背后基本原理是学习曲线：制造成本随时间的推移而降低。学习曲线本身根据良率的变化预测（良率：成功通过测试的器件占所生产器件总数占总件数的百分比），良率翻倍的设计就能使成本减半</li>
-</ul>
-</li>
-<li>产量：从两个方面影响成本<ul>
-<li>产量的提高减少了完成学习曲线所需的时间，该时间在一定程度上与系统(或芯片)的制造数量成正比</li>
-<li>产量的增加会提高购买与制造效率，所以会降低成本。<br>产量每增加一倍，成本会降低百分之十</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>大众化：指多家供应商大量出售且基本相同的产品。市场的竞争会降低成本。</li>
-</ol>
-<ul>
-<li>产量会提高，但是利润会被限制</li>
-</ul>
-<ul>
-<li>Learning Curve：</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-5.png" alt="alt text"></p>
-<h2 id="Part-Eight-Reliability-可信任度"><a href="#Part-Eight-Reliability-可信任度" class="headerlink" title="Part Eight:Reliability(可信任度)"></a>Part Eight:Reliability(可信任度)</h2><p>容错与系统可靠性领域</p>
-<ul>
-<li>Definition</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-6.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-7.png" alt="alt text"></p>
-<ol>
-<li>如何判断一个系统的运行是否正常，基础供应商开始提供服务等级协议（service level agreement,SLA）或服务等级目标（service level subject,SLO）</li>
-</ol>
-<ul>
-<li>服务完成（service agreement）:提供了SLA的指定服务</li>
-<li>服务中断(service interrution)：即所提供的服务与SLA不一致</li>
-<li>两种状态之间的转换由故障（Failure）或恢复（Restoration）导致<ul>
-<li>Failures:$S_{accomplishment}-&gt;S_{interruption}$</li>
-<li>Restorations:$S_{interruption}-&gt;S_{accomplishment}$</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>信任度的度量</li>
-</ol>
-<ul>
-<li>Module Reliability:从参考初始时刻开始的连续的服务完成情况的度量（对发生故障之前的时间的度量）<ul>
-<li>MTTF:平均无故障时间（Mean Time To Failure）</li>
-<li>MTTR:平均故障恢复时间（Mean Time To Restoration）</li>
-<li>FIT:故障发生频率（Failure Instance Time），MTTF的倒数以运行十亿小时发生的故障来表示</li>
-<li>MTBF:平均故障间隔时间。MTBF=MTTF+MTTR</li>
-</ul>
-</li>
-<li>Module availability:指在服务完成与服务中断两种状态之间切换时，对服务完成情况的度量<script type="math/tex; mode=display">
-Mobile\ availability=\frac{MTTF}{MTTF+MTTR}</script></li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/80490de52ca29ff9f802330018d4b18.jpg" alt="alt text"></p>
-<ol>
-<li>解决故障的方法：冗余(Rebundancy)</li>
-</ol>
-<ul>
-<li>时间冗余：重复操作，以查看是否仍然存在错误</li>
-<li>资源冗余：当一个组件故障时，由其他组件接管<h2 id="Part-Nine-Measuring-Reporting-and-summerizing-Perf-性能的测量、报告和汇总"><a href="#Part-Nine-Measuring-Reporting-and-summerizing-Perf-性能的测量、报告和汇总" class="headerlink" title="Part Nine:Measuring,Reporting and summerizing Perf(性能的测量、报告和汇总)"></a>Part Nine:Measuring,Reporting and summerizing Perf(性能的测量、报告和汇总)</h2></li>
-</ul>
-<ol>
-<li>性能的测量</li>
-</ol>
-<ul>
-<li>机器之间的比较<ul>
-<li>Execution Time(Latency)</li>
-<li>Throughout</li>
-<li>MIPS:millions of instructions per second</li>
-</ul>
-</li>
-<li>使用程序进行机器之间的比较<ul>
-<li>选择程序来评估性能<ul>
-<li>Benchmark Suites</li>
-</ul>
-</li>
-<li>Different Means:Arithmetic,Harmonic,and Geometric Means</li>
-</ul>
-</li>
-<li><p>对于不同的使用者和设计者性能评估的标准是不同的</p>
-</li>
-<li><p>执行时间的定义方式（根据测量内容的不同）</p>
-<ul>
-<li>挂钟时间（Wall-clock time）,也叫做响应时间(response time)或者已用时间(elapsed time):完成一项任务的延迟时间，包括外存访问、输入输出活动、操作系统开销等所有相关时间。</li>
-<li>在多个程序同时运行多个程序的情况下，处理器等待I/O时处理另一个程序不一定使挂钟时间缩小至最短</li>
-<li>CPU时间：处理器执行计算的时间而不包括等待I/O计算或运行其他程序的时间<ul>
-<li>User Time:用户模式下的执行时间</li>
-<li>System Time:操作系统的执行时间</li>
-</ul>
-</li>
-<li>用户观测到的响应时间是程序的挂钟时间而不是CPU Time</li>
-</ul>
-</li>
-<li>管理员衡量系统性能的视角：给定时间内完成的工作数量</li>
-<li>我们通常使用吞吐量进行测量：单位时间内完成的工作数量</li>
-<li><p>通常使用相对延迟来反映系统的性能</p>
-</li>
-<li><p>如果想要改进response time，通常使用改进吞吐率的方法</p>
-<ul>
-<li>使用速度更快版本的计算机的处理器</li>
-</ul>
-</li>
-<li><p>提升系统的吞吐率可以不改进response Time</p>
-<ul>
-<li>对于分立的任务在多核处理系统中增加额外的处理器</li>
-</ul>
-</li>
-<li><p>MIPS：Millions of Instructions Per Second</p>
-<script type="math/tex; mode=display">
-MIPS = \frac{\frac{\text{number of instructions}}{\text{benchmark}} \times \frac{\text{benchmark}}{\text{total run time}}}{1000000}</script></li>
-<li><p>不同视角使用的不同测量方法</p>
-<ul>
-<li>Execution time<ul>
-<li>用户视角</li>
-<li>系统性能</li>
-<li>唯一的不容置疑的</li>
-</ul>
-</li>
-<li>CPU Time<ul>
-<li>设计者视角</li>
-<li>CPU性能</li>
-</ul>
-</li>
-<li>吞吐量<ul>
-<li>管理者视角</li>
-</ul>
-</li>
-<li>MIPS<ul>
-<li>供应商视角</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>基准测试<br>使用远比实际应用程序简单的程序</li>
-</ol>
-<ul>
-<li>程序内核(Kernal):即实际应用程序中短小、关键的部分</li>
-<li>玩具程序：即为了完成编程入门作业而编写的小程序，通常不超过100行，比如快速排序</li>
-<li>合成基准测试程序(Sythentic Benchmark):即为了匹配实际应用程序的特征和行为而编写的虚拟程序，比如Dhrystone</li>
-</ul>
-<blockquote>
-<p>现在三种方法都受到了质疑，主要是因为编译器的编写人员和架构师可以串通起来使计算机在执行这些替代程序的时候显得比运行时及应用程序时更快。</p>
-<ul>
-<li>为了避免太多鸡蛋放在同一个篮子里所带来的问题，一种流行的做法是基准测试应用程序集（称为基准测试套件）：套件的准确率不会超过组成该套件的各个基准测试。<ul>
-<li>不过，这种套件的主要优势在于，任何一个基准测试的弱点都会因为其他基准测试的存在而淡化。基准测试套件的目的是描述两台计算机的实际相对性能，特别是对于客户可能会运行的不在该套件中的程序</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>Total Execution Time</li>
-</ol>
-<ul>
-<li>Arithmetic mean(算术平均)：$\frac1n \Sigma_{i=1}^n Time_i$ </li>
-<li>如果性能以rate的形式表达，那么平均总时间是harmonic mean(调和平均)：$\frac{n}{\Sigma_{i=1}^n \frac{1}{Rate_i}}$</li>
-<li>当我们很那知道具体的比例时，我们可以进行以一个程序为标准进行转换</li>
-</ul>
-</blockquote>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-8.png" alt="alt text"></p>
-<p>权重的计算</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-9.png" alt="alt text"></p>
-<blockquote>
-<p>不同程序跑单位时间程序的执行次数作为权重</p>
-<blockquote>
-<p>这时不同参考基得到的权值是不同的</p>
-</blockquote>
-</blockquote>
-<ul>
-<li>Geometric mean(几何平均)：$\sqrt[n]{\prod_{i=1}^n Relative_Rate_i}$=$\frac{\sqrt[n]{\prod_{i=1}^n Rate_i}}{Rate_{ref}}$<blockquote>
-<p>几何平均的=得到的权值与参考基的选择是无关的</p>
-<blockquote>
-<p>本身没有物理意义，不能预测运行时间</p>
-<script type="math/tex; mode=display">
-\frac{Geometric\ mean(X_i)}{Geometric\ mean(Y_i)}=Geometric\ mean(\frac{X_i}{Y_i})</script></blockquote>
-</blockquote>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-11.png" alt="alt text"></p>
-<h2 id="Part-Ten-Quantitive-Principles-量化设计原理"><a href="#Part-Ten-Quantitive-Principles-量化设计原理" class="headerlink" title="Part Ten:Quantitive Principles(量化设计原理)"></a>Part Ten:Quantitive Principles(量化设计原理)</h2><ol>
-<li>充分利用并行</li>
-</ol>
-<ul>
-<li>系统级并行(system)：使用多个处理器 </li>
-<li>指令级并行(Instruction)：使用流水线技术</li>
-<li>操作级并行(operation)：<ul>
-<li>组相联cache</li>
-<li>流水线功能单元(如ALU等)</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>局部性原理</li>
-</ol>
-<ul>
-<li>程序原理：程序会趋向于再次使用最近使用过的数据和指令</li>
-<li>Rule of Thumb(经验法则):a program spends 90% of its execution time in only 10% of the code(程序的大部分时间都集中在少数关键代码段上，其余大部分代码对整体性能的影响较小)</li>
-<li>时间局部性</li>
-<li>空间局部性</li>
-</ul>
-<ol>
-<li>重点关注常见情形</li>
-<li>Amdahl Law(阿姆达尔公式)</li>
-</ol>
-<ul>
-<li>原计算机计算时间中可改进部分所占的比例</li>
-<li>通过改进执行模式得到的改进，也就是说在为整个程序使用这一执行模式时，任务的运行速度会提高多少倍</li>
-<li>部件的加速比的极限值是$\frac{1}{1-F}$</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-12.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-13.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-14.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-15.png" alt="alt text"></p>
-<ul>
-<li>注意时间比(fraction)不能按照IC的比例，而是要按照时间的比例(CPU Time)<h1 id="Chapter-2-Pipeline"><a href="#Chapter-2-Pipeline" class="headerlink" title="Chapter 2:Pipeline"></a>Chapter 2:Pipeline</h1><h2 id="1-What-is-pipeline"><a href="#1-What-is-pipeline" class="headerlink" title="1. What is pipeline"></a>1. What is pipeline</h2>从两个角度进行加速：对每一条指令进行加速；对一段程序的执行进行加速</li>
-</ul>
-<p>机制上，先进行分段，每一段用不同的部件，就可以并行执行。我们用buffer存放各个阶段的中间结果</p>
-<p>执行的模式有三种</p>
-<ul>
-<li>Sequential execution</li>
-<li>Single overlapping execution</li>
-<li>Twice overlapping execution</li>
-</ul>
-<h3 id="1-1-Sequential-execution"><a href="#1-1-Sequential-execution" class="headerlink" title="1.1 Sequential execution"></a>1.1 Sequential execution</h3><p>没有流水线的时候每一条指令顺序执行，执行时间就是每一条指令的每个阶段时间求和</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-16.png" alt="alt text"></p>
-<p>时间就是所有指令时间之和</p>
-<h3 id="1-2-Overlapping-execution"><a href="#1-2-Overlapping-execution" class="headerlink" title="1.2 Overlapping execution"></a>1.2 Overlapping execution</h3><p>重叠执行，如果不同阶段时间不一致，如ID阶段时间较长，那么需要等待浪费资源；如果EX阶段时间较长，那么产生冲突，执行部件不够。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-17.png" alt="alt text"></p>
-<ul>
-<li>ID阶段的时间较长，那么其他阶段的执行单元会等待，资源就会浪费</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-18.png" alt="alt text"></p>
-<ul>
-<li>EX阶段时间较长，可能会出现执行单元不够用的情况，导致流水线堵塞</li>
-</ul>
-<p>理想情况下是让三个阶段的时间相等</p>
-<ul>
-<li><p>Single Overlapping</p>
-<ul>
-<li>相较于顺序执行，时间缩短$\frac13$，同时功能部件的利用率得到明显改善</li>
-<li>提高了硬件开销(增加功能单元以用来调度流水线)，而且有冒险(由于指令之间存在依赖关系可能产生冲突)</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-19.png" alt="alt text"></p>
-<ul>
-<li><p>Twice Overlapping</p>
-<ul>
-<li>时间可以减少近$\frac23$，部件利用率更高<br>需要更复杂的硬件，而且需要单独的Fetch Decode EXE部件</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-20.png" alt="alt text"></p>
-<h3 id="1-3-如何实现重叠？-buffer"><a href="#1-3-如何实现重叠？-buffer" class="headerlink" title="1.3 如何实现重叠？- buffer"></a>1.3 如何实现重叠？- buffer</h3><p>Adding instruction buffer between memory and instruction decode unit.直接在buffer中取指，大大缩短取指时间。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-21.png" alt="alt text"></p>
-<ul>
-<li>使取数、存数、传输等操作的时间大大缩短，使所有执行时间都集中在ALU无法缩短</li>
-</ul>
-<p>The structure of processor with advanced control</p>
-<p>添加 buffer 之后，IF 阶段时间变得很短，此时可以和 ID 阶段合并（把二次重叠变为了一次重叠）。</p>
-<ul>
-<li>时间接近变为原来的一半</li>
-</ul>
-<p>如果合并之后IFID和EX阶段时间不一致，也会有执行部件的浪费。</p>
-<ul>
-<li>我们的目标是使ALU计算单元在较长时间内处于工作状态也就是EX阶段尽量不等待</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-22.png" alt="alt text"></p>
-<p>Common features: They work by FIFO, and are composed of a group of several storage units that can be accessed quickly and related control logic.</p>
-<p>可以看到，添加 buffer 之后，ID 阶段不用等待 EX 阶段技术才能进行下一条的译码，因为 ID 阶段的结果已经存放在 buffer 中了。这给ID创造了能够读取下一条指令的机会</p>
-<h4 id="1-buffer的引入"><a href="#1-buffer的引入" class="headerlink" title="1. buffer的引入"></a>1. buffer的引入</h4><ul>
-<li>存放阶段间的中间结果，避免由于下一阶段的执行时间较长而导致前一个阶段需要等待</li>
-<li>当IF阶段完成取指后，立即将指令放入buffer中，而不需要等待ID阶段完全解码完成。这样IF阶段可以尽快开始下一条指令的取指，增加了流水线的并行度</li>
-</ul>
-<h4 id="2-buffer优化流水线"><a href="#2-buffer优化流水线" class="headerlink" title="2. buffer优化流水线"></a>2. buffer优化流水线</h4><ul>
-<li><strong>减少等待时间</strong>：即使EX阶段耗时较长，ID阶段也不需要等待EX阶段完全执行完毕，因为ID阶段可以将解码结果暂时存放在buffer中</li>
-<li><strong>提高吞吐量</strong>：通过buffer来存储各个阶段的临时结果，允许流水线继续向前推进，减少了各阶段之间的执行时间差异对流水线效率的影响</li>
-<li><strong>缓冲区机制(FIFO)</strong>：确保数据按照正确的顺序传递到下一个阶段。FIFO的硬件实现不仅包括存储单元，还需要一些控制逻辑来管理数据的读取和写入<blockquote>
-<p>添加buffer之后，IF阶段时间变得很短，此时可以和ID阶段合并(把二次重叠变为了一次重叠)</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-67.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-66.png" alt="alt text"></p>
-<ul>
-<li>添加buffer之后ID不用等待EX阶段结束之后才进行下一条指令的译码，因为ID阶段的结果已经存放在buffer中了<h2 id="2-Classes-of-poplining"><a href="#2-Classes-of-poplining" class="headerlink" title="2. Classes of poplining"></a>2. Classes of poplining</h2></li>
-</ul>
-<p>Charasteristics of pipelining:</p>
-<ul>
-<li>单功能流水线：只有一个固定功能的流水线。涉及仅针对单一类型的运算</li>
-<li>多功能流水线：流水线的每个部分以不同的方式连接(不同阶段进行灵活组合)可以实现不同的功能<ul>
-<li>使处理器能够更灵活地分配计算资源</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-23.png" alt="alt text"></p>
-<p>针对多功能流水线的划分</p>
-<ul>
-<li>静态流水线：同一个时刻流水线只能做一个功能。<strong>流水线的功能同一时刻是固定的</strong></li>
-</ul>
-<blockquote>
-<p>例如在刚刚的例子中，流水线要么做浮点加法要么做乘法</p>
-</blockquote>
-<ul>
-<li>动态流水线：同一个时刻可以做多个功能。可以不用等待浮点加法第n条结束(即某一任务完全排空)，就可以开始乘法</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-24.png" alt="alt text"></p>
-<p>从不同的粒度分类：</p>
-<ul>
-<li>Component level pipelining (in component - operation pipelining)：处理器内部组件内进行的流水线操作。例如，在同个ALU钟可以通过流水线技术让不同操作的各个阶段并行进行</li>
-<li>Processor level pipelining (inter component - instruction pipelining):跨多个处理器组件的流水线操作，通常是指指令集的流水线。不同的指令在不同组件中进行取指、解码、执行等操作</li>
-<li>Inter processor pipelining (inter processor - macro pipelining)：更大规模的流水线设计，涉及多处理器或多核系统。在这种架构下，不同的处理器(或核)处理不同部分的任务</li>
-</ul>
-<p>还可以分为线性或者非线性：</p>
-<ul>
-<li>Linear pipelining:不存在功能部件的回路，指令一依次在流水线的各个阶段中处理，每个阶段只进行一次运算，数据不会返回到之前的阶段。指令从一端流入，处理完毕后从另一端流出。</li>
-<li>Nonlinear pipelining:功能部件可能多次使用，造成回路</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-25.png" alt="alt text"></p>
-<p>还可以分为顺序/乱序：</p>
-<ul>
-<li>ordered pipelining：指令进出流水线的顺序相同，指令的执行顺序和完成是确定视为</li>
-<li>disordered pipelining</li>
-</ul>
-<p>进来和流出的顺序不一样。后面的指令与前面的指令无关，则可以先出来，不能则要等待。</p>
-<ul>
-<li>乱序执行但是最后通过某些机制进行顺序调整</li>
-<li>当流水线因为某一条指令堵塞时，处理器可以执行后续的指令</li>
-</ul>
-<p>还可以分为向量/标量处理器</p>
-<ul>
-<li><p>scalar processor：每次只能处理单一的数据元素。它的指令处理数据都是标量，意味着每条指令处理一个数据值。</p>
-</li>
-<li><p>vector processor：The processor has vector data representation and vector instructions. It is the combination of vector data representation and pipelining technology.采用向量指令处理多个数据元素(即一个向量)而不是单个标量。向量流水线的设计结合了向量数据表示与流水线技术，每次执行一条指令时处理的数据量非常大</p>
-</li>
-</ul>
-<h2 id="3-Performance-evaluation-of-pipelining"><a href="#3-Performance-evaluation-of-pipelining" class="headerlink" title="3. Performance evaluation of pipelining"></a>3. Performance evaluation of pipelining</h2><h3 id="3-1-Throughput"><a href="#3-1-Throughput" class="headerlink" title="3.1 Throughput"></a>3.1 Throughput</h3><p>流水线希望我们提高单位时间内处理的任务越多越好，即提高吞吐率</p>
-<ul>
-<li>目的是提高处理的任务数，而不是减少时间</li>
-</ul>
-<p>Throughput(TP) </p>
-<script type="math/tex; mode=display">
-TP=\dfrac{n}{T_K}<TP_{max}</script><p>(实际上TP会有损耗)</p>
-<ul>
-<li>n是指令数</li>
-<li>$T_k$是流水线总的执行时间</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-26.png" alt="alt text"></p>
-<script type="math/tex; mode=display">
-TP=\dfrac{n}{n+m-1}TP_{max}</script><ul>
-<li>$$n&gt;&gt;m, TP\approx TP_{max}</li>
-</ul>
-<p>Suppose the time of segments are different in pipelining, then the longest segment in the pipelining is called the bottleneck segment.</p>
-<blockquote>
-<p>Example<br>Time of S1,S3,S4:$\Delta t$<br>Time of S2:$\Delta 3t$(Bottleneck)<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-27.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-28.png" alt="alt text"><br>$TP_{max}$只和瓶颈段的时间有关</p>
-<h4 id="3-1-1-Common-methods-to-solve-pipeline-bottleneck"><a href="#3-1-1-Common-methods-to-solve-pipeline-bottleneck" class="headerlink" title="3.1.1 Common methods to solve pipeline bottleneck"></a>3.1.1 Common methods to solve pipeline bottleneck</h4><ul>
-<li>Subdivision 把瓶颈分成若干段执行</li>
-</ul>
-</blockquote>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-29.png" alt="alt text"></p>
-<ul>
-<li>Repetition 在瓶颈段多使用几个部件</li>
-</ul>
-<h3 id="3-2-Speedup"><a href="#3-2-Speedup" class="headerlink" title="3.2 Speedup"></a>3.2 Speedup</h3><script type="math/tex; mode=display">
-SP=\frac{n \times m}{m+n-1}</script><ul>
-<li>if $n&gt;&gt;m,Sp_{max} \approx m$</li>
-</ul>
-<h3 id="3-3-Efficiency"><a href="#3-3-Efficiency" class="headerlink" title="3.3 Efficiency"></a>3.3 Efficiency</h3><p>效率，从计算机部件的角度：纵轴代表使用的不同的功能部件。效率指的是我们真正使用这个部件占整个时空的百分比。</p>
-<ul>
-<li>流水线中硬件资源的利用率</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-30.png" alt="alt text"></p>
-<script type="math/tex; mode=display">
-η=\frac{n \times m \times \Delta t_0}{m \times(n+m-1) \times \Delta t_0}=\frac{n}{m+n-1}</script><ul>
-<li>注意效率得到的结果应该是百分比，之前是吞吐量、加速比都是没有量纲的数</li>
-<li>if $n&gt;&gt;m, η\approx 1$ 实际上不可能为1，流水线进入和排空的时间是不可以忽略的</li>
-</ul>
-<h3 id="3-4-Pipeline-Performance"><a href="#3-4-Pipeline-Performance" class="headerlink" title="3.4 Pipeline Performance"></a>3.4 Pipeline Performance</h3><ul>
-<li>vector Calculation in static Pipeline</li>
-</ul>
-<p>现在有两个向量 A 和 B，我们要计算 A 点乘 B，通过下面的动态双功能流水线运算。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-31.png" alt="alt text"></p>
-<p>注意到这里是静态流水线，同一时刻只能做一类事情，需要先完成一种操作再完成另一种。这里我们需要先做乘法，排空，再做加法。做加法时，第三个乘法的结果需要等前两个乘法的结果相加后，再计算。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-32.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-33.png" alt="alt text"></p>
-<ul>
-<li>vector Calculation in dynamic Pipeline</li>
-</ul>
-<p>动态流水线，可以在前一个功能还没有做完的时候执行另一个功能，不需要排空。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-34.png" alt="alt text"></p>
-<p>这里当两个乘法的结果算出来之后，就可以执行对应的加法。</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-35.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-36.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-37.png" alt="alt text"></p>
-<ul>
-<li>如果各个阶段是完全平衡的，每条指令的执行时间就是每个阶段所需要的时间，所以理想情况下的加速比也就是流水线的阶段数</li>
-<li>Too many stages<ul>
-<li>Lots of complications：流水线调度复杂，控制逻辑复杂</li>
-<li>Should take care of possible dependencies among in-flight instructions</li>
-<li>Control logic is huge</li>
-<li>导致性能瓶颈的产生</li>
-<li>硬件要求提高<br>流水线的性能有关：动态（不需要排空，但需要硬件支持）还是静态，流水线段数，代码质量（冒险）</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-Hazards-of-Pipeline"><a href="#4-Hazards-of-Pipeline" class="headerlink" title="4. Hazards of Pipeline"></a>4. Hazards of Pipeline</h2><ul>
-<li>structure hazards:A required resource is busy</li>
-<li>data hazard:need to wait for previous instruction to complete its data read/write.</li>
-<li>control hazard: Deciding on control action depends on previous instruction.</li>
-</ul>
-<h3 id="4-1-structure-hazards"><a href="#4-1-structure-hazards" class="headerlink" title="4.1 structure hazards"></a>4.1 structure hazards</h3><p>对结构的争用,资源存在冲突</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-38.png" alt="alt text"></p>
-<ul>
-<li>一般通过加bubble或者加硬件进行解决（满足需求），或者同一块memory区分不同的cache</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-39.png" alt="alt text"></p>
-<h3 id="4-2-data-hazard"><a href="#4-2-data-hazard" class="headerlink" title="4.2 data hazard"></a>4.2 data hazard</h3><p>一条指令的执行依赖于前面指令对于数据访问的完成</p>
-<p>可以加 bubble, 或者通过 forwarding 前递数据，但并不是所有的情况都可以解决。</p>
-<ul>
-<li>Read After Write (RAW) <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FADD.D F6,F0,F12</span><br><span class="line">FSUB.D F8,F6,F14</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>Forwarding解决这种类型的冒险</p>
-</blockquote>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-40.png" alt="alt text"></p>
-<ul>
-<li>Write After Read (WAR)<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FDIV.D F2,F6,F4</span><br><span class="line">FADD.D F6,F0,F12</span><br></pre></td></tr></table></figure></li>
-<li>可以更换F2对应的寄存器</li>
-</ul>
-<blockquote>
-<p>Name Dependences（在乱序流水线中可能出现冒险）</p>
-</blockquote>
-<ul>
-<li><p>Write After Write (WAW)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FDIV.D F2，F0，F4</span><br><span class="line">FSUB.D F2，F6，F14</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不能更换F2对应的寄存器，存在写入顺序的问题</p>
-</li>
-</ul>
-<p>Name Dependence,顺序流水线不会引起数据的冒险，但在乱序流水线会发生冒险的问题</p>
-<ul>
-<li>code scheduling to avoid stalls</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-41.png" alt="alt text"></p>
-<ul>
-<li>静态调度：程序还没有运行，编译器在程序编译阶段重新排列指令顺序，减少等待时间</li>
-<li>动态调度：程序运行时，处理器为我们优化了代码</li>
-</ul>
-<h3 id="4-3-control-hazard"><a href="#4-3-control-hazard" class="headerlink" title="4.3 control hazard"></a>4.3 control hazard</h3><ul>
-<li>定义：控制冒险发生在流水线遇到分支指令时，必须等待分支指令的结果才能确定下一步的执行路径。如果分支预测错误，流水线必须丢弃错误路径上的指令</li>
-</ul>
-<p>为了减少分支指令带来的stall，我们使用分支预测的技术</p>
-<ul>
-<li>static branch prediction<ul>
-<li>基于经典的分支行为<ul>
-<li>branch-taken</li>
-<li>branch-not-taken</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>dynamic branch prediction<ul>
-<li>Hardware measures actual branch behavior<ul>
-<li>根据历史记录(如上一次分支结果)，预测下一次分支</li>
-</ul>
-</li>
-<li>我们认为未来的行为将会延续现在的趋势</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-Data-Hazards-4-2"><a href="#5-Data-Hazards-4-2" class="headerlink" title="5. Data Hazards(4.2)"></a>5. Data Hazards(4.2)</h3><h3 id="6-Control-Hazards"><a href="#6-Control-Hazards" class="headerlink" title="6. Control Hazards"></a>6. Control Hazards</h3><p>在RISC-V中，有无条件跳转<code>jal</code>,<code>jalr</code>和有条件跳转<code>beq</code>,<code>bne</code>,<code>blt</code>,<code>bge</code>,<code>bltu</code>,<code>bgeu</code></p>
-<p>可以在ID阶段就<strong>算出要跳转的目标地址</strong>，同时进行分支预测。只有预测错误时才需要stall来flush掉之前的结果，预测成功不需要stall</p>
-<h4 id="6-1-Static-Branch-Prediction"><a href="#6-1-Static-Branch-Prediction" class="headerlink" title="6.1 Static Branch Prediction"></a>6.1 Static Branch Prediction</h4><ol>
-<li>Predict-not-taken</li>
-</ol>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-42.png" alt="alt text"></p>
-<ul>
-<li>预测错误停顿一个周期，预测正确不停顿</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-43.png" alt="alt text"></p>
-<ol>
-<li><p>Predict-taken</p>
-</li>
-<li><p>Data Hazards for branches</p>
-</li>
-</ol>
-<ul>
-<li>If a comparison register is a destination of 2nd or 3rd preceding ALU instruction<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">add x1,x2,x3</span><br><span class="line">add x4,x5,x6</span><br><span class="line">beq x1,x4,target</span><br></pre></td></tr></table></figure></li>
-<li>Can solve using forwarding</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-44.png" alt="alt text"></p>
-<ul>
-<li>If a comparison register is a destination  of preceding ALU instruction or 2nd preceding load instruction<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lw x1,0(x2)</span><br><span class="line">add x4,x5,x6</span><br><span class="line">beq x1,x4,target</span><br></pre></td></tr></table></figure>
-<img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-45.png" alt="alt text"></li>
-<li>If a comparison register is a destination of immediately preceding load instruction<ul>
-<li>Need 2 stall cycles <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lw x1,0(x2)</span><br><span class="line">beq x1,x0,target</span><br></pre></td></tr></table></figure>
-<img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-52.png" alt="alt text"></li>
-</ul>
-</li>
-</ul>
-<h4 id="6-2-Dynamic-Branch-Prediction"><a href="#6-2-Dynamic-Branch-Prediction" class="headerlink" title="6.2 Dynamic Branch Prediction"></a>6.2 Dynamic Branch Prediction</h4><ul>
-<li>In deeper and superscalar pipelines, branch penalty is more significant</li>
-<li><p>Use dynamic prediction</p>
-<ul>
-<li>Branch prediction buffer(branch history table)</li>
-<li>Indexed by recent branch instruction address</li>
-<li>Stores outcome(taken or not taken)</li>
-<li>To execute a branch</li>
-<li>Look up the branch prediction buffer<ul>
-<li>Check table,expect the same outcome</li>
-<li>Start fetching from fall-through or target</li>
-<li>If wrong,flush pipeline and flip prediction</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Branch history</p>
-<ul>
-<li>1-bit predictor<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-46.png" alt="alt text"></li>
-<li>Inner loop branches mispredicted twice</li>
-<li>容易在分支频繁变化的时候产生错误预测<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-47.png" alt="alt text"></li>
-<li>Mispredict as taken on last iteration of inner loop</li>
-<li>Then mispredict as not taken on first iteration of inner loop next time around</li>
-<li>2-bit predictor<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-48.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-49.png" alt="alt text"></li>
-</ul>
-</li>
-</ul>
-<h3 id="6-3-Advanced-Techniques-for-instruction-Delivery-and-Speculation"><a href="#6-3-Advanced-Techniques-for-instruction-Delivery-and-Speculation" class="headerlink" title="6.3 Advanced Techniques for instruction Delivery and Speculation"></a>6.3 Advanced Techniques for instruction Delivery and Speculation</h3><ul>
-<li>Increasing Instruction Fetch Bandwith <ul>
-<li>Branch-Target Buffers(BTB):放预测的PC值，取指时在buffer中取。与TLB表类似，在未找到对应PC的情况下更新表的内容</li>
-<li>BTB是一个基于分支指令地址索引的表，存储了分支指令之前的执行结果。<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-50.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-51.png" alt="alt text"></li>
-<li>BTB存储了分支指令和目标地址</li>
-<li>如果在表中找到了对应的项，那么立即取出对应的目标地址，作为下一个时钟周期IF阶段的PC，也就是说，如果表中有对应项，我们采取的预测方式是Assume Branch Taken <ul>
-<li>分支预测正确：处理器从BTB获取目标地址，并直接预取目标位置的指令。这大大提高了分支跳转的速度，减少了处理器在预测正确时的延迟</li>
-<li>分支预测错误：如果分支预测错误，则需要清空流水线并更新BTB，将该PC对应的表项从目标地址缓存表中删除</li>
-</ul>
-</li>
-<li>如果在表中没有找到对应的项，那么我们采取的预测方式是<code>Assume Branch Not Taken</code><ul>
-<li>预测错误，清空已经执行的指令，并且下一个时钟周期使得目标地址进入IF阶段。与此同时，将这条分支指令的PC值以及对应的目标地址填入目标地址缓存表中，在表中新增一项</li>
-<li>如果分支没有执行正常情况，继续执行指令流即可</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Specialized Branch Predictors:Predicting Procedure Returns,Indirect Jump and Loops Branches<ul>
-<li>Integretd Instruction Fetch Units(集成指令提取单元):从内存中提取指令并将其传递给处理器的执行单元<ul>
-<li>集成指令预测</li>
-<li>指令的提前取指</li>
-<li>指令内存的访问和缓存</li>
-</ul>
-</li>
-<li>在现代多发射处理器架构中，指令提取不再是一个简单的单级流水线阶段，而是需要更复杂的实现</li>
-</ul>
-</li>
-</ul>
-<h4 id="Calculating-the-Branch-Target"><a href="#Calculating-the-Branch-Target" class="headerlink" title="Calculating the Branch Target"></a>Calculating the Branch Target</h4><ul>
-<li>即使有了复制预测模块，仍然需要计算目标地址<ul>
-<li>taken branch需要有一个周期的penalty</li>
-</ul>
-</li>
-<li><p>Branch Target Buffer</p>
-<ul>
-<li>Cache or target address</li>
-<li><p>Indexed by PC when instruction fetched</p>
-<ul>
-<li>If hit and instruction is branch predicted taken, can fetch target immediately</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-54.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-53.png" alt="alt text"></p>
-</li>
-</ul>
-</li>
-<li>BTB的更新与维护<ul>
-<li>表加入机制：当一个新的分支指令出现其目标地址不在BTB中时，处理器会将这个分支指令和它的目标地址存入表中</li>
-<li>表移除机制：如果一个分支指令不再跳转(即不被执行)，处理器会从BTB中移除该条指令的条目，以腾出空间给其他分支指令</li>
-</ul>
-</li>
-</ul>
-<h3 id="7-Schedule-of-Nonlinear-pipelining"><a href="#7-Schedule-of-Nonlinear-pipelining" class="headerlink" title="7. Schedule of Nonlinear pipelining"></a>7. Schedule of Nonlinear pipelining</h3><p>对于非线性流水线，功能部件可能经历多次，有调度问题</p>
-<ul>
-<li>纵轴代表不同的功能部件，横坐标表示拍数。即每一拍需要用到的功能部件</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-55.png" alt="alt text"></p>
-<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a><strong><em>算法步骤</em></strong>：</h4><ul>
-<li>Initial conflict vector:使用二进制表示，各个位置取每一拍存在冲突的并集。如果是1，则从图存在，否则冲突不存在<ul>
-<li>第一个部件，隔8拍会产生冲突；第二个部件：1.5.6；第三个部件：无；第四、五个部件：1</li>
-<li>将对应八位二进制数的1.5.6.8位设为1，其他为0，得到了初始的冲突向量10110001</li>
-</ul>
-</li>
-<li>conflict vector</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-57.png" alt="alt text"></p>
-<p>对于第三列，隔两排进下一条指令，我们就把冲突向量向右移动两位(高位补0)，得到了新的冲突向量，并和本来的冲突向量做或运算得到CCV。(注意这里最左侧一列表示向右移动了多少次)</p>
-<p>找到了一个循环调度：2-2-7</p>
-<ul>
-<li>State transition graph<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-58.png" alt="alt text"></li>
-<li>Circular queue：只要形成回路即可，没有一定规定需要从初始状态回到初始状态</li>
-<li>Shortest average interval：做的总移动数除以移动次数</li>
-</ul>
-<h1 id="Chapter-3-Memory-Hierarchy"><a href="#Chapter-3-Memory-Hierarchy" class="headerlink" title="Chapter 3: Memory Hierarchy"></a>Chapter 3: Memory Hierarchy</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><h3 id="1-1-Memory"><a href="#1-1-Memory" class="headerlink" title="1.1 Memory"></a>1.1 Memory</h3><p>内存层次</p>
-<ul>
-<li>Register </li>
-<li>Cache</li>
-<li>Memory</li>
-<li>Storage </li>
-</ul>
-<p>存储技术</p>
-<ul>
-<li>Mehanical Memory</li>
-<li>Electronic Memory<ul>
-<li>SRAM(做Cache)</li>
-<li>DRAM(做Memory)<ul>
-<li>SDRAM</li>
-<li>DDR</li>
-</ul>
-</li>
-<li>GDRAM<ul>
-<li>GDDR</li>
-</ul>
-</li>
-<li>HBM</li>
-<li>EPPROM<ul>
-<li>NAND</li>
-<li>NOR</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Optical Memory </li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-68.png" alt="alt text"></p>
-<h3 id="1-2-Cache-Memory"><a href="#1-2-Cache-Memory" class="headerlink" title="1.2 Cache Memory"></a>1.2 Cache Memory</h3><p>Cache:a safe place for hiding or storing things. （现在也不安全）</p>
-<ul>
-<li>Cache <strong>Hit/Miss</strong>:When the processor can/cannot find a requested data item in the cache <ul>
-<li>Cache miss会到来额外的开销：由延迟和带宽决定</li>
-</ul>
-</li>
-<li>Cache <strong>Block/Line</strong>:A fixed-size collection of the data containing the requested word,retrieved from the main memory and placed into the cache</li>
-<li><p>Cache <strong>Locality</strong>:</p>
-<ul>
-<li>Temporal locality:need the requested word again soon访问过这个数据，之后很可能再次访问</li>
-<li><p>Spatial locality:likely need other data in the block soon访问了这个位置 ，之后很可能再次访问附近的位置的数据</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-59.png" alt="alt text"></p>
-<h2 id="2-Four-Question-for-Cache-Designers"><a href="#2-Four-Question-for-Cache-Designers" class="headerlink" title="2. Four Question for Cache Designers"></a>2. Four Question for Cache Designers</h2></li>
-</ul>
-</li>
-</ul>
-<p>Caching is a general concept used in processors,operating systems,file systems,and applications</p>
-<ul>
-<li>Q1:Where can a block be placed in the upper level/main memory? (Block placement)<ul>
-<li>Fully Associative,Set Associative,Direct Mapped</li>
-</ul>
-</li>
-<li>Q2:How is a block found if it is in the upper level/main memory?(Block identification)<ul>
-<li>Tag/Block</li>
-</ul>
-</li>
-<li>Q3:Which block should be replaced on a Cache/main memory miss?(Block replacement)<ul>
-<li>Random,LRU,FIFO</li>
-</ul>
-</li>
-<li>Q4:What happens on a write?(Write strategy)<ul>
-<li>Write back or Write through(with write buffer)</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-1-Block-Placement"><a href="#2-1-Block-Placement" class="headerlink" title="2.1 Block Placement"></a>2.1 Block Placement</h3><ul>
-<li>Direct Mapped:一个块在cache中有一个固定的位置(通常通过取模得到，冲突多)<ul>
-<li>找方便，易冲突<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-61.png" alt="alt text"></li>
-</ul>
-</li>
-<li>Fully Associative:块可以放在cache里的位置<ul>
-<li>不好找，冲突少</li>
-</ul>
-</li>
-<li>Set Associative<ul>
-<li>块可以放在一个组里的任何位置，组里可以放若干个块</li>
-<li>直接映射相当于一路组相联，全相联相当于n路组相联(n是cache的块数)</li>
-<li>A set is a group of blocks in the cache<script type="math/tex; mode=display">
-  Set Index=Block Address MOD Number of sets in the chache</script></li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-Block-Identification"><a href="#2-2-Block-Identification" class="headerlink" title="2.2 Block Identification"></a>2.2 Block Identification</h3><p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-62.png" alt="alt text"></p>
-<ul>
-<li>address tag存储了存储在block中的数据的主存地址</li>
-<li>当检查cache时，处理器会比较我们需要的memory address和cache tag，如果二者是相等的，那么将会cache hit并且数据现在已经在cache中</li>
-<li>通常情况下，每一个block都会有一个<code>valid bit</code>来判断cache block中的内容是否有效</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-74.png" alt="alt text"></p>
-<h3 id="2-3-Block-Replacement"><a href="#2-3-Block-Replacement" class="headerlink" title="2.3 Block Replacement"></a>2.3 Block Replacement</h3><ul>
-<li>Random replacement:randomly pick any block<ul>
-<li>硬件上容易实现，只需要随机数发生器即可</li>
-<li>在缓存中均匀分配</li>
-<li>可能会驱逐一个即将被访问的块</li>
-</ul>
-</li>
-<li>Least-Recently Used(LRU):pick the block in the set which was least recently accessed<ul>
-<li>认为刚刚访问过的数据接下来还有可能被访问</li>
-<li>需要额外的位数来记录访问的时间。一般我们用的是近似的LRU</li>
-</ul>
-</li>
-<li>First in,First Out(FIFO):Choose a block from the set which was first came into the cache</li>
-</ul>
-<blockquote>
-<p>Suppose：Cache blocck size is 3, and access sequence is shown as follows.2,3,2,1,5,2,4,5,3,4</p>
-</blockquote>
-<ul>
-<li>FIFO<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-63.png" alt="alt text"></li>
-<li>LRU<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-64.png" alt="alt text"></li>
-<li>OPT<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-65.png" alt="alt text"></li>
-</ul>
-<p>Hit rate is related to the replacement algorithm, the access sequence, the cache block size.</p>
-<h4 id="2-3-1-Stack-Replacement-algorithm"><a href="#2-3-1-Stack-Replacement-algorithm" class="headerlink" title="2.3.1 Stack Replacement algorithm"></a>2.3.1 Stack Replacement algorithm</h4><p>有些算法随着N增大命中率非下降，有些算法随着N增大命中率反而会下降</p>
-<p>我们把随着N增大命中率非下降的算法称为 stack replacement algorithm</p>
-<p>$B_t(n)$ 在t时间cache的block大小为n的一组被包含的访问序列</p>
-<ul>
-<li>$B_t(n)$是$B_t(n+1)$的子集是堆栈型替换算法的条件：随着n的增大，先前能命中的也一定能命中</li>
-</ul>
-<p>LRU replacement algorithm is a stack replacement algorithm, while FIFO is not.</p>
-<p>For LRU algorithm, the hit ratio always increases with the increase of cache block.</p>
-<blockquote>
-<p>用栈来模拟LRU，栈顶是最近访问的，栈底是最久未访问的，每次要替换的时候，替换栈底元素。通过下面的图可以看到栈大小为n时的命中率<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-69.png" alt="alt text"></p>
-</blockquote>
-<h4 id="2-3-2-LRU-Implementation-Comparison-Pair-Method"><a href="#2-3-2-LRU-Implementation-Comparison-Pair-Method" class="headerlink" title="2.3.2 LRU Implementation - Comparison Pair Method"></a>2.3.2 LRU Implementation - Comparison Pair Method</h4><p>如何只通过门和触发器来实现LRU算法？—-Comparison Pair Method</p>
-<ul>
-<li>基本思想：让任何两个cache块之间两两结对，用一个触发器的状态代表两个块的先后顺序(比如1表示A刚刚被访问过，0表示B刚被访问过)。通过门电路对触发器的状态进行逻辑组合，找到最久未被访问的块</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-70.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-71.png" alt="alt text"></p>
-<ul>
-<li><p>Hardware usage analysis</p>
-<ul>
-<li><p>假设有p个cache blocks，我们需要$C_p^2= \frac{p(p-1)}{2}$</p>
-</li>
-<li><p>当p超过8时，需要的触发器过多，这个算法就不适用了</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-4-Write-Strategy"><a href="#2-4-Write-Strategy" class="headerlink" title="2.4 Write Strategy"></a>2.4 Write Strategy</h3><ul>
-<li><p>Write Hit</p>
-<ul>
-<li><p>Write Through:同时写回cache和内存。写到内存的时间较长，这个过程需要Write Stall，或者使用Write buffer(当buffer填满时无法避免使用Write Stall)</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-72.png" alt="alt text"></p>
-</li>
-<li>Write Back:在cache中写，同时通过一个额外的dirty bit表示这个块已经被修改,先用cache临时存储，最后一起写回内存</li>
-</ul>
-</li>
-<li>Write Miss<ul>
-<li>Write Allocate:将要写的块先读到cache中，再写进主存</li>
-<li>Write Around:直接写到内存，数据不会在cache中进行存储</li>
-</ul>
-</li>
-<li>In general, write-back caches use write-allocate , and write-through caches use write-around.</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-73.png" alt="alt text"></p>
-<h2 id="3-Memory-System-Performs"><a href="#3-Memory-System-Performs" class="headerlink" title="3. Memory System Performs"></a>3. Memory System Performs</h2><ul>
-<li>$CPU\ Execution\ time=(CPU\ clock\ cycles + Memory\ stall\ cycles) \times CPU\ clock\ cycle\ time$</li>
-<li>$Memory\ stall\ cycles = IC\times MemAccess refs per instructions \times Miss rate \times Miss Penalty$</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-75.png" alt="alt text"></p>
-<ul>
-<li>CPI Execution includes ALU and Memory instructions</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-76.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-83.png" alt="alt text"></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-84.png" alt=" "></p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-85.png" alt="alt text"></p>
-<p>How to improve</p>
-<ul>
-<li>Reduce the miss penalty</li>
-<li>Reduce the miss rate</li>
-<li>Reduce the time to hit in the cache</li>
-<li>Reduce the miss penalty and miss rate via parallelism</li>
-</ul>
-<h2 id="4-Virtual-Memory"><a href="#4-Virtual-Memory" class="headerlink" title="4. Virtual Memory"></a>4. Virtual Memory</h2><p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-86.png" alt="alt text"></p>
-<p>物理内存是有限的，虚拟内存让用户体验到一个抽象的更大的内存</p>
-<ul>
-<li>Why virtual memory?<ul>
-<li>可以让进程使用不连续的物理内存空间(虚拟地址上是连续的)；更好地隔离不同进程</li>
-</ul>
-</li>
-<li>virtual-physical address translation</li>
-<li>memory protection/sharing among multi-program</li>
-<li>easier/flexible memory management</li>
-<li>share a smaller amount of physical memory among many processes(隔离：每个进程都有一个相对独立的空间，不会访问其他程序的空间。一种安全机制)</li>
-<li>Introduces another level of secondary storage</li>
-</ul>
-<p><strong>Virtual Memory = Main Memory + Secondary Storage</strong><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-87.png" alt="alt text"></p>
-<ul>
-<li>Virtual Memory Allocation<ul>
-<li>Paged virtual memory<ul>
-<li><code>page</code>:fixed-size block(the block conception in virtual memory)</li>
-<li>page address:page number||offset</li>
-</ul>
-</li>
-<li>Segmented virtual memory<ul>
-<li><code>segment</code>:variable-size block</li>
-<li>segment address:segment number||offset</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-77.png" alt="alt text"></p>
-<blockquote>
-<p>分页式的易于实现，方便替换。现在常用段页式结合或者纯页式</p>
-</blockquote>
-<h3 id="4-1-How-virtual-memory-works"><a href="#4-1-How-virtual-memory-works" class="headerlink" title="4.1 How virtual memory works?"></a>4.1 How virtual memory works?</h3><p>Cache 的四个问题在虚拟内存中都有对应</p>
-<ul>
-<li>Q1. Where can a block be placed in main memory?<ul>
-<li>缺失代价很高，因此我们采用全相联的方式，以降低 miss rate。</li>
-</ul>
-</li>
-<li>Q2. How is a block found if it is in main memory?<ul>
-<li>虚拟地址分两部分，偏移量和页号。页号是页表的索引<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-78.png" alt="alt text"></li>
-</ul>
-</li>
-<li>Q3. Which block should be replaced on a virtual memory miss?<ul>
-<li>Least Recently Used (LRU) block, with use/reference bit.</li>
-</ul>
-</li>
-<li>Q4. What happens on a write?<ul>
-<li>Write-back strategy（如果向disk写的代价太大）, with diry bit(数据即将被占用的时候再写入).</li>
-</ul>
-</li>
-</ul>
-<h3 id="4-2-Page-Table"><a href="#4-2-Page-Table" class="headerlink" title="4.2 Page Table"></a>4.2 Page Table</h3><ul>
-<li>Page tables are often large</li>
-<li><p>页表是被存储在主存中的</p>
-<blockquote>
-<p>e.g. 32-bit virtual address, 4KB pages, 4 bytes per page table entry.</p>
-<p>page table size=$(2^{32}/2^{12})\times 2^2=2^{22}bytes= 4MB$</p>
-</blockquote>
-</li>
-<li><p>Logically two memory accesses for data access:</p>
-<ul>
-<li>从页表中获取物理地址</li>
-<li>从物理地址中得到数据</li>
-<li>通过offset找到page中的具体位置</li>
-</ul>
-</li>
-</ul>
-<p>正常来说页表需要两次访问内存，访问效率低下</p>
-<ul>
-<li>页表被存储在主存中，要先访问主存寻找对应的页表从而获得物理地址</li>
-<li>然后根据得到的物理地址<br>访问主存拿到数据</li>
-</ul>
-<p>因此我们需要cache page table,即TLB</p>
-<p><strong>Translation lookaside buffer (TLB)</strong></p>
-<blockquote>
-<p>避免了进行两次访问操作，节省访问时间 </p>
-</blockquote>
-<ul>
-<li><p>TLB Entry:</p>
-<ul>
-<li>tag:portions of the virtual address (VPN);</li>
-<li>data:a physical page frame number (PPN), protection field, valid bit, use bit, dirty bit;</li>
-<li>不包含偏移量<blockquote>
-<p>发送 tag (VPN) 尝试匹配，并看访问类型是否违规。如果匹配成功，就把对应的 PPN 送到 Mux，将偏移量加上 PPN 得到物理地址。<br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-79.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-80.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-81.png" alt="alt text"><br>最后一步合并页内偏移才能访问真正的物理地址。如果TLB未找到对应的页，则需要更新TLB，采用LRU策略进行更新。</p>
-<h3 id="4-3-Page-Size-Selectiq"><a href="#4-3-Page-Size-Selectiq" class="headerlink" title="4.3 Page Size Selectiq"></a>4.3 Page Size Selectiq</h3></blockquote>
-</li>
-</ul>
-</li>
-<li>Pros of larger page size<ul>
-<li>Smaller page table, less memory (or other resources used for the memory map);页更少，所以页表更小。</li>
-<li>Larger cache with fast cache hit;页更大，所以cache命中的时间更短(因为我们需要遍历的页更少)</li>
-<li>Transferring larger pages to or from secondary storage is more efficient than transferring smaller pages;一次搬运更多的数据，所以更高效，小页可能需要搬运多次。</li>
-<li>Map more memory, reduce the number of TLB misses;TLB miss 次数更少。</li>
-</ul>
-</li>
-<li>Pros of smaller page size<ul>
-<li>Conserve storage:When a contiguous region of virtual memory is not equal in size to a multiple of the page size, a small page size results in less wasted storage.减少对内存的使用，内部碎片更少。</li>
-</ul>
-</li>
-</ul>
-<h4 id="1-更大页大小的优点（Pros-of-larger-page-size）"><a href="#1-更大页大小的优点（Pros-of-larger-page-size）" class="headerlink" title="1. 更大页大小的优点（Pros of larger page size）"></a><strong>1. 更大页大小的优点（Pros of larger page size）</strong></h4><h5 id="1-页表更小（Smaller-page-table-less-memory）"><a href="#1-页表更小（Smaller-page-table-less-memory）" class="headerlink" title="(1) 页表更小（Smaller page table, less memory）"></a><strong>(1) 页表更小（Smaller page table, less memory）</strong></h5><ul>
-<li><p><strong>解释</strong>：</p>
-<ul>
-<li>页表（Page Table）是操作系统用来管理虚拟内存和物理内存映射的数据结构。</li>
-<li>如果页大小较大，那么相同的内存空间需要的页数会更少，因此页表会更小。</li>
-<li>较小的页表占用更少的内存资源，同时也减少了页表查找的开销。</li>
-</ul>
-</li>
-<li><p><strong>例子</strong>：</p>
-<ul>
-<li>假设内存大小为 4GB，页大小为 4KB，则需要 (2^{20}) 个页表项。</li>
-<li>如果页大小为 2MB，则只需要 (2^{11}) 个页表项。</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-缓存命中更快（Larger-cache-with-fast-cache-hit）"><a href="#2-缓存命中更快（Larger-cache-with-fast-cache-hit）" class="headerlink" title="(2) 缓存命中更快（Larger cache with fast cache hit）"></a><strong>(2) 缓存命中更快（Larger cache with fast cache hit）</strong></h5><ul>
-<li><p><strong>解释</strong>：</p>
-<ul>
-<li>页大小较大时，单个页可以容纳更多的数据。</li>
-<li>当程序访问内存时，如果数据在同一个页中，可以减少页表查找的次数，从而提高缓存命中率。</li>
-<li>缓存命中更快，因为需要遍历的页更少。</li>
-</ul>
-</li>
-<li><p><strong>例子</strong>：</p>
-<ul>
-<li>如果程序需要访问连续的内存区域，较大的页可以减少页表查找的次数。</li>
-</ul>
-</li>
-</ul>
-<h5 id="3-数据传输更高效（Transferring-larger-pages-is-more-efficient）"><a href="#3-数据传输更高效（Transferring-larger-pages-is-more-efficient）" class="headerlink" title="(3) 数据传输更高效（Transferring larger pages is more efficient）"></a><strong>(3) 数据传输更高效（Transferring larger pages is more efficient）</strong></h5><ul>
-<li><p><strong>解释</strong>：</p>
-<ul>
-<li>当内存页需要从磁盘（或其他辅助存储设备）加载到内存时，较大的页可以一次性传输更多的数据。</li>
-<li>相比于多次传输小页，传输大页的效率更高。</li>
-</ul>
-</li>
-<li><p><strong>例子</strong>：</p>
-<ul>
-<li>如果页大小为 4KB，加载 1MB 数据需要 256 次传输。</li>
-<li>如果页大小为 2MB，加载 1MB 数据只需要 1 次传输。</li>
-</ul>
-</li>
-</ul>
-<h5 id="4-减少-TLB-未命中次数（Reduce-the-number-of-TLB-misses）"><a href="#4-减少-TLB-未命中次数（Reduce-the-number-of-TLB-misses）" class="headerlink" title="(4) 减少 TLB 未命中次数（Reduce the number of TLB misses）"></a><strong>(4) 减少 TLB 未命中次数（Reduce the number of TLB misses）</strong></h5><ul>
-<li><p><strong>解释</strong>：</p>
-<ul>
-<li>TLB（Translation Lookaside Buffer）是用于加速虚拟地址到物理地址转换的硬件缓存。</li>
-<li>较大的页可以映射更多的内存，因此 TLB 可以覆盖更多的内存区域，从而减少 TLB 未命中的次数。</li>
-</ul>
-</li>
-<li><p><strong>例子</strong>：</p>
-<ul>
-<li>如果 TLB 可以缓存 64 个页表项，页大小为 4KB 时，TLB 只能覆盖 256KB 的内存。</li>
-<li>如果页大小为 2MB，TLB 可以覆盖 128MB 的内存。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="2-更小页大小的优点（Pros-of-smaller-page-size）"><a href="#2-更小页大小的优点（Pros-of-smaller-page-size）" class="headerlink" title="2. 更小页大小的优点（Pros of smaller page size）"></a><strong>2. 更小页大小的优点（Pros of smaller page size）</strong></h4><h5 id="1-节省存储空间（Conserve-storage）"><a href="#1-节省存储空间（Conserve-storage）" class="headerlink" title="(1) 节省存储空间（Conserve storage）"></a><strong>(1) 节省存储空间（Conserve storage）</strong></h5><ul>
-<li><p><strong>解释</strong>：</p>
-<ul>
-<li>当程序需要的内存区域不是页大小的整数倍时，较小的页可以减少内存浪费（内部碎片）。</li>
-<li>较小的页可以更灵活地分配内存，减少未使用的内存空间。</li>
-</ul>
-</li>
-<li><p><strong>例子</strong>：</p>
-<ul>
-<li>如果页大小为 4KB，程序需要 5KB 内存，则会分配 2 个页（8KB），浪费 3KB。</li>
-<li>如果页大小为 1KB，程序需要 5KB 内存，则会分配 5 个页（5KB），没有浪费。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h4><ul>
-<li><p><strong>更大页大小的优点</strong>：</p>
-<ul>
-<li>页表更小，减少内存占用。</li>
-<li>缓存命中更快，减少页表查找次数。</li>
-<li>数据传输更高效，减少 I/O 操作次数。</li>
-<li>减少 TLB 未命中次数，提高地址转换效率。</li>
-</ul>
-</li>
-<li><p><strong>更小页大小的优点</strong>：</p>
-<ul>
-<li>减少内存浪费，提高内存利用率。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="实际应用中的权衡"><a href="#实际应用中的权衡" class="headerlink" title="实际应用中的权衡"></a><strong>实际应用中的权衡</strong></h4><p>在实际操作系统中，页大小的选择需要根据具体应用场景和硬件特性进行权衡：</p>
-<ul>
-<li><strong>大页</strong>：适合需要大量连续内存访问的应用（如数据库、科学计算）。</li>
-<li><strong>小页</strong>：适合内存需求较小且不连续的应用（如桌面应用程序）。</li>
-</ul>
-<p><strong>Use both</strong>:multiple page sizes</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-82.png" alt="alt text"></p>
-<h3 id="4-4-Mem-Protection-amp-amp-Sharing-Among-Programs"><a href="#4-4-Mem-Protection-amp-amp-Sharing-Among-Programs" class="headerlink" title="4.4 Mem Protection&amp;&amp;Sharing Among Programs"></a>4.4 Mem Protection&amp;&amp;Sharing Among Programs</h3><h4 id="4-4-1-Multiprogramming"><a href="#4-4-1-Multiprogramming" class="headerlink" title="4.4.1 Multiprogramming"></a>4.4.1 Multiprogramming</h4><ul>
-<li>允许计算机被多个并发执行的程序共享</li>
-<li>需要保护并且在程序中共享</li>
-</ul>
-<h4 id="4-4-2-Process"><a href="#4-4-2-Process" class="headerlink" title="4.4.2 Process"></a>4.4.2 Process</h4><ul>
-<li>Maintain correct process behavior保持正确的进程行为<ul>
-<li>computer designer必须确保the processor portion of the process state（进程状态的处理器部分）能够被保存和重新存储</li>
-<li>OS designer必须确保进程之间的计算不会彼此影响</li>
-</ul>
-</li>
-<li>将主存划分从而使得多个不同的进程在内存中同一时刻都拥有它们的状态</li>
-</ul>
-<p>这部分内容主要涉及计算机体系结构中的 <strong>存储层次结构（Memory Hierarchy）</strong>、<strong>缓存（Cache）</strong> 和 <strong>虚拟内存（Virtual Memory）</strong>。以下是详细的解释：</p>
-<hr>
-<h3 id="5-Summary"><a href="#5-Summary" class="headerlink" title="5 Summary"></a>5 Summary</h3><h4 id="1-存储层次结构（Memory-Hierarchy）"><a href="#1-存储层次结构（Memory-Hierarchy）" class="headerlink" title="1. 存储层次结构（Memory Hierarchy）"></a><strong>1. 存储层次结构（Memory Hierarchy）</strong></h4><h5 id="从单级到多级（From-single-level-to-multi-level）"><a href="#从单级到多级（From-single-level-to-multi-level）" class="headerlink" title="从单级到多级（From single level to multi level）"></a><strong>从单级到多级（From single level to multi level）</strong></h5><ul>
-<li><strong>单级存储</strong>：早期的计算机系统只有一种存储设备（如磁鼓存储器），速度慢且容量有限。</li>
-<li><p><strong>多级存储</strong>：现代计算机系统采用多级存储层次结构，将存储设备分为多个层次，每个层次在速度、容量和成本之间进行权衡。</p>
-<ul>
-<li><strong>层次结构</strong>：<ol>
-<li><strong>寄存器（Registers）</strong>：速度最快，容量最小，成本最高。</li>
-<li><strong>缓存（Cache）</strong>：速度较快，容量较小，成本较高。</li>
-<li><strong>主存（Main Memory）</strong>：速度中等，容量较大，成本中等。</li>
-<li><strong>辅助存储（Secondary Storage）</strong>：速度较慢，容量最大，成本最低（如硬盘、SSD）。</li>
-<li><strong>三级存储（Tertiary Storage）</strong>：速度最慢，容量极大，成本最低（如磁带、光盘）。</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p><strong>目的</strong>：通过多级存储层次结构，平衡速度、容量和成本，提高系统整体性能。</p>
-</li>
-</ul>
-<h5 id="存储系统的性能参数（Evaluate-the-performance-parameters）"><a href="#存储系统的性能参数（Evaluate-the-performance-parameters）" class="headerlink" title="存储系统的性能参数（Evaluate the performance parameters）"></a><strong>存储系统的性能参数（Evaluate the performance parameters）</strong></h5><ul>
-<li><p><strong>平均每比特成本（Average price per bit, C）</strong>：</p>
-<ul>
-<li>存储层次中，越靠近顶层的存储设备（如寄存器、缓存）成本越高，越靠近底层的存储设备（如硬盘）成本越低。</li>
-<li>通过多级存储层次结构，可以在保证性能的同时降低整体成本。</li>
-</ul>
-</li>
-<li><p><strong>命中率（Hit rate, H）</strong>：</p>
-<ul>
-<li>命中率是指访问数据时，数据在某一级存储中找到的概率。</li>
-<li>命中率越高，系统性能越好。</li>
-</ul>
-</li>
-<li><p><strong>平均内存访问时间（Average memory access time, T）</strong>：</p>
-<ul>
-<li>平均内存访问时间是访问数据所需的平均时间。</li>
-<li>计算公式：$T = H \times T_{\text{hit}} + (1 - H) \times T_{\text{miss}}$<ul>
-<li>$T_{\text{hit}}$：命中时的访问时间。</li>
-<li>$T_{\text{miss}}$：未命中时的访问时间（需要从下一级存储中加载数据）。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="2-缓存基础知识（Cache-Basic-Knowledge）"><a href="#2-缓存基础知识（Cache-Basic-Knowledge）" class="headerlink" title="2. 缓存基础知识（Cache Basic Knowledge）"></a><strong>2. 缓存基础知识（Cache Basic Knowledge）</strong></h4><h5 id="映射规则（Mapping-Rules）"><a href="#映射规则（Mapping-Rules）" class="headerlink" title="映射规则（Mapping Rules）"></a><strong>映射规则（Mapping Rules）</strong></h5><ul>
-<li>缓存将主存中的数据映射到缓存中，常见的映射规则包括：<ol>
-<li><strong>直接映射（Direct Mapping）</strong>：<ul>
-<li>主存中的每个块只能映射到缓存中的一个特定位置。</li>
-<li>优点：实现简单。</li>
-<li>缺点：容易发生冲突，导致缓存命中率降低。</li>
-</ul>
-</li>
-<li><strong>全相联映射（Fully Associative Mapping）</strong>：<ul>
-<li>主存中的每个块可以映射到缓存中的任意位置。</li>
-<li>优点：冲突少，缓存命中率高。</li>
-<li>缺点：实现复杂，查找速度慢。</li>
-</ul>
-</li>
-<li><strong>组相联映射（Set Associative Mapping）</strong>：<ul>
-<li>主存中的每个块可以映射到缓存中的一组位置。</li>
-<li>优点：平衡了直接映射和全相联映射的优点。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h5 id="访问方法（Access-Method）"><a href="#访问方法（Access-Method）" class="headerlink" title="访问方法（Access Method）"></a><strong>访问方法（Access Method）</strong></h5><ul>
-<li><strong>顺序访问（Sequential Access）</strong>：<ul>
-<li>按顺序访问数据，适合连续存储的数据。</li>
-</ul>
-</li>
-<li><strong>随机访问（Random Access）</strong>：<ul>
-<li>可以任意访问数据，适合非连续存储的数据。</li>
-</ul>
-</li>
-</ul>
-<h5 id="替换算法（Replacement-Algorithm）"><a href="#替换算法（Replacement-Algorithm）" class="headerlink" title="替换算法（Replacement Algorithm）"></a><strong>替换算法（Replacement Algorithm）</strong></h5><ul>
-<li>当缓存已满时，需要替换掉某个缓存块，常见的替换算法包括：<ol>
-<li><strong>最近最少使用（LRU, Least Recently Used）</strong>：<ul>
-<li>替换最近最少使用的缓存块。</li>
-</ul>
-</li>
-<li><strong>先进先出（FIFO, First In First Out）</strong>：<ul>
-<li>替换最早进入缓存的缓存块。</li>
-</ul>
-</li>
-<li><strong>随机替换（Random Replacement）</strong>：<ul>
-<li>随机选择一个缓存块进行替换。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h5 id="写策略（Write-Strategy）"><a href="#写策略（Write-Strategy）" class="headerlink" title="写策略（Write Strategy）"></a><strong>写策略（Write Strategy）</strong></h5><ul>
-<li><strong>写直达（Write Through）</strong>：<ul>
-<li>每次写操作同时更新缓存和主存。</li>
-<li>优点：数据一致性高。</li>
-<li>缺点：写操作速度慢。</li>
-</ul>
-</li>
-<li><strong>写回（Write Back）</strong>：<ul>
-<li>写操作只更新缓存，当缓存块被替换时才写回主存。</li>
-<li>优点：写操作速度快。</li>
-<li>缺点：数据一致性较低。</li>
-</ul>
-</li>
-</ul>
-<h5 id="缓存性能分析（Cache-Performance-Analysis）"><a href="#缓存性能分析（Cache-Performance-Analysis）" class="headerlink" title="缓存性能分析（Cache Performance Analysis）"></a><strong>缓存性能分析（Cache Performance Analysis）</strong></h5><ul>
-<li>缓存的性能主要取决于命中率和访问时间。</li>
-<li>提高缓存性能的方法：<ul>
-<li>增加缓存容量。</li>
-<li>优化映射规则和替换算法。</li>
-<li>提高缓存访问速度。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h4 id="3-虚拟内存（Virtual-Memory）"><a href="#3-虚拟内存（Virtual-Memory）" class="headerlink" title="3. 虚拟内存（Virtual Memory）"></a><strong>3. 虚拟内存（Virtual Memory）</strong></h4><h5 id="内存组织结构对缓存未命中率的影响（The-influence-of-memory-organization-structure-on-Cache-failure-rate）"><a href="#内存组织结构对缓存未命中率的影响（The-influence-of-memory-organization-structure-on-Cache-failure-rate）" class="headerlink" title="内存组织结构对缓存未命中率的影响（The influence of memory organization structure on Cache failure rate）"></a><strong>内存组织结构对缓存未命中率的影响（The influence of memory organization structure on Cache failure rate）</strong></h5><ul>
-<li>虚拟内存通过将主存和辅助存储结合，扩展了程序的可用内存空间。</li>
-<li>虚拟内存的组织结构（如页大小、页表设计）会影响缓存的未命中率：<ol>
-<li><strong>页大小</strong>：<ul>
-<li>较大的页可以减少页表大小和 TLB 未命中次数，但可能增加内部碎片。</li>
-<li>较小的页可以减少内部碎片，但可能增加页表大小和 TLB 未命中次数。</li>
-</ul>
-</li>
-<li><strong>页表设计</strong>：<ul>
-<li>多级页表可以减少页表占用的内存空间，但可能增加地址转换时间。</li>
-</ul>
-</li>
-<li><strong>TLB（Translation Lookaside Buffer）</strong>：<ul>
-<li>TLB 是用于加速虚拟地址到物理地址转换的硬件缓存。</li>
-<li>TLB 的命中率直接影响缓存性能。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h1 id="Chapter-4-Instruction-Level-Parallelism"><a href="#Chapter-4-Instruction-Level-Parallelism" class="headerlink" title="Chapter 4 Instruction-Level Parallelism"></a>Chapter 4 Instruction-Level Parallelism</h1><p><strong>RISC处理器的经典五级流水线</strong></p>
-<ul>
-<li>Dependences are a property of programs 依赖性是程序的一种性质</li>
-<li>Hazards are properties of pipeline organization 冒险是流水线组织的一种特性</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-88.png" alt="alt text"></p>
-<h2 id="4-1-Dynamic-Scheduling"><a href="#4-1-Dynamic-Scheduling" class="headerlink" title="4.1 Dynamic Scheduling"></a>4.1 Dynamic Scheduling</h2><p>简单的流水线技术的主要限制是</p>
-<ul>
-<li>指令顺序发布并执行</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-89.png" alt="alt text"></p>
-<p>前两条指令存在数据依赖，DIV语句的执行时间一般很长。那么前两条指令就会等待除法完成，顺序执行里面后面的指令也会跟着等(但其实和除法没有关系)，这样就造成了浪费</p>
-<ul>
-<li><strong>Idea</strong>：动态调度</li>
-<li><strong>Method</strong>：out-of-order execution</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/计算机体系结构(Computer%20Architecture" alt="alt text">/image-90.png)</p>
-<blockquote>
-<p>乘法的运算时间长，同时出现的频率高</p>
-</blockquote>
-<ul>
-<li>load/store属于整数运算部件</li>
-<li>scoreboard记录当前系统所有的状态(指令进行到什么状态，功能部件当前被那条指令使用，寄存器组，指令用了哪些寄存器)</li>
-</ul>
-<p>在之前的顺序流水线视线中，ID阶段 我们会检测结构冒险和数据冒险。如果都不发生，那么将会将这条指令放到下一阶段EX</p>
-<p>我们现在希望减弱检测条件，只要没有结构冒险(结构冒险是无法解决)，就允许进入到下一阶段，具体分成两个阶段分别检测结构和数据冒险</p>
-<ul>
-<li><code>Issue(IS)</code>:解码指令，检测结构冒险(顺序读入)</li>
-<li><code>Read Operands(RO)</code>:等待至没有数据冒险，接下来读取操作数，乱序执行(接收数据过程中只要没有数据冒险就可以执行)</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-91.png" alt="alt text"></p>
-<p>IS一定是顺序取，RO不一定顺序(只要没有数据冒险就可以执行，有冒险的等待，没有冒险的执行，这就会导致乱序的出现)</p>
-<ul>
-<li><strong>Scoreboard algorithm</strong>是一种调度指令的算法</li>
-<li>Robert Tomasulo introduces register <strong>renaming</strong> in hardware to minimize WAW and WAR hazards, named Tomasulo’s Approach.</li>
-</ul>
-<h3 id="4-1-1-Scoreboard-Algorithm"><a href="#4-1-1-Scoreboard-Algorithm" class="headerlink" title="4.1.1 Scoreboard Algorithm"></a>4.1.1 Scoreboard Algorithm</h3><p>计分板算法的基本结构</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-92.png" alt="alt text"></p>
-<p>表是实时更新的。当指令流出(结束WB阶段)，scoreboard上就不会有其相关的信息</p>
-<ul>
-<li>Instruction Status记录每条指令执行到哪一步</li>
-<li>Function Component Status</li>
-<li>Register Status</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FLD F6, 34(R2)</span><br><span class="line">FLD F2, 45(R3)</span><br><span class="line">FMUL.D F0, F2, F4</span><br><span class="line">FSUB.D F8, F2, F6</span><br><span class="line">FDIV.D F10, F0, F6</span><br><span class="line">FADD.D F6, F8, F2 </span><br></pre></td></tr></table></figure>
-<ul>
-<li>Instruction Status</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-93.png" alt="alt text"></p>
-<p>此时指令1结束，scoreboard上没有其相关的信息。指令2还没有WB，后面的3、4需要用到2的结果F2，因此指令3、4只是完成了IS阶段，还没有执行RO阶段(存在数据冒险)。指令5用到3的结果，也不能进入RO。指令6是ADD加法操作，此时指令4是SUB，也会用到加法运算范媛，因此产生结构冒险，无法进入IS。</p>
-<ul>
-<li>Function Component Status</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-94.png" alt="alt text"></p>
-<ul>
-<li>busy代表当前这个单元是否有指令正在使用。op表示这个单元正在被哪类指令使用</li>
-<li>$F_i,F_j,F_k$代表目标操作数和源操作数($F_i$是目标操作数，$F_j,F_k$是源操作数)</li>
-<li>$Q_j,Q_k$代表源操作数来自哪个部件<ul>
-<li>如Mult1的Qj=integer说明来自整数部件(此时正在执行Load指令)</li>
-</ul>
-</li>
-<li>$R_j,R_k$代表源操作数的状态<ul>
-<li>yes-operands is ready but no ready没读是因为其他的操作数还没有read</li>
-<li>$no\&amp;Q_j=null$:operand is ready</li>
-<li>$no\&amp;Q_j \neq null$:operand is not ready其他指令会修改这个操作数，而且还没有执行完毕</li>
-</ul>
-</li>
-<li>Register Status</li>
-</ul>
-<p>$F_i$这一列加上op这一列组合成了这张表，表示这个寄存器将被什么指令修改</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-95.png" alt="alt text"><br><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-96.png" alt="alt text"></p>
-<blockquote>
-<p>注意到在这之后，最后一条ADD指令必须等到DIV指令RO之后才能WB(否则会修改F6)</p>
-</blockquote>
-<p>Scoreboard算法可以检测出冲突，但是不能解决冲突，还是通过阻塞的方法来解决，scoreboard上面的信息页比较复杂，效率不高</p>
-<h3 id="4-1-2-Tomasulo’s-Approach"><a href="#4-1-2-Tomasulo’s-Approach" class="headerlink" title="4.1.2 Tomasulo’s Approach"></a>4.1.2 Tomasulo’s Approach</h3><p>These name dependences can all be eliminated by register renaming</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-97.png" alt="alt text"></p>
-<p>The basic structure of a floating-point unit using Tomasulo’s approach :</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-98.png" alt="alt text"></p>
-<p>指令从指令队列出来(顺序)，先进入绿色的buffer，随后再进行操作。如果buffer已经满了还有指令要进入就需要等待(阻塞)。</p>
-<p>这里Reservation Station的目的是为了一次性放进来多条指令，然后再buffer内完成乱序，即buffer内哪条指令操作数ready了就执行</p>
-<p>此外在保留站内部还要进行rename，有可能依赖的是另一个保留站里的指令。每个保留站有唯一的命名</p>
-<ul>
-<li><p>It tracks when operands for instructions are available to minimize RAW hazards;</p>
-</li>
-<li><p>It introduces register renaming in hardware to minimize WAW and WAR hazards.</p>
-</li>
-</ul>
-<h4 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h4><ul>
-<li><code>Issue</code>(发射):从指令队列的头部取出下一条指令(FIFO)</li>
-</ul>
-<p>从队列中顺序取出指令，并放入对应的保留站，进入保留站后，就会进行重命名，消除了WAR和WAW冒险</p>
-<ul>
-<li>如果保留站有空位，就将指令放到保留站中<ul>
-<li>如果操作数就绪(在寄存器中)直接加在到保留站</li>
-<li>若操作数未就绪，记录该操作数产生的功能单元(即等待其他指令的结果)</li>
-</ul>
-</li>
-<li><p>如果保留站没有空位，就等待阻塞(即保留站的空闲情况决定了指令是否流出，而不是由功能部件的情况决定)</p>
-</li>
-<li><p><code>Execute</code>:</p>
-<ul>
-<li>保留站里的指令操作数都就就绪了，就可以执行。这一步实现了乱序</li>
-<li>load and store需要两步执行操作<ul>
-<li>计算有效地址：当指令的基址寄存器的值就绪时，计算内存地址：<code>有效地址=基地址+偏移量</code>，将计算出的有效地址存入load/store buffer。(避免因内存延迟阻塞流水线)</li>
-<li>当内存单元就绪时，进行load/store操作</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>Write Results</code><ul>
-<li>通过 CDB 总线将结果写回到寄存器的同时，将结果发到其他所有标记了的（先前寄存器中没有值被标记值来源，计算得到之后需要被赋值）保留站里。（因此 CDB 也会影响 CPU 的效率，因此现在用多条总线保证效率）</li>
-<li>只有当要写入的值和要写入的地址都准备就绪且内存单元空闲时，才会将数据从Store Buffer写入内存</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-2-Hardware-Based-Speculation"><a href="#4-2-Hardware-Based-Speculation" class="headerlink" title="4.2 Hardware-Based Speculation"></a>4.2 Hardware-Based Speculation</h2><p>为了让指令执行完成的顺序也是顺序的，我们添加了一个reorder buffer</p>
-<p>结果先写到reorder buffer,在buffer里按照指令流出的顺序依次协会寄存器。因此我们再每个指令后面加上一个commit状态，当前面的指令都commit之后才能commit</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-99.png" alt="alt text"></p>
-<p>The basic structure of a FP unit using Tomasulo’s algorithm and extended to handle speculation:</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-100.png" alt="alt text"></p>
-<ul>
-<li>Issue:从指令队列中取出指令</li>
-<li>Execution:operand on operands(EX)</li>
-<li>Write Result:finish execution(WB)</li>
-<li>Commit:update register with reorder result</li>
-</ul>
-<p>Hardware-based speculation包含三个关键的思想 ：</p>
-<ul>
-<li>动态分支预测来选择执行的指令</li>
-<li>利用推测，可以在解决控制依赖问题之前执行命令(能够撤销错误推测指令序列的影响)</li>
-<li>进行动态调度，以应对不同组合方式的基本模块调度(与之相对，没有推测的动态调度只能部分重叠基本模块，因为它要求先解析一个分支，然后才能实际执行后续基本模块中的指令)</li>
-</ul>
-<p><strong>执行程序的方法实质</strong>：数据流执行，也就是操作数一旦可用就立即执行</p>
-<p>前面的IS和EX阶段与Tomasulo算法一样只是WB阶段增加了一个commit状态，只有当指令commit之后才能写回寄存器</p>
-<ul>
-<li>WB<ul>
-<li>当结果可用时，将结果写在CDB上(还有在发射指令时发送的ROB标签，也就是指令写回时对应的顺序)，并从CDB写到ROB以及任何等待这一结果的保留站。</li>
-<li>将保留站(刚刚写在CDB上的指令所使用的保留站)标记为可用</li>
-<li>对于存储器指令(load and store)需要执行一些额外的操作。 <ul>
-<li>如果要存储的值已经准备就绪，则将它写到ROB条目的值字段来等待访问存储器</li>
-<li>如果要存储的值还不可用，则必须监视CDB，直到该数值被广播，再更新该存储指令ROB条目的值字段</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Instruction Commit:根据要提交的指令是预测错误的分支指令、存储指令还是任意其他指令(可以正常提交的指令)有三种不同的操作模式<ul>
-<li><strong>正常提交</strong>：当一个指令到达ROB的头部而且其结果出现在缓冲区中时，进行正常提交，此时处理器用结果更新寄存器，并从ROB中清除该指令</li>
-<li><strong>存储指令提交</strong>：具体步骤与正常提交相似，但是更新的是存储器而不是结果寄存器。</li>
-<li><strong>预测错误的分支提交</strong>：当指令到达ROB的头部时<ul>
-<li>如果推测是错误的<strong>ROB被清空</strong>，执行过程从该分支的正确后续指令重新开始。</li>
-<li>如果推测是正确的，则该分支完成提交</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>指令一旦提交完毕，它在ROB中的相应项被收回，寄存器或存储器目的地址将被更新，并且不再需要ROB项。</p>
-<p>如果ROB填满，则停止发射指令，直到有空闲条目为止。</p>
-<p>!!! example Example</p>
-<pre><code>The status tables when `FMUL.D` is ready to commit:
-
-- **Dest**: 这里是保留站的名称（一个字段）,在这里可以是即将进入到ROB中的标号，而不是寄存器的名称,也就是这个保留站条目所生成结果的目的地
-
-- **Example Table**:
-
-![FMUL.D Status](image-101.png)
-
-- **Busy**标识标识当前正在执行的指令，也就是尚未commit的指令
-</code></pre><p>!!! Practice<br>    <img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-102.png" alt="alt text"></p>
-<pre><code>- 发射阶段需要两个周期，由发射和解码两部分组成
-- `commit`部分与CPU的运算不冲突，CPU的运行效率并不会受到影响。**相当于整个过程中只是多了commit部分的等待过程，但是运算部分的周期与commit所需要花费的周期没有直接关系，write back之后就可以直接使用对应的数据**
-- 实际上加上ROB之后，前面的执行和Tomasulo算法是一样的，只是多了一个commit状态，需要加一列按照流出顺序提交，必要的时候需要等待
-</code></pre><ul>
-<li>Instructions are finished in order according to ROB经过ROB处理的指令是有序输出的</li>
-<li>It can be precise exception.处理中断时，提供精确异常</li>
-<li>It is easily extended to integer register and integer function unit.</li>
-<li>But the hardware is too complex.</li>
-</ul>
-<h2 id="4-3-Exploiting-ILP-Using-Multiple-Issue-and-Static-Scheduling"><a href="#4-3-Exploiting-ILP-Using-Multiple-Issue-and-Static-Scheduling" class="headerlink" title="4.3 Exploiting ILP Using Multiple Issue and Static Scheduling"></a>4.3 Exploiting ILP Using Multiple Issue and Static Scheduling</h2><p>多流出，也就是一拍可以流出多条指令</p>
-<ul>
-<li>Superscalar:</li>
-</ul>
-<p>可以分为静态调度超标量和动态调度超标量。静态调度是通过编译器来完成的，动态调度是通过硬件来完成的</p>
-<p>每个时钟周期发射的指令条数可能不一样</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/207e3c9786995a81e32055536a6aee3.jpg" alt="alt text"></p>
-<ul>
-<li><p>VLIW (Very Long Instruction Word)：将多条指令包装在一条指令中</p>
-<p>超长指令字也是通过编译器完成的</p>
-<p>每个时钟周期发射的指令条数是固定的。它们组成一条长指令或者一个指令包</p>
-<p>!!!example<br>  我们考虑一个VLIW处理器，在上面包含5种运算的指令，包括一个整数运算、两个浮点运算和两个存储器访问。这些指令可能拥有与每个功能单元相对应的一组字段</p>
-<p>  这些指令可能拥有与每个功能单元相对应的一组字段，每个单元可能为16~24位，得到的指令长度介于80~120位之间</p>
-</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-103.png" alt="alt text"></p>
-<h3 id="4-3-1-Based-on-static-scheduling"><a href="#4-3-1-Based-on-static-scheduling" class="headerlink" title="4.3.1 Based on static scheduling"></a>4.3.1 Based on static scheduling</h3><p>In a typical superscalar processor, 1 to 8 instructions can be issued per clock cycle.</p>
-<p>我们要进行结构冒险和数据冒险的检测。需要注意的是，如果遇到了分支跳转指令，那么只流出这一条，不能和其他指令一起流出。如果处理器有分支预测，那么下一个周期就可以根据预测结果进行发射；如果不带预测，我们就需要等待分支结果，然后再发射。</p>
-<p>!!!example</p>
-<pre><code>- Assumption: Two instructions flow out every clock cycle:
-    - 1 integer instruction + 1 floating-point operation instruction
-- Among them, load, store and branch instructions are classified as integer instructions.
-![alt text](image-104.png)
-</code></pre><h3 id="4-3-2-Based-on-dynamic-scheduling"><a href="#4-3-2-Based-on-dynamic-scheduling" class="headerlink" title="4.3.2 Based on dynamic scheduling"></a>4.3.2 Based on dynamic scheduling</h3><p>Extended Tomasuloalgorithm: supports two-way superscalar</p>
-<p>指令顺序进入保留站，分开处理</p>
-<p>!!!example<br>    <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Loop:</span><br><span class="line">FLD    F0, 0 (R1)   // Take an array element and put it into F0</span><br><span class="line">FADD.D F4, F0, F2   // add the scalar in F2</span><br><span class="line">FSD    F4, 0 (R1)   // storeresult</span><br><span class="line">ADDI   R1, R1, 8    // increment pointer by 8 //(each data occupies 8 bytes)</span><br><span class="line">BNE    R1, R2, Loop // If R1 is not equal to R2, it means it is not over yet, move to Loop to continue</span><br></pre></td></tr></table></figure></p>
-<pre><code>对于没有分支预测的情况：可以看到分支后面的一条指令，在周期7才能执行(即周期6分支指令执行结束)
-
-![alt text](image-105.png)
-
-- The program can basically reach 3 beats and 5 instructions
-    - IPC＝5/3＝1.67 items/beat
-- the execution efficiency is not very high.
-    - A total of 15 instructions were executed in 16 beats.
-    - The average command execution speed is 15/16=0.94 per beat.
-</code></pre><h3 id="4-3-3-Very-long-instruction-word-technology-VLIW"><a href="#4-3-3-Very-long-instruction-word-technology-VLIW" class="headerlink" title="4.3.3 Very long instruction word technology(VLIW)"></a>4.3.3 Very long instruction word technology(VLIW)</h3><p>Assemble multiple instructions that can be executed in parallel into a very long instruction.</p>
-<p>At compile time, multiple unrelated or unrelated operations that can be executed in parallel are combined to form a very long instruction word with multiple operation segments.</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/e4e748c50758ddb671ba1682c750622.jpg" alt="alt text"></p>
-<blockquote>
-<p>相当于只在EX阶段进行了并行操作</p>
-</blockquote>
-<h3 id="4-3-4-Superpipeline-processor"><a href="#4-3-4-Superpipeline-processor" class="headerlink" title="4.3.4 Superpipeline processor"></a>4.3.4 Superpipeline processor</h3><p>A pipeline processor with 8 or more instruction pipeline stages is called a superpipelining processor.</p>
-<p>在一个很小的$\Delta t$时间(小于一个阶段的用时)后就发射下一条指令</p>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-106.png" alt="alt text"></p>
-<ul>
-<li>本质就是流水线的细分</li>
-</ul>
-<p><img src="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/image-107.png" alt="alt text"></p>
-<h1 id="Chapter-5-DLP-and-TLP"><a href="#Chapter-5-DLP-and-TLP" class="headerlink" title="Chapter 5: DLP and TLP"></a>Chapter 5: DLP and TLP</h1><h2 id="5-1-SIMD-vector-processor"><a href="#5-1-SIMD-vector-processor" class="headerlink" title="5.1 SIMD:vector processor"></a>5.1 SIMD:vector processor</h2><ul>
-<li>SIMD架构可以利用重要的data-level parallelism<ul>
-<li>Matrix-oriented(矩阵导向)的科学计算</li>
-<li>Media-oriented image and sound processors（面向媒体的图像和声音处理器 ）</li>
-</ul>
-</li>
-<li>SIMD在功耗效率上优于MIMD</li>
-<li>SIMD允许程序员按顺序思考</li>
 </ul>
 ]]></content>
   </entry>
