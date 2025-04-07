@@ -1,303 +1,166 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="Chapter 1: Introduction1. Database SystemsDBMS(Database Management System)  数据库定义 数据组织、存储和管理 数据操作 数据库的事务管理和运行管理 数据库的建立和维护 不同数据库之间的交互    数据库系统是一些管理互相关联的数据以及一组使得用户可以访问和修改这些数据的程序的集合2. 数据库系统的目标相比于File-Pro">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据库系统 Database System | BruceYang的笔记小站</title><meta name="author" content="Bruce Yang"><meta name="copyright" content="Bruce Yang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Chapter 1: Introduction1. Database SystemsDBMS(Database Management System)  数据库定义 数据组织、存储和管理 数据操作 数据库的事务管理和运行管理 数据库的建立和维护 不同数据库之间的交互    数据库系统是一些管理互相关联的数据以及一组使得用户可以访问和修改这些数据的程序的集合2. 数据库系统的目标相比于File-Pro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统 Database System">
 <meta property="og:url" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/index.html">
 <meta property="og:site_name" content="BruceYang的笔记小站">
 <meta property="og:description" content="Chapter 1: Introduction1. Database SystemsDBMS(Database Management System)  数据库定义 数据组织、存储和管理 数据操作 数据库的事务管理和运行管理 数据库的建立和维护 不同数据库之间的交互    数据库系统是一些管理互相关联的数据以及一组使得用户可以访问和修改这些数据的程序的集合2. 数据库系统的目标相比于File-Pro">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-20.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-21.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-22.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-23.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-24.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-25.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-26.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-27.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-29.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-30.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-31.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-33.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-32.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-34.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-35.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-36.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-37.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-38.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-40.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-41.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-42.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-45.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-46.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-43.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-44.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-47.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-48.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-49.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-50.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-51.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-52.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-53.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-54.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-62.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-63.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-64.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-65.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-67.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-68.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-69.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-70.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-71.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-72.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-73.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-74.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-75.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-76.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-77.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-78.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-79.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-80.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-81.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-82.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-83.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/253211ac7e01c92106952a82893f4d4.jpg">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-84.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-85.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-86.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-87.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-88.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-89.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-90.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-91.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-92.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-93.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-94.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-95.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-96.png">
-<meta property="og:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-97.png">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-04-06T03:27:59.000Z">
 <meta property="article:modified_time" content="2025-04-06T03:28:38.006Z">
 <meta property="article:author" content="Bruce Yang">
 <meta property="article:tag" content="CS Software and Hardware">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/image-20.png">
-
-<link rel="canonical" href="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>数据库系统 Database System | BruceYang的笔记小站</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/rss2.xml" title="BruceYang的笔记小站" type="application/rss+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">BruceYang的笔记小站</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">零基础学CS的日记本</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-resourcees">
-
-    <a href="/resourcees/" rel="section"><i class="fa fa-download fa-fw"></i>resourcees</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bruce Yang">
-      <meta itemprop="description" content="主要内容为浙江大学CS本科生相关课程的笔记及代码，附带部分自学的内容和辅修课程笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BruceYang的笔记小站">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          数据库系统 Database System
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-04-06 11:27:59 / 修改时间：11:28:38" itemprop="dateCreated datePublished" datetime="2025-04-06T11:27:59+08:00">2025-04-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>45k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>41 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "数据库系统 Database System",
+  "url": "http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2025-04-06T03:27:59.000Z",
+  "dateModified": "2025-04-06T03:28:38.006Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bruce Yang",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
       
-        <h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1: Introduction"></a>Chapter 1: Introduction</h1><h2 id="1-Database-Systems"><a href="#1-Database-Systems" class="headerlink" title="1. Database Systems"></a>1. Database Systems</h2><p>DBMS(Database Management System)</p>
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据库系统 Database System',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/rss2.xml" title="BruceYang的笔记小站" type="application/rss+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">BruceYang的笔记小站</span></a><a class="nav-page-title" href="/"><span class="site-name">数据库系统 Database System</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">数据库系统 Database System</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-06T03:27:59.000Z" title="发表于 2025-04-06 11:27:59">2025-04-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-06T03:28:38.006Z" title="更新于 2025-04-06 11:28:38">2025-04-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1: Introduction"></a>Chapter 1: Introduction</h1><h2 id="1-Database-Systems"><a href="#1-Database-Systems" class="headerlink" title="1. Database Systems"></a>1. Database Systems</h2><p>DBMS(Database Management System)</p>
 <ul>
 <li>数据库定义</li>
 <li>数据组织、存储和管理</li>
@@ -2037,203 +1900,31 @@ branch-name \mathcal{G}_{sum(balance) as sum-balance}(account)</script><h4 id="4
 </ul>
 </li>
 </ul>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/" rel="prev" title="计算机体系结构(Computer Architecture)">
-      <i class="fa fa-chevron-left"></i> 计算机体系结构(Computer Architecture)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/04/07/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/" rel="next" title="宏观经济学">
-      宏观经济学 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1: Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Database-Systems"><span class="nav-number">1.1.</span> <span class="nav-text">1. Database Systems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据库系统的目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">3. 数据库的特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%95%B0%E6%8D%AE%E8%A7%86%E5%9B%BE"><span class="nav-number">1.4.</span> <span class="nav-text">4. 数据视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%A8%A1%E5%BC%8F-schema-%E4%B8%8E%E5%AE%9E%E4%BE%8B-Instance"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 模式(schema)与实例(Instance)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%95%B0%E6%8D%AE%E7%8B%AC%E7%AB%8B%E6%80%A7-%E6%8C%87%E6%95%B0%E6%8D%AE%E5%92%8C%E7%A8%8B%E5%BA%8F%E7%9B%B8%E4%BA%92%E4%B8%8D%E4%BE%9D%E8%B5%96%EF%BC%8C%E6%8A%8A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%BB%8E%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%88%86%E7%A6%BB%E5%87%BA%E6%9D%A5"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 数据独立性(指数据和程序相互不依赖，把数据的定义从程序中分离出来)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Data-Models"><span class="nav-number">1.5.</span> <span class="nav-text">5. Data Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80"><span class="nav-number">1.6.</span> <span class="nav-text">6. 数据库语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80%EF%BC%88Data-Definition-Language-DDL%EF%BC%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 数据定义语言（Data Definition Language,DDL）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Data-Manipulation-Language-DML-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 Data Manipulation Language (DML, 数据操作语言)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-SQL-Query-Language"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 SQL Query Language</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Database-Access-from-Application-Program"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 Database Access from Application Program</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.7.</span> <span class="nav-text">7. 数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E"><span class="nav-number">1.8.</span> <span class="nav-text">8. 数据库引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 存储管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 查询处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86-Transaction-Management"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 事务管理(Transaction Management)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Database-Users"><span class="nav-number">1.9.</span> <span class="nav-text">9. Database Users</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-Introduction-to-Relational-Model"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2:Introduction to Relational Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Structure-of-Relational-Databases"><span class="nav-number">2.1.</span> <span class="nav-text">1. Structure of Relational Databases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Concepts"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Attributes"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 Attributes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Database-Schema"><span class="nav-number">2.2.</span> <span class="nav-text">2. Database Schema</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Keys"><span class="nav-number">2.3.</span> <span class="nav-text">3. Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Relational-Algebra"><span class="nav-number">2.4.</span> <span class="nav-text">4. Relational Algebra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Select"><span class="nav-number">2.4.1.</span> <span class="nav-text">4.1 Select</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Project"><span class="nav-number">2.4.2.</span> <span class="nav-text">4.2 Project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Union"><span class="nav-number">2.4.3.</span> <span class="nav-text">4.3 Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Set-Difference"><span class="nav-number">2.4.4.</span> <span class="nav-text">4.4 Set Difference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Cartesian-Product"><span class="nav-number">2.4.5.</span> <span class="nav-text">4.5 Cartesian Product</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Rename"><span class="nav-number">2.4.6.</span> <span class="nav-text">4.6 Rename</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Additional-Operators"><span class="nav-number">2.4.7.</span> <span class="nav-text">4.7 Additional Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-set-intersection-operation"><span class="nav-number">2.4.7.1.</span> <span class="nav-text">4.7.1 set-intersection operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-2-Natural-Join-Operation"><span class="nav-number">2.4.7.2.</span> <span class="nav-text">4.7.2 Natural Join Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theta-Join-Operation-Formalization"><span class="nav-number">2.4.7.3.</span> <span class="nav-text">Theta Join Operation Formalization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-3-Division-Operation"><span class="nav-number">2.4.7.4.</span> <span class="nav-text">4.7.3 Division Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-4-Assignment-Operation"><span class="nav-number">2.4.7.5.</span> <span class="nav-text">4.7.4 Assignment Operation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">2.4.8.</span> <span class="nav-text">4.8 操作符的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-Extended-Relational-Algebra-Operations"><span class="nav-number">2.4.9.</span> <span class="nav-text">4.9 Extended Relational-Algebra Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-9-1-Aggregate-Functions"><span class="nav-number">2.4.9.1.</span> <span class="nav-text">4.9.1 Aggregate Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-9-2-Outer-Join"><span class="nav-number">2.4.9.2.</span> <span class="nav-text">4.9.2 Outer Join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-9-3-Null-values"><span class="nav-number">2.4.9.3.</span> <span class="nav-text">4.9.3 Null values</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-Introduction-to-SQL"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3 Introduction to SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Data-Definition"><span class="nav-number">3.1.</span> <span class="nav-text">1 Data Definition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Domain-Types-in-SQL"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 Domain Types in SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Built-in-Data-Types-in-SQL"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2 Built-in Data Types in SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Create-Table-Consrtuct"><span class="nav-number">3.1.3.</span> <span class="nav-text">1.3 Create Table Consrtuct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Drop-and-Alter-Table-Constructs"><span class="nav-number">3.1.4.</span> <span class="nav-text">1.4 Drop and Alter Table Constructs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Basic-Query-Structure"><span class="nav-number">3.2.</span> <span class="nav-text">2 Basic Query Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-The-select-Clause"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1 The select Clause</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-The-where-clause"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2 The where clause</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-The-from-clause"><span class="nav-number">3.2.3.</span> <span class="nav-text">2.3 The from clause</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-Natural-Join"><span class="nav-number">3.2.4.</span> <span class="nav-text">2.4 Natural Join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-The-Rename-Operation"><span class="nav-number">3.2.5.</span> <span class="nav-text">2.5 The Rename Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-String-Operations"><span class="nav-number">3.2.6.</span> <span class="nav-text">2.6 String Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-Ordering-the-Display-of-Tuples"><span class="nav-number">3.2.7.</span> <span class="nav-text">2.7 Ordering the Display of Tuples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-The-limit-Clause"><span class="nav-number">3.2.8.</span> <span class="nav-text">2.8 The limit Clause</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-Set-Operations"><span class="nav-number">3.2.9.</span> <span class="nav-text">2.9 Set Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-10-Null-Values"><span class="nav-number">3.2.10.</span> <span class="nav-text">2.10 Null Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-11-Aggregate-Functions"><span class="nav-number">3.2.11.</span> <span class="nav-text">2.11 Aggregate Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-1-Having-Clause"><span class="nav-number">3.2.11.1.</span> <span class="nav-text">2.11.1 Having Clause</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-11-2-Null-Values-and-Aggregates"><span class="nav-number">3.2.11.2.</span> <span class="nav-text">2.11.2 Null Values and Aggregates</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-Nested-Subqueries"><span class="nav-number">3.2.12.</span> <span class="nav-text">2.12 Nested Subqueries</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-1-Set-Membership"><span class="nav-number">3.2.12.1.</span> <span class="nav-text">2.12.1 Set Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-2-Set-Comparison"><span class="nav-number">3.2.12.2.</span> <span class="nav-text">2.12.2 Set Comparison</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-12-3-Scalar-Subquery"><span class="nav-number">3.2.13.</span> <span class="nav-text">2.12.3 Scalar Subquery</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-4-Test-for-Empty-Relations"><span class="nav-number">3.2.13.1.</span> <span class="nav-text">2.12.4 Test for Empty Relations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-12-5-Test-for-Absence-of-Duplicate-Tuples"><span class="nav-number">3.2.13.2.</span> <span class="nav-text">2.12.5 Test for Absence of Duplicate Tuples</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-13-With-Clause"><span class="nav-number">3.2.14.</span> <span class="nav-text">2.13 With Clause</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-4-Intermediate-SQL"><span class="nav-number">4.</span> <span class="nav-text">Chapter 4 Intermediate SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Joined-Relations"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Joined Relations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-Natural-Join"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 Natural Join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-Join-Conditions"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 Join Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-Outer-Join"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 Outer Join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-SQL-Data-Types-and-Schemas"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 SQL Data Types and Schemas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-User-Defined-Types"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1 User-Defined Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Domains"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2 Domains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-Large-Object-Types"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3 Large-Object Types</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Integrity-Constraints"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Integrity Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-Referential-Integrity"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 Referential Integrity</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-5-Advanced-SQL"><span class="nav-number">5.</span> <span class="nav-text">Chapter 5 Advanced SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Accessing-SQL-from-Programming-Languages"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Accessing SQL from Programming Languages</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-JDBC"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 JDBC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#update"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Query"><span class="nav-number">5.1.1.2.</span> <span class="nav-text">Query</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Getting-Result-Fields"><span class="nav-number">5.1.1.3.</span> <span class="nav-text">Getting Result Fields</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prepared-Statements"><span class="nav-number">5.1.1.4.</span> <span class="nav-text">Prepared Statements</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL-injection"><span class="nav-number">5.1.1.5.</span> <span class="nav-text">SQL injection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Metadata-Features"><span class="nav-number">5.1.1.6.</span> <span class="nav-text">Metadata Features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transaction-Control"><span class="nav-number">5.1.1.7.</span> <span class="nav-text">Transaction Control</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-2-SQLJ"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 SQLJ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-3-ODBC"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 ODBC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ODBC-Prepared-Statements"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">ODBC Prepared Statements</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#More-ODBC-Features"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">More ODBC Features</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-4-Embedded-SQL"><span class="nav-number">5.1.4.</span> <span class="nav-text">5.1.4 Embedded SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Variables"><span class="nav-number">5.1.4.1.</span> <span class="nav-text">Variables</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Query-1"><span class="nav-number">5.1.4.2.</span> <span class="nav-text">Query</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Open-and-Fetch"><span class="nav-number">5.1.4.3.</span> <span class="nav-text">Open and Fetch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Close"><span class="nav-number">5.1.4.4.</span> <span class="nav-text">Close</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Update"><span class="nav-number">5.1.4.5.</span> <span class="nav-text">Update</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Procedural-Constructs-in-SQL"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Procedural Constructs in SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-1-Procedural-Extensions-and-Stored-Procedurals"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 Procedural Extensions and Stored Procedurals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-2-Functions-and-Procedures"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 Functions and Procedures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-SQL-Functions"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">1 SQL Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-SQL-Procedures"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">2 SQL Procedures</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-3-Procedural-Constructs"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 Procedural Constructs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-4-External-Language-Functions-Procedures"><span class="nav-number">5.2.4.</span> <span class="nav-text">5.2.4 External Language Functions&#x2F;Procedures</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Triggers"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Triggers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#When-not-to-use-Triggers"><span class="nav-number">5.3.1.</span> <span class="nav-text">When not to use Triggers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-6-Entity-Relationship-Model"><span class="nav-number">6.</span> <span class="nav-text">Chapter 6:Entity-Relationship Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-Design-Process"><span class="nav-number">6.1.</span> <span class="nav-text">Database Design Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Design-phases"><span class="nav-number">6.2.</span> <span class="nav-text">1. Design phases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Design-Alternatives"><span class="nav-number">6.3.</span> <span class="nav-text">2. Design Alternatives</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Design-Approaches"><span class="nav-number">6.4.</span> <span class="nav-text">3. Design Approaches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Database-Modeling"><span class="nav-number">6.5.</span> <span class="nav-text">4. Database Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Entities"><span class="nav-number">6.5.1.</span> <span class="nav-text">4.1 Entities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Relationship-Sets"><span class="nav-number">6.5.2.</span> <span class="nav-text">4.2 Relationship Sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-Relationship-Set-with-Attributes"><span class="nav-number">6.5.3.</span> <span class="nav-text">4.3 Relationship Set with Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-Role"><span class="nav-number">6.5.4.</span> <span class="nav-text">4.4 Role</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-Degree-of-a-Relationship-Set"><span class="nav-number">6.5.5.</span> <span class="nav-text">4.5 Degree of a Relationship Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-Attributes"><span class="nav-number">6.5.6.</span> <span class="nav-text">4.6 Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-Mapping-Cardinality-Constraints"><span class="nav-number">6.5.7.</span> <span class="nav-text">4.7 Mapping Cardinality Constraints</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-1-One-to-One-Relationships"><span class="nav-number">6.5.7.1.</span> <span class="nav-text">4.7.1 One-to-One Relationships</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-2-One-to-Many-Relationships"><span class="nav-number">6.5.7.2.</span> <span class="nav-text">4.7.2 One-to-Many Relationships</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-3-Many-to-One-Relationships"><span class="nav-number">6.5.7.3.</span> <span class="nav-text">4.7.3 Many-to-One Relationships</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-4-Many-to-Many-Relationships"><span class="nav-number">6.5.7.4.</span> <span class="nav-text">4.7.4 Many-to-Many Relationships</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-Total-and-Partial-Participation"><span class="nav-number">6.5.8.</span> <span class="nav-text">4.8 Total and Partial Participation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-9-Primary-Key"><span class="nav-number">6.5.9.</span> <span class="nav-text">4.9 Primary Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-10-Weak-Entity-Sets"><span class="nav-number">6.5.10.</span> <span class="nav-text">4.10 Weak Entity Sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-11-Rebundant-Attributes"><span class="nav-number">6.5.11.</span> <span class="nav-text">4.11 Rebundant Attributes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Reduction-to-Relational-Schemas"><span class="nav-number">6.6.</span> <span class="nav-text">5. Reduction to Relational Schemas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Representing-Entity-Sets-with-Simple-Attributes"><span class="nav-number">6.6.1.</span> <span class="nav-text">5.1 Representing Entity Sets with Simple Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Representing-Relational-Sets"><span class="nav-number">6.6.2.</span> <span class="nav-text">5.2 Representing Relational Sets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Rebundancy-of-Schemas"><span class="nav-number">6.6.3.</span> <span class="nav-text">5.3 Rebundancy of Schemas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Composite-and-Multivalued-Attributes"><span class="nav-number">6.6.4.</span> <span class="nav-text">5.4 Composite and Multivalued Attributes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Design-Issues"><span class="nav-number">6.7.</span> <span class="nav-text">6. Design Issues</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Common-Mistakes-in-E-R-Diagrams"><span class="nav-number">6.7.1.</span> <span class="nav-text">6.1 Common Mistakes in E-R Diagrams</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Placement-of-Relationship-Attributes"><span class="nav-number">6.7.2.</span> <span class="nav-text">6.2 Placement of Relationship Attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Binary-VS-Non-Binary-Relationships"><span class="nav-number">6.7.3.</span> <span class="nav-text">6.3 Binary VS Non-Binary Relationships</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Converting-Non-Binary-Relationships-to-Binary-Form"><span class="nav-number">6.7.4.</span> <span class="nav-text">6.4 Converting Non-Binary Relationships to Binary Form</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-E-R-Desogn-Decisions"><span class="nav-number">6.7.5.</span> <span class="nav-text">6.5 E-R Desogn Decisions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-Extended-ER-Features"><span class="nav-number">6.7.6.</span> <span class="nav-text">6.6 Extended ER Features</span></a></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Bruce Yang</p>
-  <div class="site-description" itemprop="description">主要内容为浙江大学CS本科生相关课程的笔记及代码，附带部分自学的内容和辅修课程笔记</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Bruce Yang</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">72k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:05</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Bruce Yang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/">http://example.com/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">BruceYang的笔记小站</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/" title="计算机体系结构(Computer Architecture)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机体系结构(Computer Architecture)</div></div><div class="info-2"><div class="info-item-1">Chapter 1:Fundamentals of Computer DesignPart One: Introduction 冯诺依曼架构：存算分离   计算机的分类（及关键的系统特征） Personal Mobile Devices(个人移动设备)：成本、能耗、媒体性能、响应速度 Desktop Computers(桌面计算机)：性价比、能耗、图形性能 Servers Computers(服务器)：吞吐量、可用性、可扩展性（规模）、能耗 Embedded Computers(物联网/嵌入式计算机):价格、能耗、应用的特有性能 Supercomputers(超级计算机/集群、仓库计算机)：性价比、吞吐量、能耗均衡性  计算机并行 数据集并行(DLP)：使某些数据选项可以同时操作 任务机并行(TLP): 创建的工作任务可以单独执行 并且主要采用并行方式执行  Flynn’s Class(根据数据流与指令流)    Part Two: Performance 影响性能的因素：体系结构，硬件实现，编译器，OS等 衡量性能的方法 Single users on a...</div></div></div></a><a class="pagination-related" href="/2025/04/07/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/" title="宏观经济学"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">宏观经济学</div></div><div class="info-2"><div class="info-item-1">第九章 宏观经济的基本指标及其衡量第一节...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Bruce Yang</div><div class="author-info-description">主要内容为浙江大学CS本科生相关课程的笔记及代码，附带部分自学的内容和辅修课程笔记</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">Chapter 1: Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Database-Systems"><span class="toc-number">1.1.</span> <span class="toc-text">1. Database Systems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="toc-number">1.2.</span> <span class="toc-text">2. 数据库系统的目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.3.</span> <span class="toc-text">3. 数据库的特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E8%A7%86%E5%9B%BE"><span class="toc-number">1.4.</span> <span class="toc-text">4. 数据视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A8%A1%E5%BC%8F-schema-%E4%B8%8E%E5%AE%9E%E4%BE%8B-Instance"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 模式(schema)与实例(Instance)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%95%B0%E6%8D%AE%E7%8B%AC%E7%AB%8B%E6%80%A7-%E6%8C%87%E6%95%B0%E6%8D%AE%E5%92%8C%E7%A8%8B%E5%BA%8F%E7%9B%B8%E4%BA%92%E4%B8%8D%E4%BE%9D%E8%B5%96%EF%BC%8C%E6%8A%8A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9A%E4%B9%89%E4%BB%8E%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%88%86%E7%A6%BB%E5%87%BA%E6%9D%A5"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 数据独立性(指数据和程序相互不依赖，把数据的定义从程序中分离出来)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Data-Models"><span class="toc-number">1.5.</span> <span class="toc-text">5. Data Models</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80"><span class="toc-number">1.6.</span> <span class="toc-text">6. 数据库语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80%EF%BC%88Data-Definition-Language-DDL%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 数据定义语言（Data Definition Language,DDL）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Data-Manipulation-Language-DML-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 Data Manipulation Language (DML, 数据操作语言)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-SQL-Query-Language"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3 SQL Query Language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-Database-Access-from-Application-Program"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4 Database Access from Application Program</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.7.</span> <span class="toc-text">7. 数据库设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%95%E6%93%8E"><span class="toc-number">1.8.</span> <span class="toc-text">8. 数据库引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.8.1.</span> <span class="toc-text">8.1 存储管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">1.8.2.</span> <span class="toc-text">8.2 查询处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86-Transaction-Management"><span class="toc-number">1.8.3.</span> <span class="toc-text">8.3 事务管理(Transaction Management)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-Database-Users"><span class="toc-number">1.9.</span> <span class="toc-text">9. Database Users</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-Introduction-to-Relational-Model"><span class="toc-number">2.</span> <span class="toc-text">Chapter 2:Introduction to Relational Model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Structure-of-Relational-Databases"><span class="toc-number">2.1.</span> <span class="toc-text">1. Structure of Relational Databases</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Concepts"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1 Concepts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Attributes"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.2 Attributes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Database-Schema"><span class="toc-number">2.2.</span> <span class="toc-text">2. Database Schema</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Keys"><span class="toc-number">2.3.</span> <span class="toc-text">3. Keys</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Relational-Algebra"><span class="toc-number">2.4.</span> <span class="toc-text">4. Relational Algebra</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Select"><span class="toc-number">2.4.1.</span> <span class="toc-text">4.1 Select</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Project"><span class="toc-number">2.4.2.</span> <span class="toc-text">4.2 Project</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Union"><span class="toc-number">2.4.3.</span> <span class="toc-text">4.3 Union</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Set-Difference"><span class="toc-number">2.4.4.</span> <span class="toc-text">4.4 Set Difference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Cartesian-Product"><span class="toc-number">2.4.5.</span> <span class="toc-text">4.5 Cartesian Product</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Rename"><span class="toc-number">2.4.6.</span> <span class="toc-text">4.6 Rename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-Additional-Operators"><span class="toc-number">2.4.7.</span> <span class="toc-text">4.7 Additional Operators</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-set-intersection-operation"><span class="toc-number">2.4.7.1.</span> <span class="toc-text">4.7.1 set-intersection operation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-Natural-Join-Operation"><span class="toc-number">2.4.7.2.</span> <span class="toc-text">4.7.2 Natural Join Operation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Theta-Join-Operation-Formalization"><span class="toc-number">2.4.7.3.</span> <span class="toc-text">Theta Join Operation Formalization</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-3-Division-Operation"><span class="toc-number">2.4.7.4.</span> <span class="toc-text">4.7.3 Division Operation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-4-Assignment-Operation"><span class="toc-number">2.4.7.5.</span> <span class="toc-text">4.7.4 Assignment Operation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">2.4.8.</span> <span class="toc-text">4.8 操作符的优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-Extended-Relational-Algebra-Operations"><span class="toc-number">2.4.9.</span> <span class="toc-text">4.9 Extended Relational-Algebra Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-1-Aggregate-Functions"><span class="toc-number">2.4.9.1.</span> <span class="toc-text">4.9.1 Aggregate Functions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-2-Outer-Join"><span class="toc-number">2.4.9.2.</span> <span class="toc-text">4.9.2 Outer Join</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-9-3-Null-values"><span class="toc-number">2.4.9.3.</span> <span class="toc-text">4.9.3 Null values</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-3-Introduction-to-SQL"><span class="toc-number">3.</span> <span class="toc-text">Chapter 3 Introduction to SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Data-Definition"><span class="toc-number">3.1.</span> <span class="toc-text">1 Data Definition</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Domain-Types-in-SQL"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.1 Domain Types in SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Built-in-Data-Types-in-SQL"><span class="toc-number">3.1.2.</span> <span class="toc-text">1.2 Built-in Data Types in SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Create-Table-Consrtuct"><span class="toc-number">3.1.3.</span> <span class="toc-text">1.3 Create Table Consrtuct</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Drop-and-Alter-Table-Constructs"><span class="toc-number">3.1.4.</span> <span class="toc-text">1.4 Drop and Alter Table Constructs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Basic-Query-Structure"><span class="toc-number">3.2.</span> <span class="toc-text">2 Basic Query Structure</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-The-select-Clause"><span class="toc-number">3.2.1.</span> <span class="toc-text">2.1 The select Clause</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-The-where-clause"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.2 The where clause</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-The-from-clause"><span class="toc-number">3.2.3.</span> <span class="toc-text">2.3 The from clause</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Natural-Join"><span class="toc-number">3.2.4.</span> <span class="toc-text">2.4 Natural Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-The-Rename-Operation"><span class="toc-number">3.2.5.</span> <span class="toc-text">2.5 The Rename Operation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-String-Operations"><span class="toc-number">3.2.6.</span> <span class="toc-text">2.6 String Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-Ordering-the-Display-of-Tuples"><span class="toc-number">3.2.7.</span> <span class="toc-text">2.7 Ordering the Display of Tuples</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-The-limit-Clause"><span class="toc-number">3.2.8.</span> <span class="toc-text">2.8 The limit Clause</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-9-Set-Operations"><span class="toc-number">3.2.9.</span> <span class="toc-text">2.9 Set Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-Null-Values"><span class="toc-number">3.2.10.</span> <span class="toc-text">2.10 Null Values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-Aggregate-Functions"><span class="toc-number">3.2.11.</span> <span class="toc-text">2.11 Aggregate Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-1-Having-Clause"><span class="toc-number">3.2.11.1.</span> <span class="toc-text">2.11.1 Having Clause</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-2-Null-Values-and-Aggregates"><span class="toc-number">3.2.11.2.</span> <span class="toc-text">2.11.2 Null Values and Aggregates</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-Nested-Subqueries"><span class="toc-number">3.2.12.</span> <span class="toc-text">2.12 Nested Subqueries</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-1-Set-Membership"><span class="toc-number">3.2.12.1.</span> <span class="toc-text">2.12.1 Set Membership</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-2-Set-Comparison"><span class="toc-number">3.2.12.2.</span> <span class="toc-text">2.12.2 Set Comparison</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-3-Scalar-Subquery"><span class="toc-number">3.2.13.</span> <span class="toc-text">2.12.3 Scalar Subquery</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-4-Test-for-Empty-Relations"><span class="toc-number">3.2.13.1.</span> <span class="toc-text">2.12.4 Test for Empty Relations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-12-5-Test-for-Absence-of-Duplicate-Tuples"><span class="toc-number">3.2.13.2.</span> <span class="toc-text">2.12.5 Test for Absence of Duplicate Tuples</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-With-Clause"><span class="toc-number">3.2.14.</span> <span class="toc-text">2.13 With Clause</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-4-Intermediate-SQL"><span class="toc-number">4.</span> <span class="toc-text">Chapter 4 Intermediate SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Joined-Relations"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Joined Relations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-Natural-Join"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1 Natural Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-Join-Conditions"><span class="toc-number">4.1.2.</span> <span class="toc-text">4.1.2 Join Conditions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-Outer-Join"><span class="toc-number">4.1.3.</span> <span class="toc-text">4.1.3 Outer Join</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-SQL-Data-Types-and-Schemas"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 SQL Data Types and Schemas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-User-Defined-Types"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 User-Defined Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-Domains"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 Domains</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-Large-Object-Types"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 Large-Object Types</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Integrity-Constraints"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 Integrity Constraints</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-Referential-Integrity"><span class="toc-number">4.3.1.</span> <span class="toc-text">4.3.1 Referential Integrity</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-5-Advanced-SQL"><span class="toc-number">5.</span> <span class="toc-text">Chapter 5 Advanced SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Accessing-SQL-from-Programming-Languages"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 Accessing SQL from Programming Languages</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-JDBC"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1 JDBC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#update"><span class="toc-number">5.1.1.1.</span> <span class="toc-text">update</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Query"><span class="toc-number">5.1.1.2.</span> <span class="toc-text">Query</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Getting-Result-Fields"><span class="toc-number">5.1.1.3.</span> <span class="toc-text">Getting Result Fields</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prepared-Statements"><span class="toc-number">5.1.1.4.</span> <span class="toc-text">Prepared Statements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL-injection"><span class="toc-number">5.1.1.5.</span> <span class="toc-text">SQL injection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Metadata-Features"><span class="toc-number">5.1.1.6.</span> <span class="toc-text">Metadata Features</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Transaction-Control"><span class="toc-number">5.1.1.7.</span> <span class="toc-text">Transaction Control</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-SQLJ"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2 SQLJ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-ODBC"><span class="toc-number">5.1.3.</span> <span class="toc-text">5.1.3 ODBC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ODBC-Prepared-Statements"><span class="toc-number">5.1.3.1.</span> <span class="toc-text">ODBC Prepared Statements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#More-ODBC-Features"><span class="toc-number">5.1.3.2.</span> <span class="toc-text">More ODBC Features</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-4-Embedded-SQL"><span class="toc-number">5.1.4.</span> <span class="toc-text">5.1.4 Embedded SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Variables"><span class="toc-number">5.1.4.1.</span> <span class="toc-text">Variables</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Query-1"><span class="toc-number">5.1.4.2.</span> <span class="toc-text">Query</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Open-and-Fetch"><span class="toc-number">5.1.4.3.</span> <span class="toc-text">Open and Fetch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Close"><span class="toc-number">5.1.4.4.</span> <span class="toc-text">Close</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Update"><span class="toc-number">5.1.4.5.</span> <span class="toc-text">Update</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-Procedural-Constructs-in-SQL"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 Procedural Constructs in SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-Procedural-Extensions-and-Stored-Procedurals"><span class="toc-number">5.2.1.</span> <span class="toc-text">5.2.1 Procedural Extensions and Stored Procedurals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-Functions-and-Procedures"><span class="toc-number">5.2.2.</span> <span class="toc-text">5.2.2 Functions and Procedures</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SQL-Functions"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">1 SQL Functions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SQL-Procedures"><span class="toc-number">5.2.2.2.</span> <span class="toc-text">2 SQL Procedures</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-Procedural-Constructs"><span class="toc-number">5.2.3.</span> <span class="toc-text">5.2.3 Procedural Constructs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-4-External-Language-Functions-Procedures"><span class="toc-number">5.2.4.</span> <span class="toc-text">5.2.4 External Language Functions&#x2F;Procedures</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-Triggers"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 Triggers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#When-not-to-use-Triggers"><span class="toc-number">5.3.1.</span> <span class="toc-text">When not to use Triggers</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-6-Entity-Relationship-Model"><span class="toc-number">6.</span> <span class="toc-text">Chapter 6:Entity-Relationship Model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Database-Design-Process"><span class="toc-number">6.1.</span> <span class="toc-text">Database Design Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Design-phases"><span class="toc-number">6.2.</span> <span class="toc-text">1. Design phases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Design-Alternatives"><span class="toc-number">6.3.</span> <span class="toc-text">2. Design Alternatives</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Design-Approaches"><span class="toc-number">6.4.</span> <span class="toc-text">3. Design Approaches</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Database-Modeling"><span class="toc-number">6.5.</span> <span class="toc-text">4. Database Modeling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Entities"><span class="toc-number">6.5.1.</span> <span class="toc-text">4.1 Entities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Relationship-Sets"><span class="toc-number">6.5.2.</span> <span class="toc-text">4.2 Relationship Sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-Relationship-Set-with-Attributes"><span class="toc-number">6.5.3.</span> <span class="toc-text">4.3 Relationship Set with Attributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-Role"><span class="toc-number">6.5.4.</span> <span class="toc-text">4.4 Role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-Degree-of-a-Relationship-Set"><span class="toc-number">6.5.5.</span> <span class="toc-text">4.5 Degree of a Relationship Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-Attributes"><span class="toc-number">6.5.6.</span> <span class="toc-text">4.6 Attributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-Mapping-Cardinality-Constraints"><span class="toc-number">6.5.7.</span> <span class="toc-text">4.7 Mapping Cardinality Constraints</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-One-to-One-Relationships"><span class="toc-number">6.5.7.1.</span> <span class="toc-text">4.7.1 One-to-One Relationships</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-2-One-to-Many-Relationships"><span class="toc-number">6.5.7.2.</span> <span class="toc-text">4.7.2 One-to-Many Relationships</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-3-Many-to-One-Relationships"><span class="toc-number">6.5.7.3.</span> <span class="toc-text">4.7.3 Many-to-One Relationships</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-4-Many-to-Many-Relationships"><span class="toc-number">6.5.7.4.</span> <span class="toc-text">4.7.4 Many-to-Many Relationships</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8-Total-and-Partial-Participation"><span class="toc-number">6.5.8.</span> <span class="toc-text">4.8 Total and Partial Participation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9-Primary-Key"><span class="toc-number">6.5.9.</span> <span class="toc-text">4.9 Primary Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10-Weak-Entity-Sets"><span class="toc-number">6.5.10.</span> <span class="toc-text">4.10 Weak Entity Sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11-Rebundant-Attributes"><span class="toc-number">6.5.11.</span> <span class="toc-text">4.11 Rebundant Attributes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Reduction-to-Relational-Schemas"><span class="toc-number">6.6.</span> <span class="toc-text">5. Reduction to Relational Schemas</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Representing-Entity-Sets-with-Simple-Attributes"><span class="toc-number">6.6.1.</span> <span class="toc-text">5.1 Representing Entity Sets with Simple Attributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Representing-Relational-Sets"><span class="toc-number">6.6.2.</span> <span class="toc-text">5.2 Representing Relational Sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Rebundancy-of-Schemas"><span class="toc-number">6.6.3.</span> <span class="toc-text">5.3 Rebundancy of Schemas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-Composite-and-Multivalued-Attributes"><span class="toc-number">6.6.4.</span> <span class="toc-text">5.4 Composite and Multivalued Attributes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Design-Issues"><span class="toc-number">6.7.</span> <span class="toc-text">6. Design Issues</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Common-Mistakes-in-E-R-Diagrams"><span class="toc-number">6.7.1.</span> <span class="toc-text">6.1 Common Mistakes in E-R Diagrams</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-Placement-of-Relationship-Attributes"><span class="toc-number">6.7.2.</span> <span class="toc-text">6.2 Placement of Relationship Attributes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-Binary-VS-Non-Binary-Relationships"><span class="toc-number">6.7.3.</span> <span class="toc-text">6.3 Binary VS Non-Binary Relationships</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-Converting-Non-Binary-Relationships-to-Binary-Form"><span class="toc-number">6.7.4.</span> <span class="toc-text">6.4 Converting Non-Binary Relationships to Binary Form</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-E-R-Desogn-Decisions"><span class="toc-number">6.7.5.</span> <span class="toc-text">6.5 E-R Desogn Decisions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-Extended-ER-Features"><span class="toc-number">6.7.6.</span> <span class="toc-text">6.6 Extended ER Features</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/07/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%AD%A6/" title="宏观经济学">宏观经济学</a><time datetime="2025-04-07T04:10:28.000Z" title="发表于 2025-04-07 12:10:28">2025-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F-Database-System/" title="数据库系统 Database System">数据库系统 Database System</a><time datetime="2025-04-06T03:27:59.000Z" title="发表于 2025-04-06 11:27:59">2025-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/04/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84(Computer%20Architecture)/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-Computer-Architecture/" title="计算机体系结构(Computer Architecture)">计算机体系结构(Computer Architecture)</a><time datetime="2025-04-06T02:23:57.000Z" title="发表于 2025-04-06 10:23:57">2025-04-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Bruce Yang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?zfour";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="zfour";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><a class="magnet_link_more"  href="http://example.com/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
